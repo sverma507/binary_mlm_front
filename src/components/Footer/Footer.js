@@ -8,7 +8,7 @@ const Footer = () => {
     <footer className=" mx-auto bg-black text-white text-center h-[510px] sm:w-full">
       <div className="footer-heading">
         <h1 className="text-[100px] font-extrabold font-futura">
-          U Tech
+          U Tech International
         </h1>
         <div className="flex flex-wrap justify-center w-4/5 mx-auto gap-2 text-[20px] text-gray-400">
           <p className="cursor-pointer  hover:text-blue-600 hover:underline" onClick={() => {navigate('/')}}>Home</p>
