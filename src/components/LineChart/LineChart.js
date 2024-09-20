@@ -2,7 +2,7 @@
 // import axios from 'axios';
 // import { createChart } from 'lightweight-charts';
 
-// const CandlestickChart = ({ selectedCurrency }) => {
+// const LineChart = ({ selectedCurrency }) => {
 //   const chartContainerRef = useRef();
 //   const [chart, setChart] = useState(null);
 
@@ -27,56 +27,80 @@
 //   useEffect(() => {
 //     if (!chart) return;
 
-//     const fetchCandleData = async () => {
+//     const fetchLineData = async () => {
 //       try {
 //         const endTime = Date.now();
-//         const startTime = endTime - 86400 * 7 * 1000; // 7 days ago
+//         const startTime = endTime - 86400 * 360 * 1000; // 7 days ago
 
-//         // Fetch historical market data
 //         const response = await axios.get(
 //           `https://api.binance.com/api/v3/klines?symbol=${selectedCurrency}&interval=1d&startTime=${startTime}&endTime=${endTime}`
 //         );
 
 //         console.log('API response:', response.data);
 
-//         // Map response data to chart format
 //         const data = response.data.map(([timestamp, open, high, low, close]) => ({
 //           time: Math.floor(timestamp / 1000),
-//           open: parseFloat(open),
-//           high: parseFloat(high),
-//           low: parseFloat(low),
-//           close: parseFloat(close),
+//           value: parseFloat(close),
 //         }));
 
-//         // Create a candlestick series
-//         const candlestickSeries = chart.addCandlestickSeries({
-//           upColor: 'rgba(0,255,0,0.8)',
-//           borderUpColor: 'rgba(0,255,0,0.8)',
-//           wickUpColor: 'rgba(0,255,0,0.8)',
-//           downColor: 'rgba(255,0,0,0.8)',
-//           borderDownColor: 'rgba(255,0,0,0.8)',
-//           wickDownColor: 'rgba(255,0,0,0.8)',
+//         const lineSeries = chart.addLineSeries({
+//           color: 'rgba(100,200,0,1)',  // Green line color
+//           lineWidth: 2,
+//           crossHairMarker: {
+//             color: 'rgba(0,255,0,0.8)',
+//             borderColor: 'rgba(0,255,0,0.8)',
+//             borderWidth: 2,
+//           },
 //         });
 
-//         // Set candlestick data
-//         candlestickSeries.setData(data);
+//         lineSeries.setData(data);
+
+//         // Add points to the chart
+//         const pointSeries = chart.addSeries({
+//           color: 'rgba(255,0,0,0.8)',  // Red point color
+//           size: 4,
+//           type: 'scatter',
+//         });
+
+//         pointSeries.setData(data.map(point => ({
+//           ...point,
+//           value: point.value,
+//           color: 'rgba(255,0,0,0.8)',
+//         })));
+        
 //       } catch (error) {
-//         console.error('Error fetching candlestick data:', error.response ? error.response.data : error.message);
+//         console.error('Error fetching line chart data:', error.response ? error.response.data : error.message);
 //       }
 //     };
 
-//     fetchCandleData();
+//     fetchLineData();
 //   }, [chart, selectedCurrency]);
 
 //   return (
 //     <div
 //       ref={chartContainerRef}
 //       style={{ position: 'relative', width: '100%', height: '500px', backgroundColor: '#1e1e1e' }}
-//     />
+//     >
+//       <style>
+//         {`
+//           .tv-lightweight-charts-watermark {
+//             display: none !important;
+//           }
+//         `}
+//       </style>
+//     </div>
 //   );
 // };
 
-// export default CandlestickChart;
+// export default LineChart;
+
+
+
+
+
+
+
+
 
 
 
@@ -96,10 +120,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { createChart } from 'lightweight-charts';
 
-const CandlestickChart = ({ selectedCurrency }) => {
+const LineChart = ({ selectedCurrency }) => {
   const chartContainerRef = useRef();
   const [chart, setChart] = useState(null);
-  const [candlestickSeries, setCandlestickSeries] = useState(null);
+  const [lineSeries, setLineSeries] = useState(null);
+  const [scatterSeries, setScatterSeries] = useState(null);
 
   useEffect(() => {
     if (!chartContainerRef.current) return;
@@ -113,20 +138,43 @@ const CandlestickChart = ({ selectedCurrency }) => {
       grid: { vertLines: { color: '#555' }, horzLines: { color: '#555' } },
       priceScale: { borderColor: '#555' },
       timeScale: { borderColor: '#555' },
-    //   watermark: { visible: false },
+    });
+
+    // Create line series
+    const lineSeries = chart.addLineSeries({
+      color: 'rgba(100,200,0,1)',  // Green line color
+      lineWidth: 2,
+    });
+
+    // Create scatter series
+    const scatterSeries = chart.addLineSeries({
+      color: 'rgba(255,0,0,0.8)',  // Red point color
+      lineWidth: 0, // No line width for scatter series
+      dot: {
+        color: 'rgba(255,0,0,0.8)', // Red dot color
+        radius: 4, // Dot size
+      },
     });
 
     setChart(chart);
+    setLineSeries(lineSeries);
+    setScatterSeries(scatterSeries);
+
     console.log('Chart initialized'); // Debugging line
+
+    // Cleanup function to remove old chart
+    return () => {
+      chart.remove();
+    };
   }, [chartContainerRef]);
 
   useEffect(() => {
-    if (!chart) return;
+    if (!chart || !lineSeries || !scatterSeries) return;
 
-    const fetchCandleData = async () => {
+    const fetchLineData = async () => {
       try {
         const endTime = Date.now();
-        const startTime = endTime - 86400 * 360 * 1000; // 7 days ago
+        const startTime = endTime - 86400 * 360 * 1000; // 360 days ago
 
         const response = await axios.get(
           `https://api.binance.com/api/v3/klines?symbol=${selectedCurrency}&interval=1d&startTime=${startTime}&endTime=${endTime}`
@@ -136,45 +184,39 @@ const CandlestickChart = ({ selectedCurrency }) => {
 
         const data = response.data.map(([timestamp, open, high, low, close]) => ({
           time: Math.floor(timestamp / 1000),
-          open: parseFloat(open),
-          high: parseFloat(high),
-          low: parseFloat(low),
-          close: parseFloat(close),
+          value: parseFloat(close),
         }));
 
-        // Clear existing series before adding new data
-        if (candlestickSeries) {
-          chart.removeSeries(candlestickSeries);
-        }
+        lineSeries.setData(data);
 
-        const newCandlestickSeries = chart.addCandlestickSeries({
-          upColor: 'rgba(0,255,0,0.8)',
-          borderUpColor: 'rgba(0,255,0,0.8)',
-          wickUpColor: 'rgba(0,255,0,0.8)',
-          downColor: 'rgba(255,0,0,0.8)',
-          borderDownColor: 'rgba(255,0,0,0.8)',
-          wickDownColor: 'rgba(255,0,0,0.8)',
-        });
-
-        newCandlestickSeries.setData(data);
-        setCandlestickSeries(newCandlestickSeries);
+        // Update scatter points
+        scatterSeries.setData(data.map(point => ({
+          time: point.time,
+          value: point.value,
+        })));
 
       } catch (error) {
-        console.error('Error fetching candlestick data:', error.response ? error.response.data : error.message);
+        console.error('Error fetching line chart data:', error.response ? error.response.data : error.message);
       }
     };
 
-    fetchCandleData();
-  }, [chart, selectedCurrency]);
+    fetchLineData();
+  }, [chart, lineSeries, scatterSeries, selectedCurrency]);
 
   return (
     <div
       ref={chartContainerRef}
       style={{ position: 'relative', width: '100%', height: '500px', backgroundColor: '#1e1e1e' }}
     >
-    
+      <style>
+        {`
+          .tv-lightweight-charts-watermark {
+            display: none !important;
+          }
+        `}
+      </style>
     </div>
   );
 };
 
-export default CandlestickChart;
+export default LineChart;

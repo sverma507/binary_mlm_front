@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import CandlestickChart from '../CandlestickChart/CandlestickChart';
+import LineChart from '../LineChart/LineChart';
 
 const CurrencySelector = () => {
   const [selectedCurrency, setSelectedCurrency] = useState('BTCUSDT');
   const currencyPairs = ['BTCUSDT', 'ETHUSDT', 'LTCUSDT', 'BCHUSDT', 'ADAUSDT', 'DOTUSDT', 'XLMUSDT', 'XRPUSDT'];
 
   return (
-    <div className="container-fluid mx-auto p-4">
+    <div className="w-[90%] mx-auto p-4">
       <h1 className="text-center text-3xl font-bold mb-8 text-gray-100">Currency Candlestick Chart</h1>
       <div className="flex justify-center mb-8">
         {currencyPairs.map((currency) => (
@@ -23,7 +24,8 @@ const CurrencySelector = () => {
       </div>
       <CandlestickChart selectedCurrency={selectedCurrency} />
       {/* <CandlestickChart selectedCurrency="XBTUSD" /> */}
-
+      
+      <LineChart selectedCurrency={selectedCurrency} />
     </div>
   );
 };

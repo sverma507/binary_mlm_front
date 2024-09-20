@@ -1,8 +1,10 @@
 import React from 'react'
+import { useNavigate } from 'react-router'
 
-function navbar() {
+function Navbar() {
+    const navigate=useNavigate()
     return (
-        <div className='shadow-xl shadow-blue-500'>
+        <div className='shadow-xl shadow-blue-500 fixed top-0 z-40 w-full'>
             <div class="navbar bg-black text-white flex justify-between">
                 <div class="navbar-start">
                     {/* <div className='flex justify-between'> */}
@@ -25,13 +27,16 @@ function navbar() {
                             <ul
                                 tabindex="0"
                                 class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                                <li><a>News</a></li>
-                                <li><a>All Products</a></li>
-                                <li><a>Bot</a></li>
+                                <li><a>Home</a></li>
+                                <li onClick={()=>{navigate('/about-us')}}><a>About</a></li>
+                                <li onClick={()=>{navigate('/contact-us')}}><a>Contact Us</a></li>
+                                <li onClick={()=>{navigate('/news')}}><a>News</a></li>
+                                {/* <li><a>All products</a></li> */}
+                                <li><a>Bull</a></li>
                             </ul>
                         </div>
 
-                     <a class="btn btn-ghost text-3xl  font-bold">U Tech</a>
+                     <a class="btn btn-ghost text-3xl  font-bold">U Tech Internationl</a>
                         
                        
                     {/* </div> */}
@@ -39,9 +44,12 @@ function navbar() {
                 </div>
                 <div class="navbar-center hidden lg:flex ">
                             <ul class="menu menu-horizontal px-1 font-bold text-xl ">
-                                <li className=' hover:text-blue-500'><a>News</a></li>
-                                <li className=' hover:text-blue-500'><a>All products</a></li>
-                                <li className=' hover:text-blue-500'><a>Bot</a></li>
+                                <li className=' hover:text-blue-500'><a>Home</a></li>
+                                <li onClick={()=>{navigate('/about-us')}} className=' hover:text-blue-500'><a>About</a></li>
+                                <li onClick={()=>{navigate('/contact-us')}} className=' hover:text-blue-500'><a>Contact Us</a></li>
+                                <li onClick={()=>{navigate('/news')}} className=' hover:text-blue-500'><a>News</a></li>
+                                {/* <li className=' hover:text-blue-500'><a>All products</a></li> */}
+                                <li className=' hover:text-blue-500'><a>Bull</a></li>
                             </ul>
                         </div>
             </div>
@@ -49,4 +57,4 @@ function navbar() {
     )
 }
 
-export default navbar
+export default Navbar

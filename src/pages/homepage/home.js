@@ -7,6 +7,8 @@ import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
 import MarketStatus from '../../components/Market_Status/Market_Status'
 import CurrencySelector from '../../components/CurrencySelector/CurrencySelector'
+import TradingSection from '../../components/TradingSection/TradingSection'
+import ContactUs from '../../components/ContactUs/ContactUs'
 
 const Home = () => {
 
@@ -19,6 +21,8 @@ const Home = () => {
     <Header/>
     <MarketStatus/>
     <CurrencySelector/>
+    <TradingSection/>
+    {/* <ContactUs/> */}
     <Footer/>
 </>
   )
