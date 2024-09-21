@@ -3,7 +3,7 @@ import './signUp.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope,faShieldAlt, faKey,  faPhone, faLock, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
-const SignUp = () => {
+const SignUp = () => {  
     const [showPassword, setShowPassword] = useState(false);
 
     const togglePasswordVisibility = () => {
