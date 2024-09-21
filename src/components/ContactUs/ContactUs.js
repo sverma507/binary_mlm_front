@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
+import Layout from '../layout/layout';
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -40,17 +41,18 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-900 to-black p-8">
+    <Layout>
+    <div className="min-h-screen mt-20 items-center justify-center bg-gradient-to-r from-blue-900 to-black p-8">
       {/* Outer div with 80% width and 10% margin on both sides */}
-      <div className="bg-white text-gray-800 shadow-lg rounded-2xl w-4/5 mx-auto">
-        <div className="p-8 md:p-12 lg:flex lg:justify-between">
+      <div className="bg-white text-gray-800 shadow-lg rounded-2xl w-[80%] mx-auto">
+        <div className="p-8 md:p-12">
           {/* Form Information */}
-          <div className="lg:w-1/2 mb-8 lg:mb-0">
+          <div className="lg:w-[70%] mb-8 lg:mb-0 m-auto">
             <h2 className="text-3xl font-extrabold text-blue-600 mb-6">Get in Touch</h2>
             <p className="text-gray-500 mb-8">
               Fill in the form to send us a message or connect with us via social media platforms. We're here to assist you with any inquiries related to our trading platform.
             </p>
-            <div className="flex space-x-4 text-blue-500">
+            <div className="flex space-x-4 text-blue-500 w-fit m-auto">
               <FaFacebook className="cursor-pointer hover:text-blue-700 transition duration-200 text-3xl" />
               <FaTwitter className="cursor-pointer hover:text-blue-400 transition duration-200 text-3xl" />
               <FaLinkedin className="cursor-pointer hover:text-blue-700 transition duration-200 text-3xl" />
@@ -59,10 +61,10 @@ const ContactUs = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="lg:w-1/2 bg-gray-100 p-8 rounded-xl shadow-inner">
+          <div className="lg:w-1/2 bg-gray-100 p-8 rounded-xl shadow-inner m-auto mt-20">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="flex flex-col space-y-1">
-                <label className="text-sm font-medium">Full Name</label>
+                <label className="text-sm font-medium text-left mb-2">Full Name</label>
                 <input
                   type="text"
                   name="name"
@@ -75,7 +77,7 @@ const ContactUs = () => {
               </div>
 
               <div className="flex flex-col space-y-1">
-                <label className="text-sm font-medium">Email Address</label>
+                <label className="text-sm font-medium text-left mb-2">Email Address</label>
                 <input
                   type="email"
                   name="email"
@@ -88,7 +90,7 @@ const ContactUs = () => {
               </div>
 
               <div className="flex flex-col space-y-1">
-                <label className="text-sm font-medium">Phone Number</label>
+                <label className="text-sm font-medium text-left mb-2">Phone Number</label>
                 <input
                   type="tel"
                   name="phone"
@@ -101,12 +103,12 @@ const ContactUs = () => {
               </div>
 
               <div className="flex flex-col space-y-1">
-                <label className="text-sm font-medium">Subject</label>
+                <label className="text-sm font-medium text-left mb-2">Subject</label>
                 <select
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full p-3 border border-gray-300 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                   required
                 >
                   <option value="">Select a subject</option>
@@ -117,7 +119,7 @@ const ContactUs = () => {
               </div>
 
               <div className="flex flex-col space-y-1">
-                <label className="text-sm font-medium">Description</label>
+                <label className="text-sm font-medium text-left mb-2">Description</label>
                 <textarea
                   name="description"
                   value={formData.description}
@@ -130,7 +132,7 @@ const ContactUs = () => {
               </div>
 
               <div className="flex flex-col space-y-1">
-                <label className="text-sm font-medium">Attachment (Optional)</label>
+                <label className="text-sm font-medium text-left mb-2">Attachment (Optional)</label>
                 <input
                   type="file"
                   name="file"
@@ -162,6 +164,7 @@ const ContactUs = () => {
       </div>
       <ToastContainer />
     </div>
+    </Layout>
   );
 };
 

@@ -36,7 +36,7 @@ function Navbar() {
                             </ul>
                         </div>
 
-                     <a class="btn btn-ghost text-3xl  font-bold">U Tech Internationl</a>
+                     <a href='/'><img width={'70px'} style={{borderRadius:"50%",marginLeft:"20px"}} src='/images/main_logo2.png'/></a>
                         
                        
                     {/* </div> */}
@@ -44,10 +44,11 @@ function Navbar() {
                 </div>
                 <div class="navbar-center hidden lg:flex ">
                             <ul class="menu menu-horizontal px-1 font-bold text-xl ">
-                                <li className=' hover:text-blue-500'><a>Home</a></li>
+                                <li onClick={()=>{navigate('/')}} className=' hover:text-blue-500'><a>Home</a></li>
                                 <li onClick={()=>{navigate('/about-us')}} className=' hover:text-blue-500'><a>About</a></li>
                                 <li onClick={()=>{navigate('/contact-us')}} className=' hover:text-blue-500'><a>Contact Us</a></li>
                                 <li onClick={()=>{navigate('/news')}} className=' hover:text-blue-500'><a>News</a></li>
+                                <li onClick={()=>{navigate('/login')}} className=' text-blue-500 border border-white rounded-lg hover:bg-white'><a>Get Started</a></li>
                                 {/* <li className=' hover:text-blue-500'><a>All products</a></li> */}
                                 <li className=' hover:text-blue-500'><a>Bull</a></li>
                             </ul>

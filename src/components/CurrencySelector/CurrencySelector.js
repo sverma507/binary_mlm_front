@@ -8,7 +8,7 @@ const CurrencySelector = () => {
 
   return (
     <div className="w-[90%] mx-auto p-4">
-      <h1 className="text-center text-3xl font-bold mb-8 text-gray-100">Currency Candlestick Chart</h1>
+      <h1 className="text-center text-3xl font-bold mb-8 text-gray-100 mt-20">Currency Candlestick Chart</h1>
       <div className="flex justify-center mb-8">
         {currencyPairs.map((currency) => (
           <button
@@ -24,8 +24,9 @@ const CurrencySelector = () => {
       </div>
       <CandlestickChart selectedCurrency={selectedCurrency} />
       {/* <CandlestickChart selectedCurrency="XBTUSD" /> */}
-      
+      <div className='mt-10'>
       <LineChart selectedCurrency={selectedCurrency} />
+      </div>
     </div>
   );
 };

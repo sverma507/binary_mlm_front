@@ -1,6 +1,8 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import BottomNav from "../navbar/navbar.js";
+import Navbar from "../navbar/Navbar";
+import Footer from "../Footer/Footer";
+
 // import Footer from "./footer/footer";
 // import { Toaster } from "react-hot-toast";
 
@@ -18,7 +20,9 @@ const Layout = ({ children, title, description, keywords, author }) => {
       {/* <BottomNav/> */}
       <main className="" style={{ minHeight: "70vh"  }}>
         {/* <Toaster /> */}
+        <Navbar/>
         {children}
+        <Footer/>
       </main>
     </div>
   );

@@ -1,15 +1,17 @@
 import React from 'react';
 import { FaChartLine, FaShieldAlt, FaMobileAlt, FaHandsHelping } from 'react-icons/fa';
+import Layout from '../layout/layout';
 
 const AboutUs = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-900 to-black text-gray-100 p-8">
+    <Layout>
+    <div className="min-h-screen bg-gradient-to-r from-blue-900 to-black text-gray-100 p-8 mt-10">
       {/* Outer Container */}
-      <div className="w-4/5 mx-auto text-center">
+      <div className="w-[90%] mx-auto text-center">
         {/* Heading Section */}
         <section className="my-12">
-          <h1 className="text-4xl font-extrabold text-blue-400 mb-6">About Us</h1>
-          <p className="text-lg text-gray-300 leading-relaxed">
+          <h1 className="text-4xl font-extrabold text-blue-400 mb-20">About Us</h1>
+          <p className="text-lg min-text-sm text-gray-300 leading-relaxed">
             Welcome to <span className="text-blue-500">TradeSmart</span>, your trusted partner in the world of online trading. Our mission is to empower individuals to take control of their financial future through a secure, easy-to-use, and powerful trading platform.
           </p>
         </section>
@@ -96,6 +98,7 @@ const AboutUs = () => {
         </section>
       </div>
     </div>
+    </Layout>
   );
 };
 

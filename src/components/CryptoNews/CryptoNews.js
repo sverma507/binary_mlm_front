@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaClock } from 'react-icons/fa';
+import Layout from '../layout/layout';
 
 const CryptoNews = () => {
   // Predefined static news articles with unique crypto images
@@ -103,6 +104,7 @@ const CryptoNews = () => {
   ];
 
   return (
+    <Layout>
     <div className="min-h-screen bg-gray-900 text-gray-100 p-8">
       {/* Outer Container */}
       <div className="w-4/5 mx-auto">
@@ -143,6 +145,7 @@ const CryptoNews = () => {
         </div>
       </div>
     </div>
+    </Layout>
   );
 };
 

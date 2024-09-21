@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import './signUp.css';
+import './login.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope,faShieldAlt, faKey,  faPhone, faLock, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faLock, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import Layout from '../../components/layout/layout';
 
-const SignUp = () => {
+const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
 
     const togglePasswordVisibility = () => {
@@ -11,19 +12,15 @@ const SignUp = () => {
     };
 
     return (
-      <div className='signup-container'>
-        <div className="signup-card">
-            <h2>SignUp</h2>
+        <Layout>
+      <div className='login-container'>
+        <div className="login-card">
+            <h2>Login</h2>
             <form action="">
                 <div className="form-group">
                     <input type="email" required />
                     <label>Email</label>
                     <FontAwesomeIcon icon={faEnvelope} />
-                </div>
-                <div className="form-group">
-                    <input type="phone" required />
-                    <label>Mobile</label>
-                    <FontAwesomeIcon icon={faPhone} />
                 </div>
 
                 <div className="form-group">
@@ -37,22 +34,18 @@ const SignUp = () => {
                         <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
                     </span>
                 </div>
-                <div className="form-group">
-                    <input type="text" required />
-                    <label>OTP</label>
-                    <FontAwesomeIcon icon={faKey} />
-                </div>
 
                 <p>
-                    <input type="checkbox" /> Remember Me <a href="#">Forget Password</a>
+                    <input type="checkbox" /> Remember Me <a className='ml-8' href="#">Forget Password</a>
                 </p>
 
-                <input id="btn" type="submit" value="Login" />
-                <p>Don't have an account? <a href="#">Register</a></p>
+                <input id="btn" className='bg bg-gray-500 text-white' type="submit" value="Login" />
+                <p>Don't have an account? <a className='ml-8 text-yellow-500' href="/signup">Register</a></p>
             </form>
         </div>
       </div>
+      </Layout>
     );
 };
 
-export default SignUp;
+export default Login;
