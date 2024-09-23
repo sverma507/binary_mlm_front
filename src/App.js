@@ -8,6 +8,8 @@ import CryptoNews from './components/CryptoNews/CryptoNews';
 import SignUp from './pages/signup/signup.js';
 import Login from './pages/login/login.js';
 import Verification from './pages/verification/verification.js';
+import Bull from './components/Bull/Bull.js'
+import UserDashboard from './components/UserDahboard/UserDashboard.js';
 function App() {
   return (
     <div className="App">
@@ -20,6 +22,7 @@ function App() {
         <Route path='/news' element={<CryptoNews/>}/>
         <Route path='/contact-us' element={<ContactUs/>}/>
         <Route path='/verification' element={<Verification/>}/>
+        <Route path='/user-dashboard' element={<UserDashboard/>}/>
       </Routes>
     </div>
   );
