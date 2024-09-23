@@ -10,18 +10,24 @@ import Login from './pages/login/login.js';
 import Verification from './pages/verification/verification.js';
 import Bull from './components/Bull/Bull.js'
 import UserDashboard from './components/UserDahboard/UserDashboard.js';
+import Salary from './components/Salary/Salary.js';
+import Withdrawal from './components/Withdrawl/Withdrawl.js';
+import Recharge from './components/Recharge/Recharge.js';
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/signup' element={<SignUp/>}/>
+        <Route path='/withdrawl' element={<Withdrawal/>}/>
+        <Route path='/salary' element={<Salary/>}/>
         <Route path='/bull' element={<Bull/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/about-us' element={<AboutUs/>}/>
         <Route path='/news' element={<CryptoNews/>}/>
         <Route path='/contact-us' element={<ContactUs/>}/>
         <Route path='/verification' element={<Verification/>}/>
+        <Route path='/recharge' element={<Recharge/>}/>
         <Route path='/user-dashboard' element={<UserDashboard/>}/>
       </Routes>
     </div>
