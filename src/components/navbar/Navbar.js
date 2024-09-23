@@ -27,12 +27,12 @@ function Navbar() {
                             <ul
                                 tabindex="0"
                                 class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                                <li><a>Home</a></li>
+                                <li onClick={()=>{navigate('/')}}><a>Home</a></li>
                                 <li onClick={()=>{navigate('/about-us')}}><a>About</a></li>
                                 <li onClick={()=>{navigate('/contact-us')}}><a>Contact Us</a></li>
                                 <li onClick={()=>{navigate('/news')}}><a>News</a></li>
                                 {/* <li><a>All products</a></li> */}
-                                <li><a>Bull</a></li>
+                                <li onClick={()=>{navigate('/bull')}}><a> Trading Bull</a></li>
                             </ul>
                         </div>
 
@@ -50,7 +50,7 @@ function Navbar() {
                                 <li onClick={()=>{navigate('/news')}} className=' hover:text-blue-500'><a>News</a></li>
                                 <li onClick={()=>{navigate('/login')}} className=' text-blue-500 border border-white rounded-lg hover:bg-white'><a>Get Started</a></li>
                                 {/* <li className=' hover:text-blue-500'><a>All products</a></li> */}
-                                <li className=' hover:text-blue-500'><a>Bull</a></li>
+                                <li onClick={()=>{navigate('/bull')}} className=' ml-2 text-white border  border-white rounded-lg bg-gradient-to-br from-green-500 to-blue-800 hover:bg-gradient-to-tr '><a>Trading Bull</a></li>
                             </ul>
                         </div>
             </div>
