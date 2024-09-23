@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import ContactUs from './components/ContactUs/ContactUs';
 import AboutUs from './components/AboutUs/AboutUs';
 import CryptoNews from './components/CryptoNews/CryptoNews';
-import SignUp from './pages/signUp/signup.js';
+import SignUp from './pages/signup/signup.js';
 import Login from './pages/login/login.js';
 import Verification from './pages/verification/verification.js';
 import Bull from './components/Bull/Bull.js'

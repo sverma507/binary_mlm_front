@@ -31,7 +31,7 @@ const SignUp = () => {
 
         try {
             // API call to backend for signup
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/signup`, {
+            const response = await fetch(`http://localhost:5050/api/v1/auth/signup`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
