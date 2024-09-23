@@ -7,7 +7,7 @@ import AboutUs from './components/AboutUs/AboutUs';
 import CryptoNews from './components/CryptoNews/CryptoNews';
 import SignUp from './pages/signup/signup.js';
 import Login from './pages/login/login.js';
-import Bull from './components/Bull/Bull.js';
+import Verification from './pages/verification/verification.js';
 function App() {
   return (
     <div className="App">
@@ -19,6 +19,7 @@ function App() {
         <Route path='/about-us' element={<AboutUs/>}/>
         <Route path='/news' element={<CryptoNews/>}/>
         <Route path='/contact-us' element={<ContactUs/>}/>
+        <Route path='/verification' element={<Verification/>}/>
       </Routes>
     </div>
   );

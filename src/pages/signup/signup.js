@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './signup.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope,faShieldAlt, faKey,  faPhone, faLock, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope,faShieldAlt, faKey,faCodeBranch,  faPhone, faLock, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import Layout from '../../components/layout/layout';
 
 const SignUp = () => {  
     const [showPassword, setShowPassword] = useState(false);
@@ -11,8 +12,9 @@ const SignUp = () => {
     };
 
     return (
-      <div className='signup-container'>
-        <div className="signup-card">
+        <Layout>
+        <div className='signUp-container'>
+        <div className="signUp-card">
             <h2>SignUp</h2>
             <form action="">
                 <div className="form-group">
@@ -22,7 +24,7 @@ const SignUp = () => {
                 </div>
                 <div className="form-group">
                     <input type="phone" required />
-                    <label>Mobile</label>
+                    <label>Phone</label>
                     <FontAwesomeIcon icon={faPhone} />
                 </div>
 
@@ -39,19 +41,20 @@ const SignUp = () => {
                 </div>
                 <div className="form-group">
                     <input type="text" required />
-                    <label>OTP</label>
-                    <FontAwesomeIcon icon={faKey} />
+                    <label>Referral Code (Optional)</label>
+                    <FontAwesomeIcon icon={faCodeBranch} />
                 </div>
 
-                <p>
-                    <input type="checkbox" /> Remember Me <a href="#">Forget Password</a>
+                <p className='mt-10'>
+                    <input type="checkbox" /> Remember Me <a className='ml-10' href="#">Forget Password</a>
                 </p>
 
-                <input id="btn" type="submit" value="Login" />
-                <p>Don't have an account? <a href="#">Register</a></p>
+                <input id="btn" className='bg bg-gray-500 text-white' type="submit" value="Proceed" />
+                <p>Already have an account? <a className='ml-8 text-yellow-500' href="/signup">Login</a></p>
             </form>
         </div>
       </div>
+      </Layout>
     );
 };
 
