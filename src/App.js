@@ -10,10 +10,16 @@ import Login from './pages/login/login.js';
 import Verification from './pages/verification/verification.js';
 import Bull from './components/Bull/Bull.js'
 import UserDashboard from './components/UserDahboard/UserDashboard.js';
+import UserTree from './pages/myTeam/myTeam.js';
+import PrivateRoute from './routes/privateRoutes.js';
 function App() {
   return (
     <div className="App">
       <Routes>
+        <Route path='/user' element={<PrivateRoute/>}>
+        <Route path='user-dashboard' element={<UserDashboard/>}/>
+        <Route path="user-tree" element = {<UserTree/>}/>
+        </Route>
         <Route path='/' element={<Home/>}/>
         <Route path='/signup' element={<SignUp/>}/>
         <Route path='/bull' element={<Bull/>}/>
@@ -22,7 +28,7 @@ function App() {
         <Route path='/news' element={<CryptoNews/>}/>
         <Route path='/contact-us' element={<ContactUs/>}/>
         <Route path='/verification' element={<Verification/>}/>
-        <Route path='/user-dashboard' element={<UserDashboard/>}/>
+        
       </Routes>
     </div>
   );

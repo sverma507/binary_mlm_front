@@ -3,9 +3,11 @@ import './login.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import Layout from '../../components/layout/layout';
+import { useAuth } from '../../context/auth';
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const [auth, setAuth] = useAuth();
 
     const togglePasswordVisibility = () => {
         setShowPassword(prevState => !prevState);

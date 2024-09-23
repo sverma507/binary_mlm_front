@@ -25,7 +25,7 @@ const SignUp = () => {
             email: e.target.email.value,
             phone: e.target.phone.value,
             password: e.target.password.value,
-            referredBy: referredBy || null, // null if no referral code
+            referredBy: referredBy, // null if no referral code
             preferredSide: selectedPosition, // 'left' or 'right' side
         };
 
@@ -83,7 +83,7 @@ const SignUp = () => {
                         </div>
 
                         <div className="form-group">
-                            <input type="text" name="referralCode" onChange={(e) => {setReferredCode(e.target.value)}}/>
+                            <input type="text" name="referralCode" required onChange={(e) => {setReferredCode(e.target.value)}}/>
                             <label>Referral Code (Optional)</label>
                             <FontAwesomeIcon icon={faCodeBranch} />
                         </div>

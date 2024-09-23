@@ -9,7 +9,7 @@ const CurrencySelector = () => {
   return (
     <div className="w-[90%] mx-auto p-4">
       <h1 className="text-center text-3xl font-bold mb-8 text-gray-100 mt-20">Currency Candlestick Chart</h1>
-      <div className="flex justify-center mb-8">
+      <div className="flex justify-center flex-wrap mb-8 gap-10">
         {currencyPairs.map((currency) => (
           <button
             key={currency}
