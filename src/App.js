@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import ContactUs from "./components/ContactUs/ContactUs";
 import AboutUs from "./components/AboutUs/AboutUs";
 import CryptoNews from "./components/CryptoNews/CryptoNews";
-import SignUp from "./pages/signup/signup.js";
+import SignUp from "./components/SignUp/SignUp.js";
 import Login from "./pages/login/login.js";
 import Verification from "./pages/verification/verification.js";
 import Bull from "./components/Bull/Bull.js";
@@ -26,9 +26,10 @@ function App() {
           <Route path="user-dashboard" element={<UserDashboard />} />
           <Route path="withdrawl" element={<Withdrawal />} />
           <Route path="salary" element={<Salary />} />
-          <Route path="user-tree" element={<UserTree />} />
+          
         </Route>
         <Route path="/" element={<Home />} />
+        <Route path="user-tree" element={<UserTree />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/bull" element={<Bull />} />
         <Route path="/login" element={<Login />} />
