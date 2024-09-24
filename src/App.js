@@ -27,12 +27,12 @@ function App() {
           <Route path="user-dashboard" element={<UserDashboard />} />
           <Route path="withdrawl" element={<Withdrawal />} />
           <Route path="salary" element={<Salary />} />
+        <Route path="profile" element={<MyProfile />} />
           
+        <Route path="user-tree" element={<UserTree />} />
         </Route>
         <Route path="/" element={<Home />} />
-        <Route path="user-tree" element={<UserTree />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/user-profile" element={<MyProfile />} />
         <Route path="/bull" element={<Bull />} />
         <Route path="/login" element={<Login />} />
         <Route path="/about-us" element={<AboutUs />} />

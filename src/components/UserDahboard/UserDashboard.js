@@ -1,13 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaChartPie, FaUserFriends, FaWallet, FaBullhorn } from 'react-icons/fa';
 import { Line } from 'react-chartjs-2';
 import { Chart, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import Layout from '../layout/layout';
+import axios from 'axios';
 
 // Register chart.js components
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const UserDashboard = () => {
+  const [userData, setUserData] = useState(null);
+
+  // Fetch user data on component mount
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get('/api/user/dashboard'); // Replace with your API endpoint
+        setUserData(response.data);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
   // Sample data for performance chart (dummy data for now)
   const chartData = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June'],
@@ -43,28 +60,31 @@ const UserDashboard = () => {
 
           {/* Overview Section */}
           <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 sm:gap-10 mb-12 sm:mb-16">
-            {/* Card Template */}
+            {/* Card for Total Earnings */}
             <div className="bg-gradient-to-tr from-gray-900 via-gray-800 to-gray-700 p-4 sm:p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-500 ease-in-out">
               <FaWallet className="text-blue-500 text-3xl sm:text-4xl mb-2 sm:mb-4 mx-auto" />
               <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">Total Earnings</h3>
-              <p className="text-3xl sm:text-4xl font-extrabold text-gray-200">$4,500</p>
+              <p className="text-3xl sm:text-4xl font-extrabold text-gray-200">${userData ? userData.wallet : 'Loading...'}</p>
               <p className="text-gray-400 mt-2">Updated Daily</p>
             </div>
 
+            {/* Card for Total Referrals */}
             <div className="bg-gradient-to-tr from-gray-900 via-gray-800 to-gray-700 p-4 sm:p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-500 ease-in-out">
               <FaUserFriends className="text-blue-500 text-3xl sm:text-4xl mb-2 sm:mb-4 mx-auto" />
-              <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">Total Referrals</h3>
-              <p className="text-3xl sm:text-4xl font-extrabold text-gray-200">120</p>
-              <p className="text-gray-400 mt-2">Grow Your Network</p>
+              <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">Email</h3>
+              <p className="text-3xl sm:text-4xl font-extrabold text-gray-200">{userData ? userData.email : 'Loading...'}</p>
+              <p className="text-gray-400 mt-2">Stay Connected</p>
             </div>
 
+            {/* Card for Active Referrals */}
             <div className="bg-gradient-to-tr from-gray-900 via-gray-800 to-gray-700 p-4 sm:p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-500 ease-in-out">
               <FaChartPie className="text-blue-500 text-3xl sm:text-4xl mb-2 sm:mb-4 mx-auto" />
-              <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">Active Referrals</h3>
-              <p className="text-3xl sm:text-4xl font-extrabold text-gray-200">75</p>
-              <p className="text-gray-400 mt-2">Performance Insights</p>
+              <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">Phone Number</h3>
+              <p className="text-3xl sm:text-4xl font-extrabold text-gray-200">{userData ? userData.phone : 'Loading...'}</p>
+              <p className="text-gray-400 mt-2">Contact Info</p>
             </div>
 
+            {/* Card for Notifications */}
             <div className="bg-gradient-to-tr from-gray-900 via-gray-800 to-gray-700 p-4 sm:p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-500 ease-in-out">
               <FaBullhorn className="text-blue-500 text-3xl sm:text-4xl mb-2 sm:mb-4 mx-auto" />
               <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">Notifications</h3>
@@ -100,6 +120,7 @@ const UserDashboard = () => {
                   </tr>
                 </thead>
                 <tbody>
+                  {/* Example data */}
                   <tr className="border-t border-gray-600 bg-gray-800 hover:bg-gray-700 transition duration-300">
                     <td className="px-2 sm:px-4 py-2">John Doe</td>
                     <td className="px-2 sm:px-4 py-2">Active</td>
@@ -118,23 +139,12 @@ const UserDashboard = () => {
             </div>
           </section>
 
-          {/* Referral Link Section */}
-          <section className="my-8 sm:my-12 bg-gradient-to-r from-blue-700 via-blue-800 to-purple-800 p-6 sm:p-8 rounded-lg shadow-lg">
-            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 sm:mb-6">Share Your Referral Link</h2>
-            <p className="text-base sm:text-lg text-gray-300 mb-4 sm:mb-6">
-              Invite others to join and start earning rewards from your referrals.
+          {/* Additional Features or Sections */}
+          <section className="my-8 sm:my-12 bg-gradient-to-b from-gray-900 to-gray-800 p-6 sm:p-8 rounded-lg shadow-lg">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-blue-400">Upcoming Features</h2>
+            <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
+              Stay tuned for more features coming soon, including a mobile app and improved analytics for your referrals!
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-              <input
-                type="text"
-                className="w-full sm:w-2/3 bg-gray-900 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring focus:ring-blue-500"
-                value="https://example.com/referral/yourlink"
-                readOnly
-              />
-              <button className="w-full sm:w-auto bg-blue-500 hover:bg-blue-600 text-white font-bold px-6 py-2 rounded-lg shadow-lg transition duration-300">
-                Copy Link
-              </button>
-            </div>
           </section>
         </div>
       </div>

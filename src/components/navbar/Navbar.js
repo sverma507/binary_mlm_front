@@ -141,7 +141,7 @@ function Navbar() {
             </a>
             {isDashboardOpen && (
               <ul className="rounded-box mt-2 w-52 p-2">
-                <li onClick={() => { navigate('/profile'); }}><a>My Profile</a></li>
+                <li onClick={() => { navigate('/user/profile'); }}><a>My Profile</a></li>
                 <li onClick={() => { navigate('/bull'); }}><a>My Bull</a></li>
                 <li onClick={() => { navigate('/products'); }}><a>My Products</a></li>
                 <li onClick={() => { navigate('/earnings'); }}><a>My Earnings</a></li>
@@ -169,7 +169,7 @@ function Navbar() {
         <li className="relative group hover:text-blue-500">
           <a className="hover:text-blue-500">Dashboard</a>
           <ul className="dropdown-content bg-black text-white mt-3 w-52 p-2 shadow-lg absolute left-0 hidden group-hover:block">
-            <li onClick={() => { navigate('/profile'); }}><a>My Profile</a></li>
+            <li onClick={() => { navigate('/user/profile'); }}><a>My Profile</a></li>
             <li onClick={() => { navigate('/bull'); }}><a>My Bull</a></li>
             <li onClick={() => { navigate('/products'); }}><a>My Products</a></li>
             <li onClick={() => { navigate('/earnings'); }}><a>My Earnings</a></li>
