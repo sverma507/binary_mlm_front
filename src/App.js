@@ -17,6 +17,7 @@ import Withdrawal from "./components/Withdrawl/Withdrawl.js";
 import Recharge from "./components/Recharge/Recharge.js";
 import Admin_Dashboard from "./components/Admin/Admin_Dashboard/Admin_Dashboard.js";
 import ActivateUserForm from "./components/Admin/ActivateUserForm/ActivateUserForm.js";
+import MyProfile from "./components/MyProfile/MyProfile.js";
 function App() {
   return (
     <div className="App">
@@ -31,6 +32,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="user-tree" element={<UserTree />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/user-profile" element={<MyProfile />} />
         <Route path="/bull" element={<Bull />} />
         <Route path="/login" element={<Login />} />
         <Route path="/about-us" element={<AboutUs />} />

@@ -3,6 +3,7 @@ import './SignUp.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faCodeBranch, faPhone, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import Layout from '../../components/layout/layout';
+import axios from 'axios';
 
 const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -30,26 +31,19 @@ const SignUp = () => {
         };
 
         try {
-            // API call to backend for signup
-            const response = await fetch(`http://localhost:5050/api/v1/auth/signup`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-
-            const result = await response.json();
-            if (response.ok) {
+            // API call to backend for signup using axios
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/signup`, formData);
+            
+            if (response.status === 200) {
                 setSuccessMessage('User registered successfully');
-                alert(result.message);
+                alert(response.data.message);
             } else {
-                setFormError(result.message || 'Signup failed');
-                alert(result.message)
+                setFormError(response.data.message || 'Signup failed');
+                alert(response.data.message);
             }
         } catch (error) {
             console.error('Error:', error);
-            setFormError('Something went wrong');
+            setFormError(error.response?.data?.message || 'Something went wrong');
         }
     };
 
@@ -83,7 +77,7 @@ const SignUp = () => {
                         </div>
 
                         <div className="form-group">
-                            <input type="text" name="referralCode" required onChange={(e) => {setReferredCode(e.target.value)}}/>
+                            <input type="text" name="referralCode" onChange={(e) => { setReferredCode(e.target.value) }} />
                             <label>Referral Code (Optional)</label>
                             <FontAwesomeIcon icon={faCodeBranch} />
                         </div>
@@ -116,7 +110,7 @@ const SignUp = () => {
                         {formError && <p style={{ color: 'red' }}>{formError}</p>}
                         {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
 
-                        <p>Already have an account? <a className='ml-8 text-yellow-500' href="/signup">Login</a></p>
+                        <p>Already have an account? <a className='ml-8 text-yellow-500' href="/login">Login</a></p>
                     </form>
                 </div>  
             </div>
