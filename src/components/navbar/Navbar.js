@@ -126,9 +126,9 @@ function Navbar() {
 
     {/* Mobile Dropdown for small screens - Menu Button on Right */}
     <div className="navbar-end lg:hidden flex">
-      <div className="dropdown bg-slate-800 text-black">
+      <div className="dropdown left-4">
         <div tabIndex="0" role="button" className="btn btn-ghost">
-          <svg
+          {/* <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5 text-white"
             fill="none"
@@ -140,16 +140,17 @@ function Navbar() {
               strokeWidth="2"
               d="M4 6h16M4 12h8m-8 6h16"
             />
-          </svg>
+          </svg> */}
+          <img width={'60px'} src='/images/menu_utech.png' alt='error'/>
         </div>
         <ul
           tabIndex="0"
-          className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-54 right-6 p-2 shadow text-white">
-          <li onClick={() => { navigate('/'); }}><a>Home</a></li>
-          <li onClick={() => { navigate('/about-us'); }}><a>About</a></li>
-          <li onClick={() => { navigate('/contact-us'); }}><a>Contact Us</a></li>
-          <li onClick={() => { navigate('/news'); }}><a>News</a></li>
-          <li onClick={() => { navigate('/bull'); }}><a>Trading Bull</a></li>
+          className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-[150px] right-6 p-2 shadow text-white">
+          <li onClick={() => { navigate('/'); }} className='hover:bg-gray-700 rounded-lg'><a>Home</a></li>
+          <li onClick={() => { navigate('/about-us'); }} className='hover:bg-gray-700 rounded-lg'><a>About</a></li>
+          <li onClick={() => { navigate('/contact-us'); }} className='hover:bg-gray-700 rounded-lg'><a>Contact Us</a></li>
+          <li onClick={() => { navigate('/news'); }} className='hover:bg-gray-700 rounded-lg'><a>News</a></li>
+          <li onClick={() => { navigate('/bull'); }} className='hover:bg-gray-700 rounded-lg'><a>Trading Bull</a></li>
 
           {/* Dashboard Dropdown for Mobile */}
           <li>
@@ -159,7 +160,7 @@ function Navbar() {
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                 </svg>
-              </a>):(<></>)
+              </a>):(<li onClick={() => { navigate('/login'); }} className='text-blue-500 border border-white rounded-lg w-[89%] m-auto mt-6 hover:bg-white'><a>Get Started</a></li>)
             }
            
             {isDashboardOpen && (
