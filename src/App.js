@@ -28,9 +28,8 @@ function App() {
           <Route path="withdrawl" element={<Withdrawal />} />
           <Route path="user-tree" element={<UserTree />} />
           <Route path="salary" element={<Salary />} />
-        <Route path="profile" element={<MyProfile />} />
-          
-        <Route path="user-tree" element={<UserTree />} />
+          <Route path="profile" element={<MyProfile />} />
+          <Route path="user-tree" element={<UserTree />} />
         </Route>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
