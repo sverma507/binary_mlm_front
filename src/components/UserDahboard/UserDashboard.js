@@ -64,7 +64,7 @@ const UserDashboard = () => {
             <div className="bg-gradient-to-tr from-gray-900 via-gray-800 to-gray-700 p-4 sm:p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-500 ease-in-out">
               <FaWallet className="text-blue-500 text-3xl sm:text-4xl mb-2 sm:mb-4 mx-auto" />
               <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">Total Earnings</h3>
-              <p className="text-3xl sm:text-4xl font-extrabold text-gray-200">${userData ? userData.wallet : 'Loading...'}</p>
+              <p className="text-3xl sm:text-4xl font-extrabold text-gray-200">${userData ? userData.earningWallet : 'Loading...'}</p>
               <p className="text-gray-400 mt-2">Updated Daily</p>
             </div>
 

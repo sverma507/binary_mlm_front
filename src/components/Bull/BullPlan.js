@@ -1,7 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Layout from '../layout/layout';
+import axios from 'axios';
+import { useAuth } from '../../context/auth';
+import { toast } from 'react-toastify';
 
 const BullPlan = () => {
+  const [auth, setAuth] = useAuth();
+  const [loading, setLoading] = useState(false); // Loading state
+
+  const handleBuyBull = async () => {
+    try {
+      setLoading(true); // Start loading
+      const id = auth?.user?._id;
+
+      // API call to purchase the bull
+      const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/user/purchase-bull/${id}`);
+
+      // Handle response messages
+      if (data.success) {
+        toast.success(data.message); // Show success toast
+      } else {
+        toast.error(data.message); // Show error toast
+      }
+
+      setLoading(false); // Stop loading
+    } catch (error) {
+      setLoading(false); // Stop loading
+      toast.error('An error occurred while processing your request. Please try again.'); // Handle API errors
+    }
+  };
+
   return (
     <Layout>
       <section className="relative pt-28 py-16 bg-gradient-to-r from-blue-800 to-black text-gray-100 overflow-hidden">
@@ -17,7 +45,7 @@ const BullPlan = () => {
             </p>
           </div>
 
-          {/* Key Benefits with Icons */}
+          {/* Key Benefits Section */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center mb-16">
             <div className="bg-gray-800 shadow-lg rounded-lg p-8 text-center transform hover:scale-105 transition-transform duration-300">
               <img src={require('./Images/bull.jpg')} alt="Investment" className="mx-auto w-16 mb-4" />
@@ -39,50 +67,6 @@ const BullPlan = () => {
               <p className="mt-4 text-gray-300">
                 Join a thriving community of traders and investors, sharing insights and success stories.
               </p>
-            </div>
-          </div>
-
-          {/* Referral and Trading Structure Section */}
-          <div className="bg-gradient-to-b from-blue-900 to-black p-8 rounded-lg shadow-xl relative overflow-hidden mb-16">
-            {/* Background Animation */}
-            <div className="absolute inset-0 bg-opacity-50 bg-gradient-to-r from-transparent to-blue-800 animate-pulse"></div>
-            <div className="relative z-10">
-              <h3 className="text-4xl font-bold text-blue-400 text-center mb-8">
-                Multiply Your Earnings with the Referral System
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="space-y-6 text-lg text-gray-300">
-                  <p>
-                    For every Bull purchased in your network, you earn instantly:
-                  </p>
-                  <ul className="list-disc pl-6 space-y-2">
-                    <li>Your direct referral gets you 10% of the amount.</li>
-                    <li>Your referrer’s upline receives 5%.</li>
-                    <li>The third upline gets 2%.</li>
-                  </ul>
-                  <p>
-                    This dynamic referral system ensures that your network’s growth translates into steady, passive income for you. The larger your network, the greater your potential earnings.
-                  </p>
-                  <a
-                    href="#"
-                    className="inline-block bg-blue-600 hover:bg-blue-500 text-white text-lg font-bold py-3 px-8 rounded-full transition duration-300 mt-4"
-                  >
-                    Start Building Your Network
-                  </a>
-                </div>
-                <div className="relative">
-                  <img
-                    src={require('./Images/animation-graph.jpg')}
-                    alt="Referral Structure"
-                    className="w-full rounded-lg shadow-lg"
-                  />
-                  <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-20 rounded-lg"></div>
-                  <div className="absolute bottom-0 left-0 p-4 text-white">
-                    <h4 className="text-xl font-bold">Referral-Based Growth</h4>
-                    <p>Empower your network, and see profits flow upwards.</p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -126,12 +110,13 @@ const BullPlan = () => {
             <p className="text-xl text-gray-300 mb-6">
               The future of financial independence starts with your first step. Invest in a Bull, and start reaping the rewards today.
             </p>
-            <a
-              href="#"
-              className="inline-block bg-gradient-to-r from-green-400 to-blue-600 hover:from-green-500 hover:to-blue-500 text-white text-lg font-bold py-3 px-8 rounded-full transition duration-300"
+            <button
+              onClick={handleBuyBull}
+              className={`inline-block ${loading ? 'bg-gray-500 cursor-not-allowed' : 'bg-gradient-to-r from-green-400 to-blue-600 hover:from-green-500 hover:to-blue-500'} text-white text-lg font-bold py-3 px-8 rounded-full transition duration-300`}
+              disabled={loading} // Disable the button when loading
             >
-              Buy Your Bull Now for $60
-            </a>
+              {loading ? 'Loading...' : 'Buy Your Bull Now for $60'}
+            </button>
           </div>
         </div>
       </section>

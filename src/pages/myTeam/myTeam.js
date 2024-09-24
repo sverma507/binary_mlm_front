@@ -29,7 +29,7 @@ const UserTree = () => {
     return {
       name: user.referralCode,
       attributes: {
-        wallet: user.wallet,
+        earningWallet: user.earningWallet,
         rank: user.rank,
         isActive: user.isActive ? 'Active' : 'Inactive',
       },
@@ -94,7 +94,7 @@ const UserTree = () => {
               {nodeDatum.attributes && (
                 <>
                   <text fill="black" strokeWidth="0.3" x="-40" y="20">
-                    Wallet: Rs.{nodeDatum.attributes.wallet}
+                    Wallet: Rs.{nodeDatum.attributes.earningWallet}
                   </text>
                 </>
               )}
