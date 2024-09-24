@@ -80,7 +80,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useAuth } from '../../context/auth';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 
 function Navbar() {
   const [isDashboardOpen, setDashboardOpen] = useState(false);
@@ -99,14 +99,17 @@ function Navbar() {
       token: "",
     });
     localStorage.removeItem("auth");
-    navigate("/login");
     toast.success("Logout successfully");
+    setTimeout(()=> {
+      navigate("/login");
+    },2000)
   };
 
 
 
   return (
     <div className='shadow-xl shadow-blue-500 fixed top-0 z-40 w-[100%]'>
+      <ToastContainer/>
   <div className="navbar bg-black text-white flex justify-between">
     {/* Navbar Start */}
     <div className="navbar-start flex items-center">
