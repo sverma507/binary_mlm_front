@@ -26,6 +26,7 @@ function App() {
           <Route path="recharge" element={<Recharge />} />
           <Route path="user-dashboard" element={<UserDashboard />} />
           <Route path="withdrawl" element={<Withdrawal />} />
+          <Route path="user-tree" element={<UserTree />} />
           <Route path="salary" element={<Salary />} />
         <Route path="profile" element={<MyProfile />} />
           
