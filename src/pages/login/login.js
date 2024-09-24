@@ -6,6 +6,7 @@ import Layout from '../../components/layout/layout';
 import axios from 'axios';
 import { useAuth } from '../../context/auth';
 import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -43,13 +44,16 @@ const Login = () => {
                     token: response.data.token,
                 }));
                 setSuccessMessage(response.data.message);  // Show success message
+                toast.success("Login successfully");
                 setTimeout(() => {
                     navigate('/');  // Redirect to home after successful login
                 }, 2000);
             } else {
                 setError(response.data.message);  // Show error message
+                toast.error(response.data.message);
             }
         } catch (err) {
+            toast.error(err.response?.data?.message);
             setError(err.response?.data?.message || 'An error occurred. Please try again.');  // Handle error
         } finally {
             setLoading(false);  // Stop loading when the response is received
@@ -59,6 +63,7 @@ const Login = () => {
     return (
         <Layout>
             <div className='login-container'>
+                <ToastContainer/>
                 <div className="login-card">
                     <h2>Login</h2>
                     <form onSubmit={handleSubmit}>
