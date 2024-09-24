@@ -14,11 +14,12 @@ const UserTree = () => {
     if (!user) return null;
 
     return {
-      name: user.email,
+      name: user.referralCode,
       attributes: {
         wallet: user.wallet,
         rank: user.rank,
         isActive: user.isActive ? 'Active' : 'Inactive',
+
       },
       children: [
         user.leftChild ? buildTree(users, user.leftChild) : null,
