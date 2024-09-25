@@ -1,7 +1,9 @@
 import React from 'react';
 import Layout from '../layout/layout';
+import { useNavigate } from 'react-router';
 
 const  Bull = () => {
+  const navigate = useNavigate()
   return (
     <Layout>
     <section className="relative pt-28 py-16 bg-gradient-to-r from-blue-900 to-black text-gray-100">
@@ -33,8 +35,8 @@ const  Bull = () => {
             </ul>
             <div className="mt-6">
               <a
-                href="#"
-                className="inline-block bg-blue-600 hover:bg-blue-500 text-white text-lg font-bold py-3 px-6 rounded-full transition duration-300"
+                onClick={()=>{navigate('/user/buy-bull')}}
+                className="inline-block cursor-pointer bg-blue-600 hover:bg-blue-500 text-white text-lg font-bold py-3 px-6 rounded-full transition duration-300"
               >
                 Buy a Trading Bull Now for $60
               </a>

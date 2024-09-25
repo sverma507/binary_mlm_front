@@ -8,7 +8,7 @@ const UserTree = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const rootUserId = '66f252d3666507f72d1e8b3a'; // The root user ID
+  const rootUserId = '66f2e435af0d7a38f2fa9a4c'; // The root user ID
 
   // Helper function to map user data to tree structure
   const buildTree = (users, userId) => {
@@ -29,7 +29,7 @@ const UserTree = () => {
     return {
       name: user.referralCode,
       attributes: {
-        wallet: user.wallet,
+        earningWallet: user.earningWallet,
         rank: user.rank,
         isActive: user.isActive ? 'Active' : 'Inactive',
       },
@@ -94,7 +94,7 @@ const UserTree = () => {
               {nodeDatum.attributes && (
                 <>
                   <text fill="black" strokeWidth="0.3" x="-40" y="20">
-                    Wallet: Rs.{nodeDatum.attributes.wallet}
+                    Wallet: Rs.{nodeDatum.attributes.earningWallet}
                   </text>
                 </>
               )}

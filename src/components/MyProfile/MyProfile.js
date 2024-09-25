@@ -62,7 +62,7 @@ const MyProfile = () => {
                         <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
                             <FaWallet className="text-blue-500 text-4xl mb-4 mx-auto" />
                             <h3 className="text-2xl font-bold mb-3">Wallet Balance</h3>
-                            <p className="text-gray-300">${profile.wallet.toFixed(2)}</p> {/* Display wallet balance */}
+                            <p className="text-gray-300">${profile.earningWallet.toFixed(2)}</p> {/* Display wallet balance */}
                         </div>
                         <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
                             <FaChartLine className="text-blue-500 text-4xl mb-4 mx-auto" />

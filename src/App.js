@@ -19,6 +19,7 @@ import Admin_Dashboard from "./components/Admin/Admin_Dashboard/Admin_Dashboard.
 import ActivateUserForm from "./components/Admin/ActivateUserForm/ActivateUserForm.js";
 import MyProfile from "./components/MyProfile/MyProfile.js";
 import ScrollToTop from "./components/ScrollToTop.js";
+import BullPlan from "./components/Bull/BullPlan.js";
 function App() {
   return (
     <div className="App">
@@ -30,8 +31,10 @@ function App() {
           <Route path="withdrawl" element={<Withdrawal />} />
           <Route path="user-tree" element={<UserTree />} />
           <Route path="salary" element={<Salary />} />
-          <Route path="profile" element={<MyProfile />} />
-          <Route path="user-tree" element={<UserTree />} />
+        <Route path="profile" element={<MyProfile />} />
+        <Route path="buy-bull" element={<BullPlan />} />
+          
+        <Route path="user-tree" element={<UserTree />} />
         </Route>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
