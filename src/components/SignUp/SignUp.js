@@ -36,10 +36,10 @@ const SignUp = () => {
                     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
                     setWalletAddress(accounts[0]); // Set wallet address
 
-                    // Check if the selected network is Binance Smart Chain (BNB) - Chain ID for BSC is 0x38 (56 in decimal)
+                    // Check if the selected network is BNB Smart Chain (Chain ID for BNB Smart Chain Mainnet is 0x38 or 56 in decimal)
                     const chainId = await window.ethereum.request({ method: 'eth_chainId' });
                     if (chainId !== '0x38') {
-                        showPopup('Please switch to Binance Smart Chain (BSC) network.', 'error');
+                        showPopup('Please switch to BNB Smart Chain Mainnet.', 'error');
                     }
                 } catch (err) {
                     if (err.code === 4001) {
