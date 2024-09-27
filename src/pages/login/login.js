@@ -95,9 +95,9 @@ const Login = () => {
                             </span>
                         </div>
 
-                        <p>
+                        {/* <p>
                             <input type="checkbox" disabled={loading} /> Remember Me <a className='ml-8' href="#">Forget Password</a>
-                        </p>
+                        </p> */}
 
                         <input 
                             id="btn" 

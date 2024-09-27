@@ -18,10 +18,12 @@ import Recharge from "./components/Recharge/Recharge.js";
 import Admin_Dashboard from "./components/Admin/Admin_Dashboard/Admin_Dashboard.js";
 import ActivateUserForm from "./components/Admin/ActivateUserForm/ActivateUserForm.js";
 import MyProfile from "./components/MyProfile/MyProfile.js";
+import ScrollToTop from "./components/ScrollToTop.js";
 import BullPlan from "./components/Bull/BullPlan.js";
 function App() {
   return (
     <div className="App">
+      <ScrollToTop/>
       <Routes>
         <Route path="/user/" element={<PrivateRoute />}>
           <Route path="recharge" element={<Recharge />} />
