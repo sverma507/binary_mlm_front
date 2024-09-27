@@ -4,17 +4,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faCodeBranch, faPhone, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import Layout from '../../components/layout/layout';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Use useNavigate instead of useHistory
 
 const SignUp = () => {
-    const navigate = useNavigate(); // Initialize useNavigate
     const [showPassword, setShowPassword] = useState(false);
     const [selectedPosition, setSelectedPosition] = useState(null);
     const [formError, setFormError] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const [referredBy, setReferredCode] = useState('');
     const [walletDetected, setWalletDetected] = useState(false);
-    const [walletAddress, setWalletAddress] = useState(null);
+    const [walletAddress, setWalletAddress] = useState(null); // For storing wallet address
     const [popupMessage, setPopupMessage] = useState('');
     const [popupVisible, setPopupVisible] = useState(false);
 
@@ -36,12 +34,12 @@ const SignUp = () => {
                 try {
                     // Request wallet connection
                     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                    setWalletAddress(accounts[0]);
+                    setWalletAddress(accounts[0]); // Set wallet address
 
-                    // Check if the selected network is BNB Smart Chain Mainnet (Chain ID for BSC is 0x38)
+                    // Check if the selected network is Binance Smart Chain (BNB) - Chain ID for BSC is 0x38 (56 in decimal)
                     const chainId = await window.ethereum.request({ method: 'eth_chainId' });
                     if (chainId !== '0x38') {
-                        showPopup('Please switch to BNB Smart Chain Mainnet.', 'error');
+                        showPopup('Please switch to Binance Smart Chain (BSC) network.', 'error');
                     }
                 } catch (err) {
                     if (err.code === 4001) {
@@ -62,7 +60,7 @@ const SignUp = () => {
             window.location.reload();
         });
 
-        // Set up a listener to handle account changes
+        // Set up a listener to handle account changes (i.e., when the user switches accounts)
         window.ethereum?.on('accountsChanged', (accounts) => {
             if (accounts.length > 0) {
                 setWalletAddress(accounts[0]);
@@ -97,12 +95,11 @@ const SignUp = () => {
         };
 
         try {
-            const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/signup`, formData);
+            const response = await axios.post(${process.env.REACT_APP_API_URL}/auth/signup, formData);
 
             if (response.status === 200) {
                 showPopup('User registered successfully', 'success');
                 setSuccessMessage(response.data.message);
-                navigate('/login'); // Redirect to login page after successful signup
             } else {
                 showPopup(response.data.message || 'Signup failed', 'error');
             }
@@ -125,7 +122,7 @@ const SignUp = () => {
         <Layout>
             <div className='signUp-container'>
                 <div className="signUp-card">
-                    <h2>Sign Up</h2>
+                    <h2>SignUp</h2>
 
                     {/* Wallet Provider Check */}
                     {!walletDetected && (
@@ -168,13 +165,13 @@ const SignUp = () => {
                         <div className="position-selector">
                             <div className="position-options">
                                 <div
-                                    className={`position-box ${selectedPosition === 'left' ? 'selected' : ''}`}
+                                    className={position-box ${selectedPosition === 'left' ? 'selected' : ''}}
                                     onClick={() => handlePositionSelect('left')}
                                 >
                                     Left
                                 </div>
                                 <div
-                                    className={`position-box ${selectedPosition === 'right' ? 'selected' : ''}`}
+                                    className={position-box ${selectedPosition === 'right' ? 'selected' : ''}}
                                     onClick={() => handlePositionSelect('right')}
                                 >
                                     Right
@@ -197,7 +194,7 @@ const SignUp = () => {
 
                 {/* Popup Modal */}
                 {popupVisible && (
-                    <div className={`popup ${popupVisible ? 'show' : ''}`}>
+                    <div className={popup ${popupVisible ? 'show' : ''}}>
                         <p>{popupMessage}</p>
                     </div>
                 )}
@@ -207,3 +204,4 @@ const SignUp = () => {
 };
 
 export default SignUp;
+
