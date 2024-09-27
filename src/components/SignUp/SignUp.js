@@ -95,7 +95,7 @@ const SignUp = () => {
         };
 
         try {
-            const response = await axios.post(${process.env.REACT_APP_API_URL}/auth/signup, formData);
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/signup`, formData);
 
             if (response.status === 200) {
                 showPopup('User registered successfully', 'success');
@@ -122,7 +122,7 @@ const SignUp = () => {
         <Layout>
             <div className='signUp-container'>
                 <div className="signUp-card">
-                    <h2>SignUp</h2>
+                    <h2>Sign Up</h2>
 
                     {/* Wallet Provider Check */}
                     {!walletDetected && (
@@ -165,13 +165,13 @@ const SignUp = () => {
                         <div className="position-selector">
                             <div className="position-options">
                                 <div
-                                    className={position-box ${selectedPosition === 'left' ? 'selected' : ''}}
+                                    className={`position-box ${selectedPosition === 'left' ? 'selected' : ''}`}
                                     onClick={() => handlePositionSelect('left')}
                                 >
                                     Left
                                 </div>
                                 <div
-                                    className={position-box ${selectedPosition === 'right' ? 'selected' : ''}}
+                                    className={`position-box ${selectedPosition === 'right' ? 'selected' : ''}`}
                                     onClick={() => handlePositionSelect('right')}
                                 >
                                     Right
@@ -194,7 +194,7 @@ const SignUp = () => {
 
                 {/* Popup Modal */}
                 {popupVisible && (
-                    <div className={popup ${popupVisible ? 'show' : ''}}>
+                    <div className={`popup ${popupVisible ? 'show' : ''}`}>
                         <p>{popupMessage}</p>
                     </div>
                 )}
@@ -204,4 +204,3 @@ const SignUp = () => {
 };
 
 export default SignUp;
-
