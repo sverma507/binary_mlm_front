@@ -38,7 +38,7 @@ const SignUp = () => {
 
                     // Check if the selected network is BNB Smart Chain (Chain ID for BNB Smart Chain Mainnet is 0x38 or 56 in decimal)
                     const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-                    if (chainId !== '0x38') {
+                    if (chainId !== '0x38') { // Checking for BNB Smart Chain
                         showPopup('Please switch to BNB Smart Chain Mainnet.', 'error');
                     }
                 } catch (err) {
