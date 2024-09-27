@@ -12,7 +12,8 @@ import ContactUs from '../../components/ContactUs/ContactUs'
 
 const Home = () => {
 
-  const navigate = useNavigate();
+
+
 
   return (
 <>

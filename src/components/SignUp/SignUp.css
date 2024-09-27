@@ -255,3 +255,47 @@ p > a:hover {
         font-size: 14px;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+/* Popup styles */
+/* Popup styles */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* When the popup is visible */
+.popup.show {
+    opacity: 1;
+}
+
+/* Responsive popup styling */
+@media (max-width: 768px) {
+    .popup {
+        width: 90%;
+        padding: 15px;
+        font-size: 14px;
+    }
+}
+
