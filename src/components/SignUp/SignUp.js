@@ -16,6 +16,7 @@ const SignUp = () => {
     const [walletAddress, setWalletAddress] = useState(null);
     const [popupMessage, setPopupMessage] = useState('');
     const [popupVisible, setPopupVisible] = useState(false);
+    const [loading, setLoading] = useState(false); // Track loading state
 
     const navigate = useNavigate(); // Initialize useNavigate
 
@@ -83,14 +84,17 @@ const SignUp = () => {
     // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true); // Start loading
 
         if (!walletDetected) {
             showPopup('No wallet detected. Please install MetaMask or Trust Wallet.', 'error');
+            setLoading(false); // Stop loading
             return;
         }
 
         if (!walletAddress) {
             showPopup('Wallet address is required.', 'error');
+            setLoading(false); // Stop loading
             return;
         }
 
@@ -120,6 +124,8 @@ const SignUp = () => {
             console.error('Error:', error);
             showPopup(error.response?.data?.message || 'Something went wrong', 'error');
         }
+
+        setLoading(false); // Stop loading when done
     };
 
     // Function to show the popup message
@@ -205,9 +211,10 @@ const SignUp = () => {
 
                         <input
                             id="btn"
-                            className="bg bg-gray-500 text-white"
+                            className={`bg bg-gray-500 text-white ${loading ? 'cursor-not-allowed' : ''}`}
                             type="submit"
-                            value="Proceed"
+                            value={loading ? 'Loading...' : 'Proceed'} // Show loading text
+                            disabled={loading} // Disable button while loading
                         />
 
                         {formError && <p style={{ color: 'red' }}>{formError}</p>}
