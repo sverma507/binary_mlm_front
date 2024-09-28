@@ -114,9 +114,10 @@ const SignUp = () => {
                 showPopup('User registered successfully', 'success');
                 setSuccessMessage(response.data.message);
                 // Redirect to login page after successful signup
-                setTimeout(() => {
-                    navigate('/login'); // Navigate to login page
-                }, 2000); // Optional delay before redirecting
+                // setTimeout(() => {
+                //     navigate('/login'); // Navigate to login page
+                // }, 2000); // Optional delay before redirecting
+                navigate('/login');
             } else {
                 showPopup(response.data.message || 'Signup failed', 'error');
             }
