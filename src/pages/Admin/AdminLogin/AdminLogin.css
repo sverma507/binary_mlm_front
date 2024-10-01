@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url('./earning_banner2.png') no-repeat center center/cover;
+  background: url('./xyz.jpg') no-repeat center center/cover;
   position: relative;
   z-index: 1;
 }
@@ -61,6 +61,7 @@
 
 .phoneIcon, .countryCode {
   color: #fff;
+  width: 30px;
 }
 
 /* Button styles */

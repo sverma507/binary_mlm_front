@@ -12,6 +12,17 @@ const AllUsers = () => {
   const [users, setUsers] = useState([]);
   const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
+  const [copiedReferralCode, setCopiedReferralCode] = useState(null); // Track copied referral code for each user
+
+  const handleCopy = (referralCode) => {
+    navigator.clipboard.writeText(referralCode);
+    setCopiedReferralCode(referralCode);
+
+    // Reset the copied state after 2-3 seconds
+    setTimeout(() => {
+      setCopiedReferralCode(null);
+    }, 2000);
+  };
 
   const getData = async () => {
     try {
@@ -42,10 +53,10 @@ const AllUsers = () => {
     }
   };
 
-  const userAccess = async (e, mobileNumber, password) => {
+  const userAccess = async (e, phone, password) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, { mobileNumber, password });
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, { phone, password });
 
       if (res.data.success) {
         setAuth({
@@ -64,19 +75,18 @@ const AllUsers = () => {
   };
 
   return (
-    <div className="flex min-h-screen  bg-gradient-to-b from-green-400 to-blue-500">
+    <div className="flex min-h-screen bg-gradient-to-b from-green-400 to-blue-500">
       {/* Sidebar */}
       <Sidebar className="fixed w-64 h-full bg-white shadow-lg" />
 
       {/* Main Content */}
-      <div className="ml-64 w-full p-6  bg-gradient-to-b from-green-400 to-blue-500">
+      <div className="ml-64 w-full p-6 bg-gradient-to-b from-green-400 to-blue-500">
         <h2 className="text-3xl font-semibold text-gray-800 mb-6">All User List</h2>
         <div className="overflow-x-auto">
-          <table className=" text-sm bg-white border border-gray-300 rounded-lg shadow-md divide-y divide-gray-200">
+          <table className="text-sm bg-white border border-gray-300 rounded-lg shadow-md divide-y divide-gray-200">
             <thead>
               <tr className="bg-green-700 text-white">
                 <th className="py-3 px-4 border-b text-left w-[100px]">S.No</th>
-               
                 <th className="py-3 px-4 border-b text-left">Referral Code</th>
                 <th className="py-3 px-4 border-b text-left">Referred By</th>
                 <th className="py-3 px-4 border-b text-left">User Name</th>
@@ -92,12 +102,18 @@ const AllUsers = () => {
               {users.map((user, index) => (
                 <tr key={user._id} className="text-gray-700 hover:bg-gray-50">
                   <td className="py-2 px-4 border-b">{index + 1}</td>
-                 
-                  <td
-                    className="py-2 px-4 border-b cursor-pointer text-blue-600 hover:text-blue-800"
-                    onClick={(e) => userAccess(e, user.mobileNumber, user.password)}
-                  >
-                    {user.referralCode}
+                  <td className="py-2 px-4 border-b text-blue-600 hover:text-blue-800">
+                    <div className="flex items-center space-x-2">
+                      <span onClick={(e) => userAccess(e, user.phone, user.password)}>
+                        {user.referralCode}
+                      </span>
+                      <button
+                        onClick={() => handleCopy(user.referralCode)}
+                        className={`text-xs py-1 px-2 rounded ${copiedReferralCode === user.referralCode ? 'bg-green-200 text-green-800' : 'bg-gray-200 hover:bg-gray-300 text-gray-800'}`}
+                      >
+                        {copiedReferralCode === user.referralCode ? 'Copied' : 'Copy'}
+                      </button>
+                    </div>
                   </td>
                   <td className="py-2 px-4 border-b">{user.referredBy || "No reference"}</td>
                   <td className="py-2 px-4 border-b">{user?.name}</td>
