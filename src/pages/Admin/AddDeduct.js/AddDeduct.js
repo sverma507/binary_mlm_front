@@ -95,7 +95,7 @@ const AddDeduct = () => {
       <div className="form-container">
         <h2>Add / Deduct</h2>
         <form onSubmit={handleActivate}>
-          <div className="form-group">
+          <div className="add-deduct-form-group">
             <label>Select Package</label>
             <select id="wallet" name="wallet" required onChange={handleWallet}>
               <option value={""}>Select wallet</option>

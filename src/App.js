@@ -29,7 +29,6 @@ import UnpaidUsersList from './pages/Admin/UnpaidUserslist/UnpaidUserslist.js';
 import BlockedUsers from './pages/Admin/BlockedUsers/BlockedUsers.js';
 import DownlineUsers from './pages/Admin/DownlineUsers/DownlineUsers.js';
 import ActivationReport from './pages/Admin/ActivationReport/ActivationReport.js';
-import EditUser from './pages/Admin/editUser/editUser.js';
 import ActivateUserForm from './pages/Admin/ActivateUserForm/ActivateUserForm.js';
 import AdminLogin from './pages/Admin/AdminLogin/AdminLogin.js';
 import AddDeduct from './pages/Admin/AddDeduct.js/AddDeduct.js';
@@ -65,7 +64,6 @@ function App() {
           <Route path='admin/add-deduct' element={<AddDeduct/>}/>
           <Route path="admin/activation-report" element={<ActivationReport />} />
           <Route path="admin/activate-user" element={<ActivateUserForm />} />
-          <Route path='admin/update-user' element={<EditUser/>}/>
       </Route>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />

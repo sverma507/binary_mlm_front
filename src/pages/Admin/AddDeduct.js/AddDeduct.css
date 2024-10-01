@@ -20,12 +20,12 @@
     font-size: 25px;
   }
   
-  .form-group {
+  .add-deduct-form-group {
     margin-bottom: 15px;
     /* border: 1px solid red; */
   }
   
- .form-group > label {
+ .add-deduct-form-group > label {
     display: block;
     /* margin-bottom: 5px; */
     /* border: 2px solid blue; */

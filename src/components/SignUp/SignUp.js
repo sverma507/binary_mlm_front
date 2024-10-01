@@ -212,7 +212,7 @@ const SignUp = () => {
                         </div>
 
                         <p className="mt-10">
-                            <input type="checkbox" /> Remember Me{' '}
+                            {/* <input type="checkbox" /> Remember Me{' '} */}
                             <a className="ml-10" href="#">
                                 Forget Password
                             </a>
