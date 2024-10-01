@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './SignUp.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faCodeBranch, faPhone, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import Layout from '../../components/layout/layout';
 import axios from 'axios';
+import { useLocation } from 'react-router';
 
 const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -11,10 +12,20 @@ const SignUp = () => {
     const [formError, setFormError] = useState(''); // Error handling
     const [successMessage, setSuccessMessage] = useState('');
     const [referredBy, setReferredCode] = useState('');
+    const location = useLocation();
 
     const togglePasswordVisibility = () => {
         setShowPassword(prevState => !prevState);
     };
+
+    useEffect(() => {
+        // Extract referral code from the URL if present
+        const queryParams = new URLSearchParams(location.search);
+        const referralCodeFromUrl = queryParams.get('referral');
+        if (referralCodeFromUrl) {
+            setReferredCode(referralCodeFromUrl);
+        }
+      }, [location.search]);
 
     const handlePositionSelect = (position) => {
         setSelectedPosition(position); // Set the selected position
@@ -77,7 +88,7 @@ const SignUp = () => {
                         </div>
 
                         <div className="form-group">
-                            <input type="text" name="referralCode" onChange={(e) => { setReferredCode(e.target.value) }} />
+                            <input type="text" value={referredBy} name="referralCode" onChange={(e) => { setReferredCode(e.target.value) }} />
                             <label>Referral Code (Optional)</label>
                             <FontAwesomeIcon icon={faCodeBranch} />
                         </div>

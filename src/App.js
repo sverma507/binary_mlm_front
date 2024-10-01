@@ -20,6 +20,7 @@ import ActivateUserForm from "./components/Admin/ActivateUserForm/ActivateUserFo
 import MyProfile from "./components/MyProfile/MyProfile.js";
 import ScrollToTop from "./components/ScrollToTop.js";
 import BullPlan from "./components/Bull/BullPlan.js";
+import Invitation from "./pages/invitation/invitation.js";
 function App() {
   return (
     <div className="App">
@@ -31,6 +32,7 @@ function App() {
           <Route path="withdrawl" element={<Withdrawal />} />
           <Route path="user-tree" element={<UserTree />} />
           <Route path="salary" element={<Salary />} />
+          <Route path="invitation" element={<Invitation />} />
         <Route path="profile" element={<MyProfile />} />
         <Route path="buy-bull" element={<BullPlan />} />
           
