@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import Tree from 'react-d3-tree';
 import axios from 'axios';
 import Layout from '../../components/layout/layout';
+import { useAuth } from '../../context/auth';
 
 const UserTree = () => {
   const [treeData, setTreeData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [auth, setAuth] = useAuth();
 
-  const rootUserId = '66fb8840c50769fe4474e465'; // The root user ID
+  const rootUserId = auth?.user?._id; // The root user ID
 
   // Helper function to map user data to tree structure
   const buildTree = (users, userId) => {

@@ -255,34 +255,34 @@ const Dashboard = () => {
       <Sidebar className="fixed w-60 h-full" />
 
       {/* Main content */}
-      <div className="ml-60 p-4 flex-1 bg-gradient-to-b from-green-400 to-blue-500">
+      <div className="ml-60 p-4 flex-1 bg-gradient-to-b from-black to-white">
         <div className="flex gap-8">
           {/* Revenue Chart Section */}
           <div className="bg-slate-300 w-[60%] text-white p-8 rounded-lg">
             <h2 className="text-xl font-bold mb-4">Revenue Chart</h2>
             <div className="grid grid-cols-2 gap-8 mt-10">
               {/* Revenue Stats */}
-              <div className="bg-gradient-to-r from-green-600 via-green-500 to-teal-400  p-4 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.5)] transform translate-y-[-10px] transition-all duration-300 hover:translate-y-[-20px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] hover:scale-105">
+              <div className="bg-gradient-to-r from-red-600 via-orange-500 to-yellow-400  p-4 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.5)] transform translate-y-[-10px] transition-all duration-300 hover:translate-y-[-20px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] hover:scale-105">
                 <h3 className="text-lg font-semibold">Total Collection</h3>
                 <p className="text-sm">
                   Rs.{" "}
                   {(rupeeTotal || 0).toLocaleString("en-IN")}
                 </p>
               </div>
-              <div className="bg-gradient-to-r from-green-600 via-green-500 to-teal-400 p-4 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.5)] transform translate-y-[-10px] transition-all duration-300 hover:translate-y-[-20px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] hover:scale-105">
+              <div className="bg-gradient-to-r from-red-600 via-orange-500 to-yellow-400 p-4 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.5)] transform translate-y-[-10px] transition-all duration-300 hover:translate-y-[-20px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] hover:scale-105">
                 <h3 className="text-lg font-semibold">Today Collection</h3>
                 <p className="text-sm">
                   Rs. {(todayCollection || 0).toLocaleString("en-IN")}
                 </p>
               </div>
-              <div className="bg-gradient-to-r from-green-600 via-green-500 to-teal-400 p-4 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.5)] transform translate-y-[-10px] transition-all duration-300 hover:translate-y-[-20px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] hover:scale-105">
+              <div className="bg-gradient-to-r from-red-600 via-orange-500 to-yellow-400 p-4 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.5)] transform translate-y-[-10px] transition-all duration-300 hover:translate-y-[-20px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] hover:scale-105">
                 <h3 className="text-lg font-semibold">Total Deposite</h3>
                 <p className="text-sm">
                   Rs.{" "}
                   {(totalDeposite || 0).toLocaleString("en-IN")}
                 </p>
               </div>
-              <div className="bg-gradient-to-r from-green-600 via-green-500 to-teal-400 p-4 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.5)] transform translate-y-[-10px] transition-all duration-300 hover:translate-y-[-20px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] hover:scale-105">
+              <div className="bg-gradient-to-r from-red-600 via-orange-500 to-yellow-400 p-4 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.5)] transform translate-y-[-10px] transition-all duration-300 hover:translate-y-[-20px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] hover:scale-105">
                 <h3 className="text-lg font-semibold">Today Deposite</h3>
                 <p className="text-sm">
                   Rs.{" "}
@@ -291,7 +291,7 @@ const Dashboard = () => {
                   ).toLocaleString("en-IN")}
                 </p>
               </div>
-              <div className="bg-gradient-to-r from-green-600 via-green-500 to-teal-400 p-4 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.5)] transform translate-y-[-10px] transition-all duration-300 hover:translate-y-[-20px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] hover:scale-105">
+              <div className="bg-gradient-to-r from-red-600 via-orange-500 to-yellow-400 p-4 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.5)] transform translate-y-[-10px] transition-all duration-300 hover:translate-y-[-20px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] hover:scale-105">
                 <h3 className="text-lg font-semibold">Total Withdrawl</h3>
                 <p className="text-sm">
                   Rs.{" "}
@@ -300,7 +300,7 @@ const Dashboard = () => {
                   ).toLocaleString("en-IN")}
                 </p>
               </div>
-              <div className="bg-gradient-to-r from-green-600 via-green-500 to-teal-400 p-4 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.5)] transform translate-y-[-10px] transition-all duration-300 hover:translate-y-[-20px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] hover:scale-105">
+              <div className="bg-gradient-to-r from-red-600 via-orange-500 to-yellow-400 p-4 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.5)] transform translate-y-[-10px] transition-all duration-300 hover:translate-y-[-20px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] hover:scale-105">
                 <h3 className="text-lg font-semibold">Today Withdrawl</h3>
                 <p className="text-sm">
                   Rs.{" "}
@@ -313,11 +313,11 @@ const Dashboard = () => {
           </div>
 
           {/* User Statistics */}
-          <div className="w-[40%] bg-gradient-to-t from-yellow-400  via-yellow-500 to-orange-400 p-6 rounded-lg">
-            <h2 className="text-xl text-white text-center font-bold mb-8">
+          <div className="w-[40%] bg-gradient-to-t from-teal-500  via-teal-500 to-yellow-400 p-6 rounded-lg">
+            <h2 className="text-xl text-black text-center font-bold mb-8">
               User Statistics
             </h2>
-            <div className="grid grid-cols-2 gap-8">
+            <div className="grid grid-cols-2 gap-8 text-black font-bold">
               <div className="flex flex-col items-center h-[120px]">
                 <h3 className="mb-2 ">Register User</h3>
                 <CircularProgressbar
