@@ -8,7 +8,7 @@ const UserTree = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const rootUserId = '66f39085b95e674a8b8fcf4f'; // The root user ID
+  const rootUserId = '66fb8840c50769fe4474e465'; // The root user ID
 
   // Helper function to map user data to tree structure
   const buildTree = (users, userId) => {

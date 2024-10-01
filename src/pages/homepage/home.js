@@ -12,16 +12,17 @@ import ContactUs from '../../components/ContactUs/ContactUs'
 
 const Home = () => {
 
-  const navigate = useNavigate();
+
+
 
   return (
 <>
     <Navbar/>
     {/* <Swipper/> */}
     <Header/>
-    <MarketStatus/>
+    {/* <MarketStatus/>
     <CurrencySelector/>
-    <TradingSection/>
+    <TradingSection/> */}
     {/* <ContactUs/> */}
     <Footer/>
 </>

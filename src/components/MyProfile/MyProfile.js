@@ -7,7 +7,9 @@ import { useAuth } from '../../context/auth';
 const MyProfile = () => {
     const [auth] = useAuth();
     const [profile, setProfile] = useState(null); // State to hold profile data
+    const [walletBalances, setWalletBalances] = useState([]); // State to hold wallet balances
 
+    // Function to fetch profile data
     const getProfile = async () => {
         const id = auth?.user?._id;
         try {
@@ -19,9 +21,33 @@ const MyProfile = () => {
         }
     };
 
+    // Function to fetch wallet balances based on the wallet address
+    const getWalletBalances = async (walletAddress, chainId = 1) => {
+        try {
+            // Fetch balances for both Ethereum (chainId = 1) and Binance Smart Chain (chainId = 56)
+            const response = await axios.get(`https://api.covalenthq.com/v1/${chainId}/address/${walletAddress}/balances_v2/`, {
+                params: {
+                    key: process.env.REACT_APP_COVALENT_API_KEY, // Your Covalent API key
+                }
+            });
+            console.log(`Response for Chain ID ${chainId}:`, response);
+            setWalletBalances(prevBalances => [...prevBalances, ...response.data.data.items]);
+        } catch (error) {
+            console.error(`Error fetching wallet balances for chain ${chainId}: `, error);
+        }
+    };
+
     useEffect(() => {
-        getProfile();
+        getProfile(); // Fetch the profile on component load
     }, []);
+
+    // Fetch wallet balances when profile is loaded and has a wallet address
+    useEffect(() => {
+        if (profile?.walletAddress) {
+            getWalletBalances(profile.walletAddress, 1); // Ethereum Mainnet
+            getWalletBalances(profile.walletAddress, 56); // Binance Smart Chain
+        }
+    }, [profile]);
 
     if (!profile) return <div>Loading...</div>; // Show loading while fetching data
 
@@ -73,6 +99,27 @@ const MyProfile = () => {
                             <FaUsers className="text-blue-500 text-4xl mb-4 mx-auto" />
                             <h3 className="text-2xl font-bold mb-3">Referrals</h3>
                             <p className="text-gray-300">{profile.referrals || 0} Users</p> {/* Display referral count */}
+                        </div>
+                    </section>
+
+                    {/* Wallet Address and Token Section */}
+                    <section className="my-16 grid grid-cols-1 gap-6">
+                        <h3 className="text-3xl font-bold mb-6 text-blue-500">Wallet Tokens & Balances</h3>
+                        <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+                            <h4 className="text-2xl font-bold mb-3">Wallet Address</h4>
+                            <p className="text-gray-300">{profile.walletAddress || 'N/A'}</p>
+                            <h4 className="text-2xl font-bold mt-6 mb-3">Token Balances</h4>
+                            {walletBalances.length > 0 ? (
+                                <ul className="text-left text-gray-300">
+                                    {walletBalances.map((token, index) => (
+                                        <li key={index} className="mb-2">
+                                            {token.contract_ticker_symbol}: {(token.balance / Math.pow(10, token.contract_decimals)).toFixed(4)} {token.contract_ticker_symbol}
+                                        </li>
+                                    ))}
+                                </ul>
+                            ) : (
+                                <p className="text-gray-300">No tokens found for this wallet.</p>
+                            )}
                         </div>
                     </section>
 

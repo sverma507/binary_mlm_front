@@ -5,7 +5,7 @@ import { useAuth } from '../../context/auth';
 import { toast } from 'react-toastify';
 
 const BullPlan = () => {
-  const [auth, setAuth] = useAuth();
+  const [auth] = useAuth();
   const [loading, setLoading] = useState(false); // Loading state
 
   const handleBuyBull = async () => {
