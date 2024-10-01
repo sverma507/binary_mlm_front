@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faCodeBranch, faPhone, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import Layout from '../../components/layout/layout';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate, useLocation } from 'react-router-dom'; // Import useNavigate and useLocation
 
 const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -19,6 +19,7 @@ const SignUp = () => {
     const [loading, setLoading] = useState(false); // Track loading state
 
     const navigate = useNavigate(); // Initialize useNavigate
+    const location = useLocation(); // Get location to parse query params
 
     // Password visibility toggle
     const togglePasswordVisibility = () => {
@@ -81,6 +82,16 @@ const SignUp = () => {
         });
     }, []);
 
+    // Fetch referral code from the URL query parameters
+    useEffect(() => {
+        const queryParams = new URLSearchParams(location.search);
+        const referralCodeFromUrl = queryParams.get('referral');
+
+        if (referralCodeFromUrl) {
+            setReferredCode(referralCodeFromUrl); // Set the referral code if it's in the URL
+        }
+    }, [location.search]); // Only run when location.search changes
+
     // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -113,10 +124,6 @@ const SignUp = () => {
             if (response.status === 200) {
                 showPopup('User registered successfully', 'success');
                 setSuccessMessage(response.data.message);
-                // Redirect to login page after successful signup
-                // setTimeout(() => {
-                //     navigate('/login'); // Navigate to login page
-                // }, 2000); // Optional delay before redirecting
                 navigate('/login');
             } else {
                 showPopup(response.data.message || 'Signup failed', 'error');
@@ -178,9 +185,10 @@ const SignUp = () => {
                             <input
                                 type="text"
                                 name="referralCode"
+                                value={referredBy}
                                 onChange={(e) => setReferredCode(e.target.value)}
                             />
-                            <label>Referral Code (Optional)</label>
+                            <label>Referral Code </label>
                             <FontAwesomeIcon icon={faCodeBranch} />
                         </div>
 
