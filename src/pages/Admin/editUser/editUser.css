@@ -50,12 +50,12 @@
   
   .form-group input {
     padding: 10px 15px;
-    width: 70%; /* Controls the width of the input field */
+    width: 100%; /* Controls the width of the input field */
     font-size: 14px;
-    color: #333;
-    border: 1px solid #e5e6f8;
+    /* color: #333; */
+    /* border: 1px solid #e5e6f8; */
     border-radius: 4px;
-    background-color: white;
+    /* background-color: white; */
   }
 
   .required{
