@@ -21,6 +21,8 @@ import MyProfile from "./components/MyProfile/MyProfile.js";
 import ScrollToTop from "./components/ScrollToTop.js";
 import BullPlan from "./components/Bull/BullPlan.js";
 import Invitation from "./components/Invitation/Invitation.js";
+import AdminWalletAddress  from './components/Bull/AdminWalletAddress.js'
+import StartTrading from "./components/StartTrading/StartTrading.js";
 function App() {
   return (
     <div className="App">
@@ -33,8 +35,10 @@ function App() {
           <Route path="user-tree" element={<UserTree />} />
           <Route path="salary" element={<Salary />} />
           <Route path="invitation" element={<Invitation />} />
+          <Route path="pay" element={<AdminWalletAddress />} />
         <Route path="profile" element={<MyProfile />} />
         <Route path="buy-bull" element={<BullPlan />} />
+        <Route path="start-trade" element={<StartTrading />} />
           
         <Route path="user-tree" element={<UserTree />} />
         </Route>
