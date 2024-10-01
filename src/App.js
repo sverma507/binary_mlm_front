@@ -72,8 +72,6 @@ function App() {
         <Route path="/news" element={<CryptoNews />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/verification" element={<Verification />} />
-        <Route path="/admin-dashboard" element={<Admin_Dashboard />} />
-        <Route path="/admin-activationform" element={<ActivateUserForm />} />
       </Routes>
     </div>
   );
