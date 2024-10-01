@@ -67,7 +67,7 @@ function Navbar() {
         </div>
         <ul
           tabIndex="0"
-          className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-[150px] right-6 p-2 shadow text-white">
+          className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-[150px] right-6 p-2 shadow text-black">
           <li onClick={() => { navigate('/'); }} className='hover:bg-gray-700 rounded-lg'><a>Home</a></li>
           <li onClick={() => { navigate('/about-us'); }} className='hover:bg-gray-700 rounded-lg'><a>About</a></li>
           <li onClick={() => { navigate('/contact-us'); }} className='hover:bg-gray-700 rounded-lg'><a>Contact Us</a></li>
@@ -94,6 +94,7 @@ function Navbar() {
                 {/* <li onClick={() => { navigate('/user/withdraw'); }}><a>Withdraw</a></li> */}
                 {/* <li onClick={() => { navigate('/user/recharge'); }}><a>Recharge</a></li> */}
                 <li onClick={() => { navigate('/user/user-tree'); }}><a>My Team</a></li>
+              <li onClick={() => { navigate('/user/invitation'); }} className='hover:bg-gray-700 rounded-lg'><a>Invite</a></li>
                 <li onClick={() => { navigate('/user/transactions'); }}><a>All Transactions</a></li>
                 {/* <li onClick={() => { navigate('/user/network'); }}><a>My Network</a></li> */}
               </ul>

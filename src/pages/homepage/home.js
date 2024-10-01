@@ -20,9 +20,9 @@ const Home = () => {
     <Navbar/>
     {/* <Swipper/> */}
     <Header/>
-    {/* <MarketStatus/> */}
+    {/* <MarketStatus/>
     <CurrencySelector/>
-    <TradingSection/>
+    <TradingSection/> */}
     {/* <ContactUs/> */}
     <Footer/>
 </>
