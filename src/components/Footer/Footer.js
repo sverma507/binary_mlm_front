@@ -10,7 +10,7 @@ const Footer = () => {
         <h1 className="text-4xl md:text-[100px] font-extrabold font-futura">
           U Tech International
         </h1>
-        <div className="flex flex-wrap md:mt-10 justify-center w-full max-w-4xl mx-auto gap-2 text-base md:text-[20px] text-gray-400">
+        <div className="flex flex-wrap md:mt-10 justify-center items-center w-full max-w-4xl mx-auto gap-2 text-base md:text-[20px] text-gray-400">
           <p
             className="cursor-pointer hover:text-blue-600 hover:underline"
             onClick={() => {

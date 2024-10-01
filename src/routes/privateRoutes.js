@@ -12,7 +12,11 @@ import Spinner from '../components/spinner/spinner.js';
     const authCheck = async() => {
         
         
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/auth/user-auth`);
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/auth/user-auth`,{
+            headers: {
+                Authorization: `Bearer ${auth?.token}`, // Ensure the token is included
+            },
+        });
         
         if(res.data.ok){
             setOk(true);

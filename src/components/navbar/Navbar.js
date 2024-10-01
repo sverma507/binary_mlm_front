@@ -89,14 +89,14 @@ function Navbar() {
               <ul className="rounded-box mt-2 w-52 p-2 text-white">
                 <li onClick={() => { navigate('/user/profile'); }}><a>My Profile</a></li>
                 <li onClick={() => { navigate('/bull'); }}><a>My Bull</a></li>
-                <li onClick={() => { navigate('/products'); }}><a>My Products</a></li>
-                <li onClick={() => { navigate('/user/earnings'); }}><a>My Earnings</a></li>
-                <li onClick={() => { navigate('/user/withdraw'); }}><a>Withdraw</a></li>
-                <li onClick={() => { navigate('/user/recharge'); }}><a>Recharge</a></li>
+                <li onClick={() => { navigate('/user/start-trade'); }}><a>Start Trade</a></li>
+                {/* <li onClick={() => { navigate('/user/earnings'); }}><a>My Earnings</a></li> */}
+                {/* <li onClick={() => { navigate('/user/withdraw'); }}><a>Withdraw</a></li> */}
+                {/* <li onClick={() => { navigate('/user/recharge'); }}><a>Recharge</a></li> */}
                 <li onClick={() => { navigate('/user/user-tree'); }}><a>My Team</a></li>
               <li onClick={() => { navigate('/user/invitation'); }} className='hover:bg-gray-700 rounded-lg'><a>Invite</a></li>
                 <li onClick={() => { navigate('/user/transactions'); }}><a>All Transactions</a></li>
-                <li onClick={() => { navigate('/user/network'); }}><a>My Network</a></li>
+                {/* <li onClick={() => { navigate('/user/network'); }}><a>My Network</a></li> */}
               </ul>
             )}
           </li>
@@ -118,15 +118,15 @@ function Navbar() {
             <a className="hover:text-blue-500">Dashboard</a>
             <ul className="dropdown-content bg-gray-500 text-white text-sm mt-10 w-52 p-2 shadow-lg rounded-md absolute right-0 hidden group-hover:block">
               <li onClick={() => { navigate('/user/profile'); }} className='hover:bg-gray-700 rounded-lg'><a>My Profile</a></li>
-              <li onClick={() => { navigate('/user/bull'); }} className='hover:bg-gray-700 rounded-lg'><a>Trading Bull</a></li>
-              <li onClick={() => { navigate('/user/products'); }} className='hover:bg-gray-700 rounded-lg'><a>My Products</a></li>
-              <li onClick={() => { navigate('/user/earnings'); }} className='hover:bg-gray-700 rounded-lg'><a>My Earnings</a></li>
-              <li onClick={() => { navigate('/user/withdraw'); }} className='hover:bg-gray-700 rounded-lg'><a>Withdraw</a></li>
-              <li onClick={() => { navigate('/user/recharge'); }} className='hover:bg-gray-700 rounded-lg'><a>Recharge</a></li>
+              {/* <li onClick={() => { navigate('/user/bull'); }} className='hover:bg-gray-700 rounded-lg'><a>Trading Bull</a></li> */}
+              <li onClick={() => { navigate('/user/start-trade'); }} className='hover:bg-gray-700 rounded-lg'><a>Start Trade</a></li>
+              {/* <li onClick={() => { navigate('/user/earnings'); }} className='hover:bg-gray-700 rounded-lg'><a>My Earnings</a></li> */}
+              {/* <li onClick={() => { navigate('/user/withdraw'); }} className='hover:bg-gray-700 rounded-lg'><a>Withdraw</a></li> */}
+              {/* <li onClick={() => { navigate('/user/recharge'); }} className='hover:bg-gray-700 rounded-lg'><a>Recharge</a></li> */}
               <li onClick={() => { navigate('/user/user-tree'); }} className='hover:bg-gray-700 rounded-lg'><a>My Team</a></li>
               <li onClick={() => { navigate('/user/invitation'); }} className='hover:bg-gray-700 rounded-lg'><a>Invite</a></li>
-              <li onClick={() => { navigate('/user/transactions'); }} className='hover:bg-gray-700 rounded-lg'><a>All Transactions</a></li>
-              <li onClick={() => { navigate('/user/network'); }} className='hover:bg-gray-700 rounded-lg'><a>My Network</a></li>
+              {/* <li onClick={() => { navigate('/user/transactions'); }} className='hover:bg-gray-700 rounded-lg'><a>All Transactions</a></li> */}
+              {/* <li onClick={() => { navigate('/user/network'); }} className='hover:bg-gray-700 rounded-lg'><a>My Network</a></li> */}
               <li onClick={handleLogout} className='hover:bg-gray-700 rounded-lg'><a>Logout</a></li>
             </ul>
           </li>) : (<></>)
