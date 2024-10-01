@@ -67,7 +67,7 @@ function Navbar() {
         </div>
         <ul
           tabIndex="0"
-          className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-[150px] right-6 p-2 shadow text-black">
+          className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-[150px] right-6 p-2 shadow text-white">
           <li onClick={() => { navigate('/'); }} className='hover:bg-gray-700 rounded-lg'><a>Home</a></li>
           <li onClick={() => { navigate('/about-us'); }} className='hover:bg-gray-700 rounded-lg'><a>About</a></li>
           <li onClick={() => { navigate('/contact-us'); }} className='hover:bg-gray-700 rounded-lg'><a>Contact Us</a></li>
@@ -86,7 +86,7 @@ function Navbar() {
             }
            
             {isDashboardOpen && (
-              <ul className="rounded-box mt-2 w-52 p-2">
+              <ul className="rounded-box mt-2 w-52 p-2 text-white">
                 <li onClick={() => { navigate('/user/profile'); }}><a>My Profile</a></li>
                 <li onClick={() => { navigate('/bull'); }}><a>My Bull</a></li>
                 <li onClick={() => { navigate('/products'); }}><a>My Products</a></li>
