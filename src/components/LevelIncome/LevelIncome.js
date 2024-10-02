@@ -10,9 +10,11 @@ const LevelIncome = () => {
   const [transactions, setTransactions] = useState([]);
   const navigate = useNavigate();
   const [auth] = useAuth();
-  const userId = auth?.user?.id;
+  const userId = auth?.user?._id;
 
+  console.log("userID======>",userId)
   const getLevelIncome = async () => {
+    console.log("getLevelIncome ======== hited==========")
     try {
       const result = await axios.get(`${process.env.REACT_APP_API_URL}/user/bot-level-income/${userId}`);
       setTransactions(result.data.data); // Make sure you're accessing the correct part of the response
@@ -65,7 +67,7 @@ const LevelIncome = () => {
             </table>
           </div>
         </div>
-        <ToastContainer />
+        {/* <ToastContainer /> */}
       </div>
     </Layout>
   );
