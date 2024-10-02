@@ -3,7 +3,7 @@ import Sidebar from "../AdminSidebar/Sidebar";
 import axios from "axios";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/auth";
@@ -46,7 +46,15 @@ const AllUsers = () => {
         blocked: updatedStatus,
       });
 
-      toast.success(updatedStatus ? 'User blocked successfully' : 'User unblocked successfully');
+      toast(updatedStatus ? 'User blocked successfully' : 'User unblocked successfully', {
+        duration: 4000, // Duration in milliseconds
+        position: 'top-center', // Position of the toast
+        style: {
+          background: 'gray',
+          color: 'white',
+        },
+        icon: `${updatedStatus ? '🛑' : '🟢'}`, // Add a custom icon
+      });
       getData();
     } catch (err) {
       console.log("error while toggling blocked status", err);
@@ -67,10 +75,27 @@ const AllUsers = () => {
         localStorage.setItem("auth", JSON.stringify(res.data));
         window.open('/', '_blank');
       } else {
-        toast.error(res.data.message);
+        toast(res.data.message, {
+          duration: 4000, // Duration in milliseconds
+          position: 'top-center', // Position of the toast
+          style: {
+            background: 'blue',
+            color: 'white',
+          },
+          icon: `🙄`, // Add a custom icon
+        });
       }
     } catch (error) {
-      toast.error(error.response?.data?.message || "Something went wrong. Please try again.");
+      toast(error.response?.data?.message || "Something went wrong. Please try again.", {
+        duration: 4000, // Duration in milliseconds
+        position: 'top-center', // Position of the toast
+        style: {
+          background: 'red',
+          color: 'white',
+        },
+        icon: `😢`, // Add a custom icon
+      });
+      
     }
   };
 
@@ -164,7 +189,7 @@ const AllUsers = () => {
           </table>
         </div>
       </div>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </div>
   );
 };

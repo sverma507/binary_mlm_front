@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from '../AdminSidebar/Sidebar'
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 import axios from 'axios';
 
 const ChangePassword = () => {
@@ -13,25 +13,47 @@ const handleChangePassword = async (e) => {
     e.preventDefault();
     
     if (newPassword !== confirmPassword) {
-      toast.error("New password and confirmed password must be the same");
+      toast("New password and confirmed password must be the same");
     } else {
       try {
         const response = await axios.put(`${process.env.REACT_APP_API_URL}/admin/change-password`, {
           oldPassword,
           newPassword,
         });
-  
-        // Success: Display success message
-        toast.success(response.data.message);
+        toast(response.data.message, {
+          duration: 4000, // Duration in milliseconds
+          position: 'top-center', // Position of the toast
+          style: {
+            background: 'gray',
+            color: 'white',
+          },
+          icon: `😀`, // Add a custom icon
+        });
         setOldPassword("")
         setNewPassword("");
         setConfirmPassword("");
       } catch (error) {
         // Error: Display specific error message from the backend
         if (error.response && error.response.data) {
-          toast.error(error.response.data.message); // Show the exact error message
+          toast(error.response?.data?.message || "Something went wrong. Please try again.", {
+            duration: 4000, // Duration in milliseconds
+            position: 'top-center', // Position of the toast
+            style: {
+              background: 'red',
+              color: 'white',
+            },
+            icon: `😢`, // Add a custom icon
+          });
         } else {
-          toast.error("Something went wrong"); // General fallback error
+          toast("Something went wrong.", {
+            duration: 4000, // Duration in milliseconds
+            position: 'top-center', // Position of the toast
+            style: {
+              background: 'red',
+              color: 'white',
+            },
+            icon: `😢`, // Add a custom icon
+          }); // General fallback error
         }
       }
     }
@@ -47,7 +69,7 @@ const handleChangePassword = async (e) => {
   
     {/* Main Content */}
     <div className="m-auto shadow-md container w-[30%] p-10 ">
-        <ToastContainer/>
+        {/* <ToastContainer/> */}
     <h2 className="text-2xl font-bold mb-6 text-center">
             Change Password
           </h2>

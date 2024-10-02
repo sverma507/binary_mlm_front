@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAdminAuth } from '../../../context/adminAuth';
 import axios from 'axios';
 import Sidebar from '../AdminSidebar/Sidebar';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 
 const AllCryptoTransaction = () => {
     const [adminAuth] = useAdminAuth();
@@ -44,7 +44,15 @@ const AllCryptoTransaction = () => {
             const data = await getTransactions();
             setTransactions(data);
         } catch (error) {
-            toast.error('Failed to fetch transactions.');
+            toast("Failed to fetch transactions.", {
+              duration: 4000, // Duration in milliseconds
+              position: 'top-center', // Position of the toast
+              style: {
+                background: 'red',
+                color: 'white',
+              },
+              icon: `😢`, // Add a custom icon
+            });
         }
       };
 
@@ -57,7 +65,7 @@ const AllCryptoTransaction = () => {
         <Sidebar className="fixed w-60 h-full" />
       
         {/* Main content */}
-        <ToastContainer/>
+        {/* <ToastContainer/> */}
         <div className="ml-60 p-4 flex-1">
           <h3 className="text-xl md:text-2xl font-semibold mb-4">Crypto Transaction History</h3>
           <div className="overflow-x-auto">

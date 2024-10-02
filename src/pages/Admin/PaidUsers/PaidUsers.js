@@ -33,6 +33,7 @@ const PaidUsers = () => {
             <tr className="bg-orange-500 text-white">
               <th className="py-2 px-4 border-b">S.No</th>
               <th className="py-2 px-4 border-b">Referral Code</th>
+              <th className="py-2 px-4 border-b">Email</th>
               <th className="py-2 px-4 border-b">Mobile Number</th>
               <th className="py-2 px-4 border-b">Wallet</th>
             </tr>
@@ -48,9 +49,10 @@ const PaidUsers = () => {
                 >
                   <td className="py-2 px-4 border-b">{index + 1}</td>
                   <td className="py-2 px-4 border-b">{user.referralCode}</td>
-                  <td className="py-2 px-4 border-b">{user.mobileNumber}</td>
+                  <td className="py-2 px-4 border-b">{user.email}</td>
+                  <td className="py-2 px-4 border-b">{user.phone}</td>
                   <td className="py-2 px-4 border-b">
-                    Rs. {user.wallet}
+                    Rs. {user.earningWallet}
                   </td>
                 </tr>
               ))

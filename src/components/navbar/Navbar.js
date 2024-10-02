@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useAuth } from '../../context/auth';
-import { toast, ToastContainer } from 'react-toastify';
+// import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 
 function Navbar() {
   const [isDashboardOpen, setDashboardOpen] = useState(false);
@@ -20,7 +21,15 @@ function Navbar() {
       token: "",
     });
     localStorage.removeItem("auth");
-    toast.success("Logout successfully");
+    toast('Logout Successfully!', {
+      duration: 4000, // Duration in milliseconds
+      position: 'top-center', // Position of the toast
+      style: {
+        background: 'white',
+        color: 'black',
+      },
+      icon: '👏', // Add a custom icon
+    });
     setTimeout(()=> {
       navigate("/login");
     },2000)
@@ -30,7 +39,7 @@ function Navbar() {
 
   return (
     <div className='shadow-xl shadow-blue-500 fixed top-0 z-40 w-[100%]'>
-      <ToastContainer/>
+      {/* <ToastContainer/> */}
   <div className="navbar bg-black text-white flex justify-between">
     {/* Navbar Start */}
     <div className="navbar-start flex items-center">
