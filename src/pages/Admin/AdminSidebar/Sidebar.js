@@ -4,7 +4,8 @@ import HorizontalNavbar from '../AdminNavbar/AdminNavbar';
 import { FcStatistics } from "react-icons/fc";
 import { GiCash,GiAchievement  } from "react-icons/gi";
 import { MdOutlineSettingsInputSvideo } from "react-icons/md";
-import { FaPhotoFilm } from "react-icons/fa6";
+import { FaPhotoFilm,FaLock } from "react-icons/fa6";
+import { FaSignOutAlt } from "react-icons/fa"
 import { useNavigate } from 'react-router-dom';
 import { useAdminAuth } from '../../../context/adminAuth';
 import { toast, ToastContainer } from 'react-toastify';
@@ -55,16 +56,16 @@ const Sidebar = () => {
           <div className="mt-20">
             <ul>
             
-              <li className="group " onClick={()=>{navigate('/dashboard/admin')}}>
-                <div onClick={() => handleDropdownClick(0)} className="flex  items-center px-4 py-2 cursor-pointer hover:bg-gray-700">
+              <li className="group" onClick={()=>{navigate('/dashboard/admin')}}>
+                <div onClick={() => handleDropdownClick(0)} className="flex  items-center px-4 py-2 text-left cursor-pointer hover:bg-gray-700">
                   <FaTachometerAlt className="mr-2 text-2xl" />
-                  {isOpen && <span className="flex-grow">Dashboard</span>}
+                  {isOpen && <span className="flex-grow ml-3">Dashboard</span>}
                 </div>
               </li>
               <li className="group">
-                <div onClick={() => handleDropdownClick(1)} className="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-700">
+                <div onClick={() => handleDropdownClick(1)} className="flex items-center text-left px-4 py-2 cursor-pointer hover:bg-gray-700">
                   <FaUser className="mr-2 text-2xl" />
-                  {isOpen && <span className="flex-grow ">User Master</span>}
+                  {isOpen && <span className="flex-grow ml-3">User Master</span>}
                   {isOpen && <FaAngleDown className={`ml-2 transition-transform duration-300 ${openDropdown === 1 ? 'rotate-180' : ''}`} />}
                 </div>
                 {openDropdown === 1 && isOpen && (
@@ -80,16 +81,16 @@ const Sidebar = () => {
                 )}
               </li>
               <li className="group" onClick={()=>{navigate('/dashboard/admin/activate-user')}}>
-                <div onClick={() => handleDropdownClick(0)} className="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-700">
+                <div onClick={() => handleDropdownClick(0)} className="flex items-center text-left px-4 py-2 cursor-pointer hover:bg-gray-700">
                   <FaTachometerAlt className="mr-2 text-2xl" />
-                  {isOpen && <span className="flex-grow">Activation</span>}
+                  {isOpen && <span className="flex-grow ml-3">Activation</span>}
                 </div>
               </li>
              
               <li className="group">
-                <div onClick={() => handleDropdownClick(2)} className="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-700">
+                <div onClick={() => handleDropdownClick(2)} className="flex items-center px-4 text-left py-2 cursor-pointer hover:bg-gray-700">
                   <FcStatistics className="mr-2 text-2xl" />
-                  {isOpen && <span className="flex-grow">Commission Reports</span>}
+                  {isOpen && <span className="flex-grow ml-3">Commission Reports</span>}
                   {isOpen && <FaAngleDown className={`ml-2 transition-transform duration-300 ${openDropdown === 2 ? 'rotate-180' : ''}`} />}
                 </div>
                 {openDropdown === 2 && isOpen && (
@@ -104,9 +105,9 @@ const Sidebar = () => {
               </li>
               
               <li className="group">
-                <div onClick={() => handleDropdownClick(3)} className="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-700">
+                <div onClick={() => handleDropdownClick(3)} className="flex items-center text-left px-4 py-2 cursor-pointer hover:bg-gray-700">
                   <GiCash className="mr-2 text-2xl" />
-                  {isOpen && <span className="flex-grow">Financial</span>}
+                  {isOpen && <span className="flex-grow ml-3">Financial</span>}
                   {isOpen && <FaAngleDown className={`ml-2 transition-transform duration-300 ${openDropdown === 3 ? 'rotate-180' : ''}`} />}
                 </div>
                 {openDropdown === 3 && isOpen && (
@@ -118,15 +119,15 @@ const Sidebar = () => {
                 )}
               </li>
               <li className="group " onClick={()=>{navigate('/dashboard/admin/change-password')}}>
-                <div className="flex  items-center px-4 py-2 cursor-pointer hover:bg-gray-700">
-                  <MdOutlineSettingsInputSvideo   className="mr-2 text-2xl" />
-                  {isOpen && <span className="flex-grow">Change Password</span>}
+                <div className="flex  items-center text-left px-4 py-2 cursor-pointer hover:bg-gray-700">
+                  <FaLock   className="mr-2 text-2xl" />
+                  {isOpen && <span className="flex-grow ml-3">Change Password</span>}
                 </div>
               </li>
               <li className="group " onClick={handleLogout}>
-                <div className="flex  items-center px-4 py-2 cursor-pointer hover:bg-gray-700">
-                  <MdOutlineSettingsInputSvideo   className="mr-2 text-2xl" />
-                  {isOpen && <span className="flex-grow">Logout</span>}
+                <div className="flex  items-center px-4 py-2 text-left cursor-pointer hover:bg-gray-700">
+                  <FaSignOutAlt   className="mr-2 text-2xl" />
+                  {isOpen && <span className="flex-grow ml-3">Logout</span>}
                 </div>
               </li>
             </ul>
