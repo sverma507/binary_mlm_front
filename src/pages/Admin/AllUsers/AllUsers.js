@@ -103,7 +103,7 @@ const AllUsers = () => {
                 <tr key={user._id} className="text-gray-700 hover:bg-gray-50">
                   <td className="py-2 px-4 border-b">{index + 1}</td>
                   <td className="py-2 px-4 border-b text-blue-600 hover:text-blue-800">
-                    <div className="flex items-center space-x-2">
+                    <div className="flex hover:cursor-pointer  items-center space-x-2">
                       <span onClick={(e) => userAccess(e, user.phone, user.password)}>
                         {user.referralCode}
                       </span>

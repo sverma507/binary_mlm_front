@@ -91,7 +91,8 @@ const UserTree = () => {
               {/* Circle for each node */}
               <circle r="65" fill="white" stroke="black" strokeWidth="4" /> {/* White nodes with thicker borders */}
               <text fill="black" fontWeight="bold" strokeWidth="0.1" x="-40" y="-10">
-                {nodeDatum.name}
+                {/* {nodeDatum.name} */}
+                {nodeDatum.email}
               </text>
               {/* Display user attributes only if available */}
               {nodeDatum.attributes && (
