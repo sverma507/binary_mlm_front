@@ -85,6 +85,7 @@ function Navbar() {
             }
            
             {isDashboardOpen && (
+              // <ul className="rounded-box mt-2 w-52 p-2 text-white">
               <ul className="rounded-box mt-2 w-52 p-2 text-white">
                 <li onClick={() => { navigate('/user/profile'); }}><a>My Profile</a></li>
                 <li onClick={() => { navigate('/bull'); }}><a>My Bull</a></li>

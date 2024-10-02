@@ -53,7 +53,7 @@ function Invitation() {
 
   useEffect(() => {
     console.log("d===>",auth);
-    generateInvitationLink(auth?.user?.walletAddress);
+    generateInvitationLink(auth?.user?.referralCode);
   }, []);
 
   return (

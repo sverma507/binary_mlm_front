@@ -7,9 +7,10 @@ import { useAdminAuth } from "../../../context/adminAuth";
 
 function ActivateUserForm() {
   const [referralCode, setRefferalCode] = useState("");
-  const [adminAuth, setAdminAuth] = useAdminAuth();
+  const [adminAuth] = useAdminAuth();
   const [activationList, setActivationList] = useState([]);
   const [isActivating, setIsActivating] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false); // New state for sidebar toggle
   const navigate = useNavigate();
 
   const getActivationList = async () => {
@@ -30,8 +31,6 @@ function ActivateUserForm() {
   const handleActivate = async (e) => {
     e.preventDefault();
     setIsActivating(true);
-    // toast.success("good");
-
     try {
       const token = adminAuth?.token;
       const response = await axios.put(
@@ -40,7 +39,6 @@ function ActivateUserForm() {
           referralCode: referralCode,
         }
       );
-      // toast.success("good")
       toast.success(response.data.message);
       setRefferalCode(""); // Clear the input fields
     } catch (error) {
@@ -55,14 +53,44 @@ function ActivateUserForm() {
   }, []);
 
   return (
-    <div className="flex min-h-screen gap-4">
+    <div className="flex flex-col lg:flex-row min-h-screen gap-4">
+      {/* Hamburger Menu */}
+      <button
+        className="lg:hidden p-4 focus:outline-none"
+        onClick={() => setSidebarOpen(!sidebarOpen)}
+      >
+        {/* Hamburger icon */}
+        <svg
+          className="w-6 h-6 text-white"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M4 6h16M4 12h16m-7 6h7"
+          />
+        </svg>
+      </button>
+
       {/* Sidebar */}
-      <Sidebar className="fixed w-60 h-full" />
+      <div
+        className={`fixed top-0 lg:relative w-60 h-full bg-gray-900 lg:w-60 transition-transform transform ${
+          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } lg:translate-x-0 z-50`}
+      >
+        <Sidebar />
+      </div>
 
       {/* Main Content */}
-      <div className="ml-60 container mx-auto p-4">
-        <div className="bg-white shadow-lg rounded-lg p-8 mt-[50px] w-[50%] max-w-[800px] mx-auto">
-          <ToastContainer />
+      <div
+        className={` w-full p-4 transition-all`}
+      >
+        <ToastContainer />
+        <div className="bg-white shadow-lg rounded-lg p-8 mt-8 w-full max-w-[800px] mx-auto">
           <h2 className="text-2xl font-bold mb-6 text-center">
             Activate / Upgrade Package Now
           </h2>
@@ -82,7 +110,7 @@ function ActivateUserForm() {
                 placeholder="Please Enter Valid User ID"
                 value={referralCode}
                 onChange={handleUserIdChange}
-                disabled={isActivating} // Disable input during activation
+                disabled={isActivating}
               />
             </div>
             <div className="flex justify-center">
@@ -93,7 +121,7 @@ function ActivateUserForm() {
                     ? "bg-gray-500"
                     : "bg-green-500 hover:bg-green-700"
                 } text-white font-bold py-2 px-6 rounded-md focus:outline-none focus:ring-2 focus:ring-green-300 transition duration-300`}
-                disabled={isActivating} // Disable button during activation
+                disabled={isActivating}
               >
                 {isActivating ? "Activating..." : "Activate Now"}
               </button>
@@ -102,7 +130,7 @@ function ActivateUserForm() {
         </div>
 
         {/* Latest Activated User Table */}
-        <div className="bg-white shadow-lg rounded-lg p-8 mt-8 w-[90%] mx-auto">
+        <div className="bg-white shadow-lg rounded-lg p-8 mt-8 ml-10 w-full overflow-x-auto">
           <h3 className="text-xl font-bold mb-4 text-center">
             Activated User Id
           </h3>
@@ -111,9 +139,7 @@ function ActivateUserForm() {
               <tr>
                 <th className="py-2 px-4 border-b text-center">#</th>
                 <th className="py-2 px-4 border-b text-center">User Id</th>
-                <th className="py-2 px-4 border-b text-center">
-                  Mobile Number
-                </th>
+                <th className="py-2 px-4 border-b text-center">Mobile Number</th>
                 <th className="py-2 px-4 border-b text-center">Activated By</th>
                 <th className="py-2 px-4 border-b text-center">Date & Time</th>
               </tr>
