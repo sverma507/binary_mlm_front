@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from 'react-hot-toast';
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import "./AdminLogin.css";
@@ -21,7 +21,15 @@ const AdminLogin = () => {
       
       if (res && res.data.success) {
         setIsLogin(false);
-        toast.success(res.data.message);
+        toast(res.data.message, {
+          duration: 4000, // Duration in milliseconds
+          position: 'top-center', // Position of the toast
+          style: {
+            background: 'white',
+            color: 'black',
+          },
+          icon: '👏', // Add a custom icon
+        });
 
         // Save user and token in context and local storage
         setAdminAuth({
@@ -35,13 +43,30 @@ const AdminLogin = () => {
           navigate("/dashboard/admin");
         }, 2000);
       } else {
-        toast.error(res.data.message);
+        toast(res.data.message, {
+          duration: 4000, // Duration in milliseconds
+          position: 'top-center', // Position of the toast
+          style: {
+            background: 'white',
+            color: 'black',
+          },
+          icon: '🤔', // Add a custom icon
+        });
         setIsLogin(false);
       }
     } catch (error) {
       console.log(error);
       setIsLogin(false);
-      toast.error('Something went wrong');
+      toast('Something went wrong', {
+        duration: 4000, // Duration in milliseconds
+        position: 'top-center', // Position of the toast
+        style: {
+          background: 'red',
+          color: 'white',
+        },
+        icon: '😢', // Add a custom icon
+      });
+      
     }
   };
 
@@ -82,7 +107,7 @@ const AdminLogin = () => {
         </button>
       </form>
 
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </div>
   );
 };

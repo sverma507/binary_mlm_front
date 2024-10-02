@@ -6,7 +6,7 @@ import Layout from '../../components/layout/layout';
 import axios from 'axios';
 import { useAuth } from '../../context/auth';
 import { useNavigate } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -54,10 +54,26 @@ const Login = () => {
         window.ethereum?.on('chainChanged', (chainId) => {
             if (chainId === '0x38') {
                 setIsBSC(true);
-                toast.success('Switched to Binance Smart Chain (BSC).');
+                toast('Switched to Binance Smart Chain (BSC).', {
+                    duration: 4000, // Duration in milliseconds
+                    position: 'top-center', // Position of the toast
+                    style: {
+                      background: 'gray',
+                      color: 'white',
+                    },
+                    icon: `😀`, // Add a custom icon
+                  });
             } else {
                 setIsBSC(false);
-                toast.error('Please switch to Binance Smart Chain (BSC) network.');
+                toast("Please switch to Binance Smart Chain (BSC) network.", {
+                    duration: 4000, // Duration in milliseconds
+                    position: 'top-center', // Position of the toast
+                    style: {
+                      background: 'red',
+                      color: 'white',
+                    },
+                    icon: `🤔`, // Add a custom icon
+                  });
             }
         });
     }, []);
@@ -70,14 +86,30 @@ const Login = () => {
 
         if (!walletDetected) {
             setError('No wallet detected. Please use a crypto wallet browser like MetaMask or Trust Wallet.');
-            toast.error('No wallet detected.');
+            toast("No wallet detected.", {
+                duration: 4000, // Duration in milliseconds
+                position: 'top-center', // Position of the toast
+                style: {
+                  background: 'red',
+                  color: 'white',
+                },
+                icon: `🤔`, // Add a custom icon
+              });
             setLoading(false);
             return;
         }
 
         if (!isBSC) {
             setError('Please switch to Binance Smart Chain (BSC) network.');
-            toast.error('Please switch to Binance Smart Chain (BSC) network.');
+            toast("Please switch to Binance Smart Chain (BSC) network.", {
+                duration: 4000, // Duration in milliseconds
+                position: 'top-center', // Position of the toast
+                style: {
+                  background: 'red',
+                  color: 'white',
+                },
+                icon: `🤔`, // Add a custom icon
+              });
             setLoading(false);
             return;
         }
@@ -94,16 +126,40 @@ const Login = () => {
                     token: response.data.token,
                 }));
                 setSuccessMessage(response.data.message);
-                toast.success("Login successfully");
+                toast("Login successfully", {
+                    duration: 4000, // Duration in milliseconds
+                    position: 'top-center', // Position of the toast
+                    style: {
+                      background: 'white',
+                      color: 'black',
+                    },
+                    icon: '👏', // Add a custom icon
+                  });
                 setTimeout(() => {
                     navigate('/');
                 }, 2000);
             } else {
                 setError(response.data.message);
-                toast.error(response.data.message);
+                toast(response.data.message, {
+                    duration: 4000, // Duration in milliseconds
+                    position: 'top-center', // Position of the toast
+                    style: {
+                      background: 'white',
+                      color: 'black',
+                    },
+                    icon: '🤔', // Add a custom icon
+                  });
             }
         } catch (err) {
-            toast.error(err.response?.data?.message || 'An error occurred. Please try again.');
+            toast(err.response?.data?.message || 'An error occurred. Please try again.', {
+                duration: 4000, // Duration in milliseconds
+                position: 'top-center', // Position of the toast
+                style: {
+                  background: 'red',
+                  color: 'white',
+                },
+                icon: `😢`, // Add a custom icon
+              });
             setError(err.response?.data?.message || 'An error occurred. Please try again.');
         } finally {
             setLoading(false);
@@ -113,7 +169,7 @@ const Login = () => {
     return (
         <Layout>
             <div className='login-container'>
-                <ToastContainer/>
+                {/* <ToastContainer/> */}
                 <div className="login-card">
                     <h2>Login</h2>
                     <form onSubmit={handleSubmit}>

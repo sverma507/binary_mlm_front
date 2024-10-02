@@ -8,7 +8,7 @@ import { FaPhotoFilm,FaLock } from "react-icons/fa6";
 import { FaSignOutAlt } from "react-icons/fa"
 import { useNavigate } from 'react-router-dom';
 import { useAdminAuth } from '../../../context/adminAuth';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -35,7 +35,15 @@ const Sidebar = () => {
     });
     localStorage.removeItem("AdminAuth");
     
-    toast.success("Logout successfully");
+    toast('Logout successfully', {
+      duration: 4000, // Duration in milliseconds
+      position: 'top-center', // Position of the toast
+      style: {
+        background: 'red',
+        color: 'white',
+      },
+      icon: '📤', // Add a custom icon
+    });
     setTimeout(()=> {
       navigate("/admin/login");
     },2000)
@@ -43,7 +51,7 @@ const Sidebar = () => {
 
   return (
     <div className="flex flex-col">
-      <ToastContainer/>
+      {/* <ToastContainer/> */}
       {/* <HorizontalNavbar toggle={toggle}/> */}
       <div className="flex flex-row flex-grow h-screen text-sm">
         <div className={`flex flex-col ${isOpen ? 'w-64' : 'w-20'} bg-gray-800 text-white transition-width duration-300 fixed h-full`}>

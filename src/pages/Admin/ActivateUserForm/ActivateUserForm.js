@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "../AdminSidebar/Sidebar";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from 'react-hot-toast';
 import { useAdminAuth } from "../../../context/adminAuth";
 
 function ActivateUserForm() {
@@ -39,10 +39,26 @@ function ActivateUserForm() {
           referralCode: referralCode,
         }
       );
-      toast.success(response.data.message);
+      toast(response.data.message, {
+        duration: 4000, // Duration in milliseconds
+        position: 'top-center', // Position of the toast
+        style: {
+          background: 'white',
+          color: 'black',
+        },
+        icon: '👏', // Add a custom icon
+      });
       setRefferalCode(""); // Clear the input fields
     } catch (error) {
-      toast.error(error.message);
+      toast(error.message, {
+        duration: 4000, // Duration in milliseconds
+        position: 'top-center', // Position of the toast
+        style: {
+          background: 'red',
+          color: 'white',
+        },
+        icon: '😢', // Add a custom icon
+      });
     } finally {
       setIsActivating(false); // Reset the button state
     }
@@ -89,7 +105,7 @@ function ActivateUserForm() {
       <div
         className={` w-full p-4 transition-all`}
       >
-        <ToastContainer />
+        {/* <ToastContainer /> */}
         <div className="bg-white shadow-lg rounded-lg p-8 mt-8 w-full max-w-[800px] mx-auto">
           <h2 className="text-2xl font-bold mb-6 text-center">
             Activate / Upgrade Package Now

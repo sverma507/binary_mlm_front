@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 import { useAuth } from '../../context/auth';
 import Layout from '../../components/layout/layout';
 
@@ -12,29 +12,6 @@ function Invitation() {
   const [invitationLink, setInvitationLink] = useState('');
   const [isLinkCopied, setIsLinkCopied] = useState(false);
 
-//   const getUser = async () => {
-//     const { id } = auth.user;
-//     const token = auth.token;
-
-//     try {
-//       const res = await axios.get(${process.env.REACT_APP_API_URL}/user/profile/${id}, {
-//         headers: {
-//           Authorization: Bearer ${token},
-//         },
-//       });
-
-//       if (res && res.data) {
-//         setUser(res.data);
-//         generateInvitationLink(res.data.referralCode);
-//       } else {
-//         toast.error('Failed to retrieve user profile');
-//       }
-//     } catch (error) {
-//       console.log(error);
-//       toast.error('Something went wrong');
-//     }
-//   };
-
   const generateInvitationLink = (walletAddress) => {
     const link = `${window.location.origin}/signup?referral=${walletAddress}`;
     setInvitationLink(link);
@@ -43,7 +20,15 @@ function Invitation() {
   const copyToClipboard = () => {
     navigator.clipboard.writeText(invitationLink);
     setIsLinkCopied(true);
-    toast.success('Invitation link copied to clipboard!');
+    toast('Invitation link copied to clipboard!', {
+      duration: 4000, // Duration in milliseconds
+      position: 'top-center', // Position of the toast
+      style: {
+        background: 'white',
+        color: 'black',
+      },
+      icon: '👏', // Add a custom icon
+    });
 
     // Revert the button text after 2 seconds
     setTimeout(() => {
@@ -58,7 +43,7 @@ function Invitation() {
 
   return (
     <Layout title={'Invite - Earning Money'}>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
       <div className=" mx-auto p-4 h-[400px] text-white mt-40">
         <div className="flex flex-col justify-center items-center text-lg">
           <div>Your Invitation Code</div>
