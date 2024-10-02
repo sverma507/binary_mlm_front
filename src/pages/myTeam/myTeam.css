@@ -1,0 +1,6 @@
+/* CSS to ensure link styles are correctly applied */
+.custom-link {
+    stroke: white !important; /* Ensure the lines connecting the nodes are white */
+    stroke-width: 3px !important;
+  }
+  

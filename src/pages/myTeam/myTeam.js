@@ -3,7 +3,7 @@ import Tree from 'react-d3-tree';
 import axios from 'axios';
 import Layout from '../../components/layout/layout';
 import { useAuth } from '../../context/auth';
-
+import './myTeam.css'
 const UserTree = () => {
   const [treeData, setTreeData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -14,7 +14,7 @@ const UserTree = () => {
 
   // Helper function to map user data to tree structure
   const buildTree = (users, userId) => {
-    const user = users.find(u => u._id === userId);
+    const user = users.find((u) => u._id === userId);
     if (!user) return null;
 
     // Special handling for root user
@@ -30,9 +30,8 @@ const UserTree = () => {
 
     return {
       name: user.referralCode,
-      email:user.email,
+      email: user.email,
       attributes: {
-       
         earningWallet: user.earningWallet,
         rank: user.rank,
         isActive: user.isActive ? 'Active' : 'Inactive',
@@ -91,16 +90,13 @@ const UserTree = () => {
             <g>
               {/* Circle for each node */}
               <circle r="65" fill="white" stroke="black" strokeWidth="4" /> {/* White nodes with thicker borders */}
-              {/* <text fill="black" strokeWidth="0.1" x="-40" y="-10">
+              <text fill="black" fontWeight="bold" strokeWidth="0.1" x="-40" y="-10">
                 {nodeDatum.name}
-              </text> */}
-              <text fill="black" strokeWidth="0.1" x="-40" y="-10">
-                {nodeDatum.email}
               </text>
               {/* Display user attributes only if available */}
               {nodeDatum.attributes && (
                 <>
-                  <text fill="black" strokeWidth="0.3" x="-40" y="20">
+                  <text fill="black" fontWeight="bold" strokeWidth="0.3" x="-40" y="20">
                     Wallet: Rs.{nodeDatum.attributes.earningWallet}
                   </text>
                 </>
@@ -110,10 +106,12 @@ const UserTree = () => {
           // To customize the link (line) style between nodes
           styles={{
             links: {
-              stroke: 'black', // Line color
+              stroke: 'white', // White line color
               strokeWidth: 3,  // Line thickness
             },
           }}
+          // Alternative way to override link styles
+          pathClassFunc={() => 'custom-link'} // Use custom CSS class for links
         />
       </div>
     </Layout>

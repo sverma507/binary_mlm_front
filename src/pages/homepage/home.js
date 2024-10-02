@@ -9,6 +9,7 @@ import MarketStatus from '../../components/Market_Status/Market_Status'
 import CurrencySelector from '../../components/CurrencySelector/CurrencySelector'
 import TradingSection from '../../components/TradingSection/TradingSection'
 import ContactUs from '../../components/ContactUs/ContactUs'
+import Layout from '../../components/layout/layout'
 
 const Home = () => {
 
@@ -16,16 +17,16 @@ const Home = () => {
 
 
   return (
-<>
-    <Navbar/>
+<Layout>
+   
     {/* <Swipper/> */}
     <Header/>
      <MarketStatus/>
     <CurrencySelector/>
     <TradingSection/> 
     {/* <ContactUs/> */}
-    <Footer/>
-</>
+   
+</Layout>
   )
 }
 

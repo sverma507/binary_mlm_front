@@ -258,7 +258,7 @@ const MarketStatus = () => {
   const marketEntries = Object.entries(marketData);
 
   return (
-    <div className="mx-auto p-4 w-[90%] mt-20">
+    <div className="mx-auto p-4 w-[90%] mt-20 ">
       <h1 className="text-center text-3xl font-bold mb-8 text-gray-100">
         Market Status
       </h1>

@@ -3,12 +3,25 @@ import { FaUser, FaEnvelope, FaPhone, FaEdit, FaWallet, FaChartLine, FaUsers } f
 import Layout from '../layout/layout';
 import axios from 'axios';
 import { useAuth } from '../../context/auth';
-
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer,toast } from 'react-toastify';
 const MyProfile = () => {
-    const [auth] = useAuth();
+    const [auth,setAuth] = useAuth();
     const [profile, setProfile] = useState(null); // State to hold profile data
     const [walletBalances, setWalletBalances] = useState([]); // State to hold wallet balances
-
+    const navigate = useNavigate()
+    const handleLogout = () => {
+        setAuth({
+          ...auth,
+          user: null,
+          token: "",
+        });
+        localStorage.removeItem("auth");
+        toast.success("Logout successfully");
+        setTimeout(()=> {
+          navigate("/login");
+        },2000)
+      };
     // Function to fetch profile data
     const getProfile = async () => {
         const id = auth?.user?._id;
@@ -54,6 +67,7 @@ const MyProfile = () => {
     return (
         <Layout>
             <div className="min-h-screen bg-gradient-to-r from-blue-900 to-black text-gray-100 p-8 mt-10">
+                <ToastContainer/>
                 {/* Outer Container */}
                 <div className="mx-auto text-center">
                     {/* Heading Section */}
@@ -68,8 +82,8 @@ const MyProfile = () => {
                     <section className="my-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
                             <FaUser className="text-blue-500 text-4xl mb-4 mx-auto" />
-                            <h3 className="text-2xl font-bold mb-3">Full Name</h3>
-                            <p className="text-gray-300">{profile.fullName || 'N/A'}</p> {/* Display full name from profile data */}
+                            <h3 className="text-2xl font-bold mb-3">User</h3>
+                            <p className="text-gray-300">{profile.referralCode || 'N/A'}</p> {/* Display full name from profile data */}
                         </div>
                         <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
                             <FaEnvelope className="text-blue-500 text-4xl mb-4 mx-auto" />
@@ -89,6 +103,11 @@ const MyProfile = () => {
                             <FaWallet className="text-blue-500 text-4xl mb-4 mx-auto" />
                             <h3 className="text-2xl font-bold mb-3">Wallet Balance</h3>
                             <p className="text-gray-300">${profile.earningWallet.toFixed(2)}</p> {/* Display wallet balance */}
+                        </div>
+                        <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
+                            <FaWallet className="text-blue-500 text-4xl mb-4 mx-auto" />
+                            <h3 className="text-2xl font-bold mb-3">Recharge Wallet </h3>
+                            <p className="text-gray-300">${profile.rechargeWallet.toFixed(2)}</p> {/* Display wallet balance */}
                         </div>
                         <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
                             <FaChartLine className="text-blue-500 text-4xl mb-4 mx-auto" />
@@ -124,21 +143,21 @@ const MyProfile = () => {
                     </section>
 
                     {/* Edit Profile Section */}
-                    <section className="my-16">
+                    {/* <section className="my-16">
                         <h2 className="text-3xl font-bold mb-4">Edit Profile</h2>
                         <button className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-full transition duration-300">
                             <FaEdit className="inline-block mr-2" />
                             Edit Your Information
                         </button>
-                    </section>
+                    </section> */}
 
                     {/* Logout Section */}
                     <section className="my-16 bg-blue-700 py-10 rounded-lg">
-                        <h2 className="text-3xl font-bold mb-4 text-white">Need to Logout?</h2>
+                        <h2 className="text-3xl font-bold mb-4 text-center text-white">Need to Logout?</h2>
                         <p className="text-gray-300 mb-6 leading-relaxed">
                             If you're finished, feel free to log out of your account.
                         </p>
-                        <button className="bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-6 rounded-full transition duration-300">
+                        <button onClick={handleLogout} className="bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-6 rounded-full transition duration-300">
                             Logout
                         </button>
                     </section>
