@@ -1,134 +1,155 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Sidebar from '../AdminSidebar/Sidebar';
+import Tree from 'react-d3-tree';
+import toast from "react-hot-toast"
 import './global.css'; // Import the global CSS file if needed
 
 const DownlineUsers = () => {
-  const [userId, setUserId] = useState('');
-  const [downlineUsers, setDownlineUsers] = useState([]);
-  const [error, setError] = useState('');
+  const [treeData, setTreeData] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [paidUsers, setPaidUsers] = useState(0);
-  const [unPaidUsers, setUnPaidUsers] = useState(0);
-  const [data, setData] = useState(false);
+  const [error, setError] = useState(null);
+  const [abc, setAbc] = useState('')
+  const [userIdNew, setUserId] = useState('');
+  // const [users, setUsers] = useState([]);
 
-  const fetchDownlineUsers = async () => {
-    setLoading(true);
+   // The root user ID
+
+  // Helper function to map user data to tree structure
+  const buildTree = (users, userId) => {
+    console.log("user",users);
+    const user = users.find((u) => u._id === userId);
+    // toast(user.referralCode)
+    console.log("singleUser",user);
+    
+    
+    
+    if (!user) return null;
+
+    // Special handling for root user
+    if (user._id === abc) {
+      return {
+        name: 'You', // Display "You" for the root user
+        children: [
+          user.leftChild ? buildTree(users, user.leftChild) : null,
+          user.rightChild ? buildTree(users, user.rightChild) : null,
+        ].filter(Boolean), // Removes null values if there are no children
+      };
+    }
+
+    return {
+      name: user.referralCode,
+      email: user.email,
+      attributes: {
+        earningWallet: user.earningWallet,
+        rank: user.rank,
+        isActive: user.isActive ? 'Active' : 'Inactive',
+      },
+      children: [
+        user.leftChild ? buildTree(users, user.leftChild) : null,
+        user.rightChild ? buildTree(users, user.rightChild) : null,
+      ].filter(Boolean), // Removes null values if there are no children
+    };
+  };
+
+  const fetchUserTree = async () => {
     try {
-      const result = await axios.get(
-        `${process.env.REACT_APP_API_URL}/admin/downline/${userId}`
-      );
-      setDownlineUsers(result.data.downlineUsers);
-      activatedUsers(result.data.downlineUsers);
-      console.log("length: ==>",result.data.downlineUsers);
-      
-      setData(true);
-      setError('');
+      setLoading(true);
+      setError(null); // Clear previous errors
+      if (!userIdNew) {
+        setError('Please enter a valid User ID.');
+        setLoading(false);
+        return;
+      }
+
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/admin/all-users`);
+      const users = response.data;
+      console.log(users);
+
+      const userid = users.find((u) => u.referralCode === userIdNew);
+
+      const rootUserId = userid._id;
+      setAbc(userid._id)
+      const tree = buildTree(users, rootUserId);
+
+      if (!tree) {
+        setError('No user found with the provided User ID.');
+        
+        setTreeData(null); // Set treeData to null if no user is found
+      } else {
+        setTreeData([tree]); // Wrap in array because react-d3-tree expects an array
+      }
     } catch (err) {
-      console.error('Error fetching downline users', err);
-      setError('Failed to fetch downline users.');
+      console.error('Error fetching users:', err);
+      setError('Error fetching user tree.');
     } finally {
       setLoading(false);
     }
   };
 
-
-  const activatedUsers = (users) => {
-    let paidCount = 0;
-    let unPaidCount = 0;
-      for(const user of users){
-          if(user.active){
-            paidCount++;
-          }else{
-            unPaidCount++;
-          }
-      }
-
-      setPaidUsers(paidCount)
-      setUnPaidUsers(unPaidCount);
-  }
-
-  const renderDownlineUsers = (users, parentLevel) => {
-    return users.map((user, index) => (
-      <React.Fragment key={user._id}>
-        <tr className={`border-b text-center border-gray-200 hover:bg-gray-100 ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}>
-          <td className="px-5 py-3">{index + 1}</td>
-          <td className="px-5 py-3">{user.level}</td>
-          <td className="px-5 py-3">{user.referralCode}</td>
-          <td className="px-5 py-3">{user.email || 'Unknown'}</td>
-          <td className="px-5 py-3">{user.mobileNumber || 'N/A'}</td>
-          <td className="px-5 py-3">{new Date(user.createdAt).toLocaleDateString()}</td>
-          <td className="px-5 py-3">{user.purchaseDate.length>0 ? new Date(user.purchaseDate[user.purchaseDate.length-1]).toLocaleDateString() : 'Unrecharged'}</td>
-          <td className="px-5 py-3">{user.wallet ? `$ ${user.wallet.toFixed(2)}` : '$ 0.00'}</td>
-        </tr>
-        {user.downlineUsers.length > 0 && renderDownlineUsers(user.downlineUsers, user.level)}
-      </React.Fragment>
-    ));
-  };
-
   return (
     <div className="flex min-h-screen gap-4">
-      <Sidebar className="fixed w-60 h-full"  />
+      <Sidebar className="fixed w-60 h-full" />
       <div className="ml-60 container mx-auto p-4">
         <div className="flex justify-between mb-10 mt-10">
           <input
             type="text"
             placeholder="Enter User ID"
             className="border-2 border-gray-200 rounded-lg p-2 w-[86%]"
-            value={userId}
+            value={userIdNew}
             onChange={(e) => setUserId(e.target.value)}
           />
           <button
             className={`bg-green-500 text-white px-4 py-2 rounded-lg ml-4 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
-            onClick={fetchDownlineUsers}
+            onClick={fetchUserTree}
             disabled={loading}
           >
             {loading ? 'Processing...' : 'Get Downline'}
           </button>
         </div>
-        {
-            data ? (<div>
-                <div>Total Users under {userId} are {paidUsers + unPaidUsers}</div>
-                <div>Paid Users : {paidUsers}</div>
-                <div>Unpaid Users : {unPaidUsers}</div>
-            </div>) : (<></>)
-        }
-        
+
         {error && <p className="text-red-500 mb-4">{error}</p>}
-        <div className="relative">
+
+        <div className="relative h-screen">
           {loading && (
             <div className="spinner-overlay">
               <div className="spinner"></div>
             </div>
           )}
-          <table className="min-w-full leading-normal">
-            <thead>
-              <tr>
-                {['S.No.', 'Level', 'User Id', 'Email', 'Mobile No.', 'Date of Joining', 'Date of Activation', 'Wallet'].map((header) => (
-                  <th
-                    key={header}
-                    className="px-5 py-3 border-b border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider"
-                  >
-                    {header}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="text-gray-600 text-sm font-light">
 
-              {downlineUsers.length > 0 ? (
-                renderDownlineUsers(downlineUsers, 1)
-              ) : !loading ? (
-                <tr>
-                  <td colSpan="8" className="text-center py-4">No downline users found</td>
-                </tr>
-              ) : (
-                <tr>
-                  <td colSpan="8" className="text-center py-4">Loading...</td>
-                </tr>
+          {!loading && treeData ? (
+            <Tree
+              data={treeData}
+              orientation="vertical" // Vertical tree layout
+              translate={{ x: 600, y: 200 }} // Adjust translation to center the tree
+              nodeSize={{ x: 400, y: 300 }} // Increase node size to allow more spacing
+              pathFunc="diagonal" // Diagonal lines between nodes
+              renderCustomNodeElement={({ nodeDatum }) => (
+                <g>
+                  <circle r="65" fill="white" stroke="black" strokeWidth="4" />
+                  <text fill="black" fontWeight="bold" strokeWidth="0.1" x="-40" y="-10">
+                    {nodeDatum.name}
+                  </text>
+                  {nodeDatum.attributes && (
+                    <>
+                      <text fill="black" fontWeight="bold" strokeWidth="0.3" x="-40" y="20">
+                        Wallet: Rs.{nodeDatum.attributes.earningWallet}
+                      </text>
+                    </>
+                  )}
+                </g>
               )}
-            </tbody>
-          </table>
+              styles={{
+                links: {
+                  stroke: 'white',
+                  strokeWidth: 3,
+                },
+              }}
+              pathClassFunc={() => 'custom-link'} // Use custom CSS class for links
+            />
+          ) : (
+            !loading && !error && <p>No tree data available</p>
+          )}
         </div>
       </div>
     </div>
