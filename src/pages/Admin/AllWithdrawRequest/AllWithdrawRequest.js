@@ -7,10 +7,9 @@ const AllWithdrawRequest = () => {
   const [selectedTransactions, setSelectedTransactions] = useState([]);
 
   useEffect(() => {
-    // Fetch withdrawal requests from the API
     const fetchWithdrawRequests = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/admin/withdraw-requests`); // Adjust the API endpoint as needed
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/admin/withdraw-requests`);
         setWithdrawRequests(response.data);
       } catch (error) {
         console.error('Error fetching withdrawal requests:', error);
@@ -20,7 +19,6 @@ const AllWithdrawRequest = () => {
     fetchWithdrawRequests();
   }, []);
 
-  // Handle checkbox change
   const handleCheckboxChange = (transaction, isChecked) => {
     if (isChecked) {
       setSelectedTransactions((prev) => [...prev, transaction]);
@@ -31,9 +29,7 @@ const AllWithdrawRequest = () => {
     }
   };
 
-  // Handle action button click
   const handleActionClick = async (actionType) => {
-    // Perform the appropriate action based on the actionType
     try {
       const ids = selectedTransactions.map(t => t._id);
       if (actionType === "manually") {
@@ -43,23 +39,32 @@ const AllWithdrawRequest = () => {
       } else if (actionType === "reject") {
         await axios.post('/api/withdraw-requests/reject', { ids });
       }
-      // Refresh the requests after action
       const response = await axios.get('/api/withdraw-requests');
       setWithdrawRequests(response.data);
-      setSelectedTransactions([]); // Clear selected transactions
+      setSelectedTransactions([]);
     } catch (error) {
       console.error('Error processing action:', error);
     }
   };
 
-  // Filter requests based on payment status
+  // Function to handle status change
+  const handleStatusChange = async (transactionId, newStatus) => {
+    try {
+      await axios.patch(`/api/withdraw-requests/${transactionId}`, { paymentStatus: newStatus });
+      // Refresh the requests after status change
+      const response = await axios.get('/api/withdraw-requests');
+      setWithdrawRequests(response.data);
+    } catch (error) {
+      console.error('Error updating status:', error);
+    }
+  };
+
   const filteredTransactions = withdrawRequests.filter((request) => request.paymentStatus === filterStatus);
 
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-xl font-bold mb-4">All Withdrawal Requests</h1>
 
-      {/* Filter Buttons */}
       <div className="mb-4">
         <button onClick={() => setFilterStatus("Processing")} className="bg-blue-500 text-white px-4 py-2 rounded-md mx-2">
           Processing
@@ -72,7 +77,6 @@ const AllWithdrawRequest = () => {
         </button>
       </div>
 
-      {/* Table */}
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-300">
           <thead>
@@ -88,7 +92,7 @@ const AllWithdrawRequest = () => {
           </thead>
           <tbody>
             {filteredTransactions.length > 0 ? (
-              filteredTransactions.map((transaction, index) => (
+              filteredTransactions.map((transaction) => (
                 <tr key={transaction._id} className="hover:bg-gray-100">
                   <td className="py-2 px-4 border-b text-center">
                     <input
@@ -103,7 +107,16 @@ const AllWithdrawRequest = () => {
                   <td className="py-2 px-4 border-b text-center">
                     {new Date(transaction.createdAt).toLocaleString()}
                   </td>
-                  <td className="py-2 px-4 border-b text-center">{transaction.paymentStatus}</td>
+                  <td className="py-2 px-4 border-b text-center">
+                    <select
+                      value={transaction.paymentStatus}
+                      onChange={(e) => handleStatusChange(transaction._id, e.target.value)}
+                    >
+                      <option value="Processing">Processing</option>
+                      <option value="Completed">Completed</option>
+                      <option value="Rejected">Rejected</option>
+                    </select>
+                  </td>
                 </tr>
               ))
             ) : (
@@ -117,7 +130,6 @@ const AllWithdrawRequest = () => {
         </table>
       </div>
 
-      {/* Action Buttons */}
       {filterStatus === "Processing" && selectedTransactions.length > 0 && (
         <div className="flex justify-center my-4">
           <button
