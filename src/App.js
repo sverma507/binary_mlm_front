@@ -37,6 +37,7 @@ import AdminRoute from "./routes/adminRoutes.js";
 import LevelIncome from "./components/LevelIncome/LevelIncome.js";
 import TradingWallet from "./components/TradingWallet/TradingWallet.js";
 import AllWithdrawRequest from "./pages/Admin/AllWithdrawRequest/AllWithdrawRequest.js";
+import TradingTransactions from "./pages/Admin/TradingTransaction/TradingTransactions.js";
 function App() {
   return (
     <div className="App">
@@ -70,6 +71,7 @@ function App() {
           <Route path="admin/activation-report" element={<ActivationReport />} />
           <Route path="admin/activate-user" element={<ActivateUserForm />} />
           <Route path="admin/withdrawal-requests" element={<AllWithdrawRequest />} />
+          <Route path="admin/trading-transactions" element={<TradingTransactions />} />
 
       </Route>
         <Route path="/" element={<Home />} />
