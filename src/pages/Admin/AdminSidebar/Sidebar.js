@@ -83,6 +83,7 @@ const Sidebar = () => {
                     <li className="py-1 cursor-pointer hover:bg-gray-700"  onClick={()=>{navigate('/dashboard/admin/all-unpaid-users-list')}}>Unpaid Users</li>
                     <li className="py-1 cursor-pointer hover:bg-gray-700"  onClick={()=>{navigate('/dashboard/admin/blocked-users')}} >Blocked Users</li>
                     <li className="py-1 cursor-pointer hover:bg-gray-700"  onClick={()=>{navigate('/dashboard/admin/downline-users')}}>Downline Users</li>
+                    <li className="py-1 cursor-pointer hover:bg-gray-700"  onClick={()=>{navigate('/dashboard/admin/trading-transactions')}}>Trading Incomes </li>
                     {/* <li className="py-1 cursor-pointer hover:bg-gray-700" onClick={()=>{navigate('/dashboard/admin/activation-report')}}>Activation Report</li> */}
                     {/* <li className="py-1 cursor-pointer hover:bg-gray-700">Access Panel</li> */}
                   </ul>
