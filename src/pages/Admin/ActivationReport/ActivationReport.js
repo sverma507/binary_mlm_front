@@ -3,11 +3,11 @@ import Sidebar from '../AdminSidebar/Sidebar';
 
 const ActivationReport = () => {
     const users = [
-        { sn: 1, userDetail: 'MR. DEEPAK', password: 'Ravj@1996', plan: 'Holding', packageAmount: '₹ 18,000.00', roiStatus: 'Master', activatedBy: 'Admin', activateDate: '07-08-2024', action: 'Action' },
-        { sn: 2, userDetail: 'RAVI MEHTA', password: 'Abc@1234sdf', plan: 'Holding', packageAmount: '₹ 18,000.00', roiStatus: 'Master', activatedBy: 'Admin', activateDate: '07-08-2024', action: 'Action' },
-        { sn: 3, userDetail: 'JAIS JANGRA', password: 'Abc@1234df', plan: 'Holding', packageAmount: '₹ 18,000.00', roiStatus: 'Master', activatedBy: 'Admin', activateDate: '07-08-2024', action: 'Action' },
-        { sn: 4, userDetail: 'RAM8', password: 'Abc@1234', plan: 'Holding', packageAmount: '₹ 18,000.00', roiStatus: 'Master', activatedBy: 'Admin', activateDate: '07-08-2024', action: 'Action' },
-        { sn: 5, userDetail: 'RAM7', password: 'Abc@1234', plan: 'Holding', packageAmount: '₹ 18,000.00', roiStatus: 'Master', activatedBy: 'Admin', activateDate: '07-08-2024', action: 'Action' },
+        { sn: 1, userDetail: 'MR. DEEPAK', password: 'Ravj@1996', plan: 'Holding', packageAmount: '$ 18,000.00', roiStatus: 'Master', activatedBy: 'Admin', activateDate: '07-08-2024', action: 'Action' },
+        { sn: 2, userDetail: 'RAVI MEHTA', password: 'Abc@1234sdf', plan: 'Holding', packageAmount: '$ 18,000.00', roiStatus: 'Master', activatedBy: 'Admin', activateDate: '07-08-2024', action: 'Action' },
+        { sn: 3, userDetail: 'JAIS JANGRA', password: 'Abc@1234df', plan: 'Holding', packageAmount: '$ 18,000.00', roiStatus: 'Master', activatedBy: 'Admin', activateDate: '07-08-2024', action: 'Action' },
+        { sn: 4, userDetail: 'RAM8', password: 'Abc@1234', plan: 'Holding', packageAmount: '$ 18,000.00', roiStatus: 'Master', activatedBy: 'Admin', activateDate: '07-08-2024', action: 'Action' },
+        { sn: 5, userDetail: 'RAM7', password: 'Abc@1234', plan: 'Holding', packageAmount: '$ 18,000.00', roiStatus: 'Master', activatedBy: 'Admin', activateDate: '07-08-2024', action: 'Action' },
     ];
 
     return (

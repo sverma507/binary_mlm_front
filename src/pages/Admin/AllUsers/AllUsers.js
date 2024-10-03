@@ -141,7 +141,7 @@ const AllUsers = () => {
                     </div>
                   </td>
                   <td className="py-2 px-4 border-b">{user.referredBy || "No reference"}</td>
-                  <td className="py-2 px-4 border-b">{user?.name}</td>
+                  <td className="py-2 px-4 border-b">{user?.email}</td>
                   <td className="py-2 px-4 border-b">{user.phone}</td>
                   <td className="py-2 px-4 border-b truncate max-w-xs">{user.password}</td>
                   <td className="py-2 px-4 border-b">{Math.floor(user.earningWallet)}</td>

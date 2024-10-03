@@ -59,7 +59,7 @@ const DownlineUsers = () => {
           <td className="px-5 py-3">{user.mobileNumber || 'N/A'}</td>
           <td className="px-5 py-3">{new Date(user.createdAt).toLocaleDateString()}</td>
           <td className="px-5 py-3">{user.purchaseDate.length>0 ? new Date(user.purchaseDate[user.purchaseDate.length-1]).toLocaleDateString() : 'Unrecharged'}</td>
-          <td className="px-5 py-3">{user.wallet ? `₹ ${user.wallet.toFixed(2)}` : '₹ 0.00'}</td>
+          <td className="px-5 py-3">{user.wallet ? `$ ${user.wallet.toFixed(2)}` : '$ 0.00'}</td>
         </tr>
         {user.downlineUsers.length > 0 && renderDownlineUsers(user.downlineUsers, user.level)}
       </React.Fragment>

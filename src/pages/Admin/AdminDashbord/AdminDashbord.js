@@ -265,27 +265,27 @@ const Dashboard = () => {
               <div className="bg-gradient-to-r from-red-600 via-orange-500 to-yellow-400  p-4 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.5)] transform translate-y-[-10px] transition-all duration-300 hover:translate-y-[-20px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] hover:scale-105">
                 <h3 className="text-lg font-semibold">Total Collection</h3>
                 <p className="text-sm">
-                  Rs.{" "}
+                  ${" "}
                   {(rupeeTotal || 0).toLocaleString("en-IN")}
                 </p>
               </div>
               <div className="bg-gradient-to-r from-red-600 via-orange-500 to-yellow-400 p-4 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.5)] transform translate-y-[-10px] transition-all duration-300 hover:translate-y-[-20px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] hover:scale-105">
                 <h3 className="text-lg font-semibold">Today Collection</h3>
                 <p className="text-sm">
-                  Rs. {(todayCollection || 0).toLocaleString("en-IN")}
+                  $ {(todayCollection || 0).toLocaleString("en-IN")}
                 </p>
               </div>
               <div className="bg-gradient-to-r from-red-600 via-orange-500 to-yellow-400 p-4 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.5)] transform translate-y-[-10px] transition-all duration-300 hover:translate-y-[-20px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] hover:scale-105">
                 <h3 className="text-lg font-semibold">Total Deposite</h3>
                 <p className="text-sm">
-                  Rs.{" "}
+                  ${" "}
                   {(totalDeposite || 0).toLocaleString("en-IN")}
                 </p>
               </div>
               <div className="bg-gradient-to-r from-red-600 via-orange-500 to-yellow-400 p-4 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.5)] transform translate-y-[-10px] transition-all duration-300 hover:translate-y-[-20px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] hover:scale-105">
                 <h3 className="text-lg font-semibold">Today Deposite</h3>
                 <p className="text-sm">
-                  Rs.{" "}
+                  ${" "}
                   {(
                     todayDeposite || 0
                   ).toLocaleString("en-IN")}
@@ -294,7 +294,7 @@ const Dashboard = () => {
               <div className="bg-gradient-to-r from-red-600 via-orange-500 to-yellow-400 p-4 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.5)] transform translate-y-[-10px] transition-all duration-300 hover:translate-y-[-20px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] hover:scale-105">
                 <h3 className="text-lg font-semibold">Total Withdrawl</h3>
                 <p className="text-sm">
-                  Rs.{" "}
+                  ${" "}
                   {(
                     totalWithdrawl || 0
                   ).toLocaleString("en-IN")}
@@ -303,7 +303,7 @@ const Dashboard = () => {
               <div className="bg-gradient-to-r from-red-600 via-orange-500 to-yellow-400 p-4 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.5)] transform translate-y-[-10px] transition-all duration-300 hover:translate-y-[-20px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] hover:scale-105">
                 <h3 className="text-lg font-semibold">Today Withdrawl</h3>
                 <p className="text-sm">
-                  Rs.{" "}
+                  ${" "}
                   {(
                     lastWithDrawl || 0
                   ).toLocaleString("en-IN")}
@@ -375,13 +375,13 @@ const Dashboard = () => {
             <div className="bg-gradient-to-r from-purple-500 via-purple-400 to-purple-200 text-white p-4 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.5)] transform translate-y-[-10px] transition-all duration-300 hover:translate-y-[-20px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] hover:scale-105">
               <h3 className="text-lg font-semibold">E-wallet</h3>
               <p className="text-lg">
-                Rs. {(totalEarningWallet || 0).toLocaleString("en-IN")}
+                $ {(totalEarningWallet || 0).toLocaleString("en-IN")}
               </p>
             </div>
             <div className="bg-gradient-to-r from-purple-500 via-purple-400 to-purple-200 text-white p-4 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.5)] transform translate-y-[-10px] transition-all duration-300 hover:translate-y-[-20px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] hover:scale-105">
               <h3 className="text-lg font-semibold">R-wallet</h3>
               <p className="text-lg">
-                Rs. {(totalRechargeWallet || 0).toLocaleString("en-IN")}
+                $ {(totalRechargeWallet || 0).toLocaleString("en-IN")}
               </p>
             </div>
           </div>
@@ -392,25 +392,25 @@ const Dashboard = () => {
             <div className="bg-gradient-to-r from-purple-500 via-purple-400 to-purple-200 text-white p-4 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.5)] transform translate-y-[-10px] transition-all duration-300 hover:translate-y-[-20px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] hover:scale-105">
               <h3 className="text-lg font-semibold">Today Active By User</h3>
               <p className="text-lg">
-                Rs. {(todayUserActivateTotal || 0).toLocaleString("en-IN")}
+                $ {(todayUserActivateTotal || 0).toLocaleString("en-IN")}
               </p>
             </div>
             <div className="bg-gradient-to-r from-purple-500 via-purple-400 to-purple-200 text-white p-4 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.5)] transform translate-y-[-10px] transition-all duration-300 hover:translate-y-[-20px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] hover:scale-105">
               <h3 className="text-lg font-semibold">Today Active By Admin</h3>
               <p className="text-lg">
-                Rs. {(todayAdminActivateTotal || 0).toLocaleString("en-IN")}
+                $ {(todayAdminActivateTotal || 0).toLocaleString("en-IN")}
               </p>
             </div>
             <div className="bg-gradient-to-r from-purple-500 via-purple-400 to-purple-200 text-white p-4 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.5)] transform translate-y-[-10px] transition-all duration-300 hover:translate-y-[-20px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] hover:scale-105">
               <h3 className="text-lg font-semibold">Total Active By User</h3>
               <p className="text-lg">
-                Rs. {(activeUserTotal || 0).toLocaleString("en-IN")}
+                $ {(activeUserTotal || 0).toLocaleString("en-IN")}
               </p>
             </div>
             <div className="bg-gradient-to-r from-purple-500 via-purple-400 to-purple-200 text-white p-4 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.5)] transform translate-y-[-10px] transition-all duration-300 hover:translate-y-[-20px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] hover:scale-105">
               <h3 className="text-lg font-semibold">Total Active By Admin</h3>
               <p className="text-lg">
-                Rs. {(activeAdminTotal || 0).toLocaleString("en-IN")}
+                $ {(activeAdminTotal || 0).toLocaleString("en-IN")}
               </p>
             </div>
           </div>

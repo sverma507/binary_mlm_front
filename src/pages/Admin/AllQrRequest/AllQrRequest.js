@@ -248,7 +248,7 @@
 //                         {new Date(transaction.createdAt).toLocaleTimeString()}
 //                       </td>
 //                       <td className="py-2 px-4 border-b text-center">
-//                         ₹{transaction.amount}
+//                         ${transaction.amount}
 //                       </td>
 //                       <td
 //                         className={`py-2 px-4 border-b text-center ${
@@ -569,7 +569,7 @@ const AllQRPaymentRequests = () => {
                         {new Date(transaction.createdAt).toLocaleTimeString()}
                       </td>
                       <td className="py-2 px-4 border-b text-center">
-                        ₹{transaction.amount}
+                        ${transaction.amount}
                       </td>
                       <td className="py-2 px-4 border-b text-center">
                         {transaction.type}

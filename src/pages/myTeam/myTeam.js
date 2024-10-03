@@ -98,7 +98,7 @@ const UserTree = () => {
               {nodeDatum.attributes && (
                 <>
                   <text fill="black" fontWeight="bold" strokeWidth="0.3" x="-40" y="20">
-                    Wallet: Rs.{nodeDatum.attributes.earningWallet}
+                    Wallet: ${nodeDatum.attributes.earningWallet}
                   </text>
                 </>
               )}

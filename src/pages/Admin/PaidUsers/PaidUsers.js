@@ -52,7 +52,7 @@ const PaidUsers = () => {
                   <td className="py-2 px-4 border-b">{user.email}</td>
                   <td className="py-2 px-4 border-b">{user.phone}</td>
                   <td className="py-2 px-4 border-b">
-                    Rs. {user.earningWallet}
+                    $ {user.earningWallet}
                   </td>
                 </tr>
               ))

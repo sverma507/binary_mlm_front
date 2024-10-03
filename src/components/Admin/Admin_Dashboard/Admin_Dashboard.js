@@ -33,13 +33,13 @@ const Admin_Dashboard = () => {
                 <div className="bg-gray-900 p-4 rounded-lg shadow-xl">
                   <h3 className="text-lg font-semibold">Total Collection</h3>
                   <p className="text-sm text-blue-300">
-                    Rs. {(rupeeTotal + usdTotal * 92).toLocaleString("en-IN")}
+                    $ {(rupeeTotal + usdTotal * 92).toLocaleString("en-IN")}
                   </p>
                 </div>
                 <div className="bg-gray-900 p-4 rounded-lg shadow-xl">
                   <h3 className="text-lg font-semibold">Total INR Collection</h3>
                   <p className="text-sm text-blue-300">
-                    Rs. {rupeeTotal.toLocaleString("en-IN")}
+                    $ {rupeeTotal.toLocaleString("en-IN")}
                   </p>
                 </div>
                 <div className="bg-gray-900 p-4 rounded-lg shadow-xl">
@@ -49,14 +49,14 @@ const Admin_Dashboard = () => {
                 <div className="bg-gray-900 p-4 rounded-lg shadow-xl">
                   <h3 className="text-lg font-semibold">Last Payout</h3>
                   <p className="text-sm text-blue-300">
-                    Rs. {lastWithDrawl[0].amount.toLocaleString("en-IN")} (
+                    $ {lastWithDrawl[0].amount.toLocaleString("en-IN")} (
                     {lastWithDrawl[0].userName})
                   </p>
                 </div>
                 <div className="bg-gray-900 p-4 rounded-lg shadow-xl">
                   <h3 className="text-lg font-semibold">Today Deposit</h3>
                   <p className="text-sm text-blue-300">
-                    Rs. {totalDepositsToday.toLocaleString("en-IN")}
+                    $ {totalDepositsToday.toLocaleString("en-IN")}
                   </p>
                 </div>
                 <div className="bg-gray-900 p-4 rounded-lg shadow-xl">
