@@ -122,7 +122,6 @@ const Sidebar = () => {
                 {openDropdown === 3 && isOpen && (
                   <ul className="pl-10">
                     <li className="py-1 cursor-pointer hover:bg-gray-700" onClick={()=>{navigate('/dashboard/admin/add-deduct')}}>Add/Deduct Wallet</li>
-                    <li className="py-1 cursor-pointer hover:bg-gray-700" onClick={()=>{navigate('/dashboard/admin/all-requests')}}>Deposite History</li>
                     <li className="py-1 cursor-pointer hover:bg-gray-700" onClick={()=>{navigate('/dashboard/admin/withdrawal-requests')}}>Withdrawl Request</li>
                   </ul>
                 )}
