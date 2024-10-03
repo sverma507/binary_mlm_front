@@ -100,7 +100,7 @@ function Navbar() {
                 <li onClick={() => { navigate('/bull'); }}><a>My Bull</a></li>
                 <li onClick={() => { navigate('/user/start-trade'); }}><a>Start Trade</a></li>
                 {/* <li onClick={() => { navigate('/user/earnings'); }}><a>My Earnings</a></li> */}
-                {/* <li onClick={() => { navigate('/user/withdraw'); }}><a>Withdraw</a></li> */}
+                <li onClick={() => { navigate('/user/withdraw'); }}><a>Withdraw</a></li>
                 {/* <li onClick={() => { navigate('/user/recharge'); }}><a>Recharge</a></li> */}
                 <li onClick={() => { navigate('/user/user-tree'); }}><a>My Team</a></li>
                 <li onClick={() => { navigate('/user/tradeing-wallet'); }}><a>Trading Wallet</a></li>
@@ -134,8 +134,8 @@ function Navbar() {
               {/* <li onClick={() => { navigate('/user/bull'); }} className='hover:bg-gray-700 rounded-lg'><a>Trading Bull</a></li> */}
               <li onClick={() => { navigate('/user/start-trade'); }} className='hover:bg-gray-700 rounded-lg'><a>Start Trade</a></li>
               {/* <li onClick={() => { navigate('/user/earnings'); }} className='hover:bg-gray-700 rounded-lg'><a>My Earnings</a></li> */}
-              {/* <li onClick={() => { navigate('/user/withdraw'); }} className='hover:bg-gray-700 rounded-lg'><a>Withdraw</a></li> */}
               {/* <li onClick={() => { navigate('/user/recharge'); }} className='hover:bg-gray-700 rounded-lg'><a>Recharge</a></li> */}
+              <li onClick={() => { navigate('/user/withdraw'); }} className='hover:bg-gray-700 rounded-lg'><a>Withdraw</a></li>
               <li onClick={() => { navigate('/user/user-tree'); }} className='hover:bg-gray-700 rounded-lg'><a>My Team</a></li>
               <li onClick={() => { navigate('/user/invitation'); }} className='hover:bg-gray-700 rounded-lg'><a>Invite</a></li>
               <li onClick={() => { navigate('/user/level-income'); }} className='hover:bg-gray-700 rounded-lg'><a>Level Income</a></li>
