@@ -35,6 +35,7 @@ import AddDeduct from './pages/Admin/AddDeduct.js/AddDeduct.js';
 import ChangePassword from './pages/Admin/ChangePassword/ChangePassword.js';
 import AdminRoute from "./routes/adminRoutes.js";
 import LevelIncome from "./components/LevelIncome/LevelIncome.js";
+import TradingWallet from "./components/TradingWallet/TradingWallet.js";
 function App() {
   return (
     <div className="App">
@@ -48,6 +49,7 @@ function App() {
           <Route path="salary" element={<Salary />} />
           <Route path="invitation" element={<Invitation />} />
           <Route path="level-income" element={<LevelIncome />} />
+          <Route path="tradeing-wallet" element={<TradingWallet />} />
           <Route path="pay" element={<AdminWalletAddress />} />
         <Route path="profile" element={<MyProfile />} />
         <Route path="buy-bull" element={<BullPlan />} />
