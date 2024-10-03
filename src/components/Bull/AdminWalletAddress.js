@@ -1,17 +1,42 @@
 import React, { useState } from 'react';
 import Layout from '../layout/layout';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 
 const AdminWalletAddress = () => {
   const [walletAddress] = useState("0x1234567890abcdef1234567890abcdef12345678"); // Replace with actual wallet address
   const [loading, setLoading] = useState(false); // Loading state
+  const [copied, setCopied] = useState(false); // Copied state
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(walletAddress).then(() => {
-      toast.success('Wallet address copied successfully!'); // Show success toast
-    }).catch(() => {
-      toast.error('Failed to copy wallet address.'); // Show error toast
-    });
+    setLoading(true); // Show loading state
+    navigator.clipboard.writeText(walletAddress)
+      .then(() => {
+        setCopied(true); // Set copied state to true
+        toast('Wallet Address Copied Successfully', {
+          duration: 4000, // Duration in milliseconds
+          position: 'top-center', // Position of the toast
+          style: {
+            background: 'white',
+            color: 'black',
+          },
+          icon: '👏', // Add a custom icon
+        });
+      })
+      .catch(() => {
+        toast('Something went wrong', {
+          duration: 4000, // Duration in milliseconds
+          position: 'top-center', // Position of the toast
+          style: {
+            background: 'red',
+            color: 'white',
+          },
+          icon: '😢', // Add a custom icon
+        });
+      })
+      .finally(() => {
+        setLoading(false); // Remove loading state
+        setTimeout(() => setCopied(false), 2000); // Reset copied state after 2 seconds
+      });
   };
 
   return (
@@ -34,10 +59,10 @@ const AdminWalletAddress = () => {
             <p className="mt-4 text-gray-300 break-words">{walletAddress}</p>
             <button
               onClick={handleCopy}
-              className={`inline-block ${loading ? 'bg-gray-500 cursor-not-allowed' : 'bg-gradient-to-r from-green-400 to-blue-600 hover:from-green-500 hover:to-blue-500'} text-white text-lg font-bold py-3 px-8 rounded-full transition duration-300`}
+              className={`inline-block ${loading ? 'bg-gray-500 cursor-not-allowed' : 'bg-gradient-to-r from-green-400 to-blue-600 hover:from-green-500 hover:to-blue-500'} text-white text-lg font-bold py-3 px-8 rounded-full transition duration-300 mt-10`}
               disabled={loading} // Disable the button when loading
             >
-              {loading ? 'Loading...' : 'Copy Wallet Address'}
+              {loading ? 'Loading...' : (copied ? 'Copied!' : 'Copy Wallet Address')}
             </button>
           </div>
 

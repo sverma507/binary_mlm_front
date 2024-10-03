@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../layout/layout';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast'; // Use react-hot-toast for notifications
 import { useAuth } from '../../context/auth';
 import axios from 'axios';
 
@@ -9,6 +9,7 @@ const TradingWallet = () => {
     const [auth] = useAuth();
     const [transferAmount, setTransferAmount] = useState('');
     const [errorMessage, setErrorMessage] = useState(''); // State for validation message
+    const [loading, setLoading] = useState(false); // State to manage loading state of the button
 
     // Fetch user profile from backend
     const getProfile = async () => {
@@ -32,31 +33,76 @@ const TradingWallet = () => {
 
         if (isNaN(amount) || amount < 100) {
             setErrorMessage('Transfer amount must be at least $100.');
-            toast.error('Transfer amount must be at least $100.');
+            toast('Transfer amount must be at least $100.', {
+                duration: 4000, // Duration in milliseconds
+                position: 'top-center', // Position of the toast
+                style: {
+                  background: 'red',
+                  color: 'white',
+                },
+                icon: '🥺', // Add a custom icon
+            });
         } else if (amount > profile.rechargeWallet) {
             setErrorMessage('');
-            toast.error('Insufficient funds in recharge wallet.');
+            toast('Insufficient funds in recharge wallet.', {
+                duration: 4000, // Duration in milliseconds
+                position: 'top-center', // Position of the toast
+                style: {
+                  background: 'red',
+                  color: 'white',
+                },
+                icon: '💰', // Add a custom icon
+            });
         } else {
             setErrorMessage('');
+            setLoading(true); // Start loading state
 
             try {
-                const userId = auth.user._id
+                const userId = auth.user._id;
                 // Make API request to transfer funds
-                 const result = await axios.post(`${process.env.REACT_APP_API_URL}/user/recharge-to-trading/${userId}`, { amount });
+                const result = await axios.post(`${process.env.REACT_APP_API_URL}/user/recharge-to-trading/${userId}`, { amount });
 
-                 console.log("recharge to trading wallet ====>",result)
-
-                // Update profile locally after successful transfer
-                setProfile(prevProfile => ({
-                    ...prevProfile,
-                    rechargeWallet: prevProfile.rechargeWallet - amount,
-                    tradingWallet: prevProfile.tradingWallet + amount
-                }));
-                
-                toast.success(`Successfully transferred $${amount} to trading wallet.`);
+                if (result.data.success) {
+                    // Update the profile data from the response
+                    setProfile(prevProfile => ({
+                        ...prevProfile,
+                        rechargeWallet: result.data.rechargeWallet,
+                        tradingWallet: result.data.tradingWallet,
+                    }));
+                    
+                    toast(`Successfully transferred $${amount} to trading wallet.`, {
+                        duration: 4000, // Duration in milliseconds
+                        position: 'top-center', // Position of the toast
+                        style: {
+                          background: 'white',
+                          color: 'black',
+                        },
+                        icon: '👏', // Add a custom icon
+                    });
+                } else {
+                    toast(result.data.message || 'Transfer failed.', {
+                        duration: 4000,
+                        position: 'top-center',
+                        style: {
+                          background: 'red',
+                          color: 'white',
+                        },
+                        icon: '😢',
+                    });
+                }
             } catch (error) {
                 console.error("Error during transfer: ", error);
-                toast.error('Failed to transfer funds. Please try again later.');
+                toast('Failed to transfer funds. Please try again later.', {
+                    duration: 4000, // Duration in milliseconds
+                    position: 'top-center', // Position of the toast
+                    style: {
+                      background: 'red',
+                      color: 'white',
+                    },
+                    icon: '😢', // Add a custom icon
+                });
+            } finally {
+                setLoading(false); // End loading state
             }
         }
     };
@@ -113,9 +159,10 @@ const TradingWallet = () => {
                                     />
                                     <button
                                         onClick={handleTransfer}
-                                        className="bg-gradient-to-r from-yellow-400 to-green-600 hover:from-yellow-500 hover:to-green-500 text-white px-6 py-2 rounded-r-lg font-bold transition duration-300"
+                                        className={`bg-gradient-to-r from-yellow-400 to-green-600 hover:from-yellow-500 hover:to-green-500 text-white px-6 py-2 rounded-r-lg font-bold transition duration-300 ${loading ? 'cursor-not-allowed opacity-50' : ''}`}
+                                        disabled={loading} // Disable button while loading
                                     >
-                                        Transfer
+                                        {loading ? 'Transferring...' : 'Transfer'}
                                     </button>
                                 </div>
                                 {/* Validation Message */}
