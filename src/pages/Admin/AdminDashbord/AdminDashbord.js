@@ -38,7 +38,7 @@ const Dashboard = () => {
       setUsers(result.data);
       setRegisterUser(result.data.length);
       for (let i = 0; i < result.data.length; i++) {
-        if (result.data[i].active == true) {
+        if (result.data[i].isActive == true) {
           pd.push(result.data[i]);
         } else {
           unpd.push(result.data[i]);
@@ -137,7 +137,7 @@ const Dashboard = () => {
   const getWithdrawalRequests = async () => {
     try {
       const result = await axios.get(
-        `${process.env.REACT_APP_API_URL}/admin/withdrawal-requests`
+        `${process.env.REACT_APP_API_URL}/admin/withdraw-requests`
       );
       console.log(result.data);
       let totalWith = 0;
@@ -146,17 +146,18 @@ const Dashboard = () => {
 
       for(let i=0;i<result.data.length;i++){
         
-        if(result.data.paymentStatus == "Completed" ){
+        if(result.data[i].paymentStatus == "Completed" ){
           const activationDate = new Date(result.data[i].createdAt)
         .toISOString()
         .slice(0, 10);
-            totalWith += result.data.amount;
+            totalWith += result.data[i].amount;
             if(activationDate === today){
-                todayWith += result.data.amount
+                todayWith += result.data[i].amount
             }
         }
       }
-
+      console.log(totalWith,todayWith);
+      
       setTotalWithdrawl(totalWith);
       setLastWithdrawl(todayWith);
       
@@ -188,18 +189,18 @@ const Dashboard = () => {
           
 
         if (result.data[i].activateBy == "admin") {
-          count1 += result.data[i].packagePrice;
+          count1 += 60;
           
-          if (activationDate === today) {
-            todayCount1 += result.data[i].packagePrice; // Increment today's admin activation count
-            todayCol += result.data[i].packagePrice
+          if (activationDate == today) {
+            todayCount1 += 60; // Increment today's admin activation count
+            todayCol += 60
           }
           
         } else {
-          count2 += result.data[i].packagePrice;
-          if (activationDate === today) {
-            todayCount2 += result.data[i].packagePrice; // Increment today's user activation count
-            todayCol += result.data[i].packagePrice;
+          count2 += 60;
+          if (activationDate == today) {
+            todayCount2 += 60; // Increment today's user activation count
+            todayCol += 60;
           }
         }
       }
