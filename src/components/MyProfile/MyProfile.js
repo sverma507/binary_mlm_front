@@ -105,7 +105,7 @@ const MyProfile = () => {
                             { icon: FaWallet, title: 'Recharge Wallet', value: `$${profile.rechargeWallet.toFixed(2)}` },
                             { icon: FaWallet, title: 'Trading Wallet', value: `$${profile.tradingWallet.toFixed(2)}` },
                             { icon: FaChartLine, title: 'Total Earnings', value: `$${profile.totalEarnings?.toFixed(2) || 0}` },
-                            { icon: FaUsers, title: 'Referrals', value: `${profile.referrals || 0} Users` },
+                            // { icon: FaUsers, title: 'Referrals', value: `${profile.referrals || 0} Users` },
                         ].map((item, index) => (
                             <div
                                 key={index}
