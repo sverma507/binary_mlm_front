@@ -132,13 +132,13 @@ const AddDeduct = () => {
               />
             </div>
             <div>
-              <label className="block text-gray-700 text-left mt-10 mb-2">Amount In ₹</label>
+              <label className="block text-gray-700 text-left mt-10 mb-2">Amount In $</label>
               <input
                 type="number"
                 id="amount"
                 name="amount"
                 required
-                placeholder="Amount In ₹"
+                placeholder="Amount In $"
                 onChange={handleAmount}
                 className="w-full p-2 border border-gray-300 rounded-md"
               />

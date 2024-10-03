@@ -136,7 +136,7 @@ const Login = () => {
                     icon: '👏', // Add a custom icon
                   });
                 setTimeout(() => {
-                    navigate('/');
+                    navigate('/user/profile');
                 }, 2000);
             } else {
                 setError(response.data.message);

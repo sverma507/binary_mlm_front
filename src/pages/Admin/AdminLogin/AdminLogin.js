@@ -72,6 +72,12 @@ const AdminLogin = () => {
 
   return (
     <div className="loginContainerAdmin">
+      <div className="text-center mb-12 animate-bounce">
+            <h2 className="text-5xl font-extrabold text-green-400 animate-bounce">U Tech International </h2>
+            <p className="mt-6 text-3xl font-bold text-gray-300">
+              Admin Login
+            </p>
+          </div>
       <form onSubmit={handleLogin} className="adminLoginForm">
         <h2 className="text-white text-center mb-10">Admin Login</h2>
         <div className="adminloginInputWrapper">
