@@ -4,31 +4,35 @@ import Layout from '../layout/layout';
 import axios from 'axios';
 import { useAuth } from '../../context/auth';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer,toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
+
 const MyProfile = () => {
-    const [auth,setAuth] = useAuth();
+    const [auth, setAuth] = useAuth();
     const [profile, setProfile] = useState(null); // State to hold profile data
     const [walletBalances, setWalletBalances] = useState([]); // State to hold wallet balances
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
+    // Function to log out the user
     const handleLogout = () => {
         setAuth({
-          ...auth,
-          user: null,
-          token: "",
+            ...auth,
+            user: null,
+            token: "",
         });
         localStorage.removeItem("auth");
         toast.success("Logout successfully");
-        setTimeout(()=> {
-          navigate("/login");
-        },2000)
-      };
+        setTimeout(() => {
+            navigate("/login");
+        }, 2000);
+    };
+
     // Function to fetch profile data
     const getProfile = async () => {
         const id = auth?.user?._id;
         try {
             const result = await axios.get(`${process.env.REACT_APP_API_URL}/user/profile/${id}`);
-            console.log("Profile data fetched: ", result.data);
-            setProfile(result.data); // Set the fetched data to state
+            setProfile(result.data);
         } catch (error) {
             console.error("Error fetching profile data: ", error);
         }
@@ -37,13 +41,11 @@ const MyProfile = () => {
     // Function to fetch wallet balances based on the wallet address
     const getWalletBalances = async (walletAddress, chainId = 1) => {
         try {
-            // Fetch balances for both Ethereum (chainId = 1) and Binance Smart Chain (chainId = 56)
             const response = await axios.get(`https://api.covalenthq.com/v1/${chainId}/address/${walletAddress}/balances_v2/`, {
                 params: {
                     key: process.env.REACT_APP_COVALENT_API_KEY, // Your Covalent API key
                 }
             });
-            console.log(`Response for Chain ID ${chainId}:`, response);
             setWalletBalances(prevBalances => [...prevBalances, ...response.data.data.items]);
         } catch (error) {
             console.error(`Error fetching wallet balances for chain ${chainId}: `, error);
@@ -67,67 +69,61 @@ const MyProfile = () => {
     return (
         <Layout>
             <div className="min-h-screen bg-gradient-to-r from-blue-900 to-black text-gray-100 p-8 mt-10">
-                <ToastContainer/>
+                <ToastContainer />
                 {/* Outer Container */}
-                <div className="mx-auto text-center">
+                <div className="mx-auto text-center max-w-screen-lg">
                     {/* Heading Section */}
                     <section className="my-12">
-                        <h1 className="text-4xl font-extrabold text-blue-400 mb-20">My Profile</h1>
-                        <p className="text-lg min-text-sm text-gray-300 leading-relaxed">
-                            Welcome to your profile, <span className="text-blue-500">TradeSmart User</span>. Here, you can view and edit your personal information.
+                        <h1 className="text-4xl font-extrabold text-blue-400 mb-6">My Profile</h1>
+                        <p className="text-lg text-gray-300 leading-relaxed">
+                            Welcome to your profile, <span className="text-blue-500">TradeSmart User</span>. Here, you can view and manage your personal information.
                         </p>
                     </section>
 
                     {/* Profile Information Section */}
                     <section className="my-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
-                            <FaUser className="text-blue-500 text-4xl mb-4 mx-auto" />
-                            <h3 className="text-2xl font-bold mb-3">User</h3>
-                            <p className="text-gray-300">{profile.referralCode || 'N/A'}</p> {/* Display full name from profile data */}
-                        </div>
-                        <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
-                            <FaEnvelope className="text-blue-500 text-4xl mb-4 mx-auto" />
-                            <h3 className="text-2xl font-bold mb-3">Email Address</h3>
-                            <p className="text-gray-300">{profile.email}</p> {/* Display email from profile data */}
-                        </div>
-                        <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
-                            <FaPhone className="text-blue-500 text-4xl mb-4 mx-auto" />
-                            <h3 className="text-2xl font-bold mb-3">Phone Number</h3>
-                            <p className="text-gray-300">{profile.phone}</p> {/* Display phone number from profile data */}
-                        </div>
+                        {[
+                            { icon: FaUser, title: 'Referral Code', value: profile.referralCode || 'N/A' },
+                            { icon: FaEnvelope, title: 'Email Address', value: profile.email },
+                            { icon: FaPhone, title: 'Phone Number', value: profile.phone },
+                        ].map((item, index) => (
+                            <div
+                                key={index}
+                                className="bg-gray-800 border-2 border-white p-6 rounded-lg shadow-lg transition-all transform hover:-translate-y-2 hover:shadow-2xl hover:bg-gray-700"
+                            >
+                                <item.icon className="text-blue-500 text-4xl mb-4 mx-auto" />
+                                <h3 className="text-2xl font-bold mb-3">{item.title}</h3>
+                                <p className="text-gray-300">{item.value}</p>
+                            </div>
+                        ))}
                     </section>
 
                     {/* Wallet and Earnings Section */}
                     <section className="my-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
-                            <FaWallet className="text-blue-500 text-4xl mb-4 mx-auto" />
-                            <h3 className="text-2xl font-bold mb-3">Wallet Balance</h3>
-                            <p className="text-gray-300">${profile.earningWallet.toFixed(2)}</p> {/* Display wallet balance */}
-                        </div>
-                        <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
-                            <FaWallet className="text-blue-500 text-4xl mb-4 mx-auto" />
-                            <h3 className="text-2xl font-bold mb-3">Recharge Wallet </h3>
-                            <p className="text-gray-300">${profile.rechargeWallet.toFixed(2)}</p> {/* Display wallet balance */}
-                        </div>
-                        <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
-                            <FaChartLine className="text-blue-500 text-4xl mb-4 mx-auto" />
-                            <h3 className="text-2xl font-bold mb-3">Total Earnings</h3>
-                            <p className="text-gray-300">${profile.totalEarnings?.toFixed(2) || 0}</p> {/* Display total earnings */}
-                        </div>
-                        <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
-                            <FaUsers className="text-blue-500 text-4xl mb-4 mx-auto" />
-                            <h3 className="text-2xl font-bold mb-3">Referrals</h3>
-                            <p className="text-gray-300">{profile.referrals || 0} Users</p> {/* Display referral count */}
-                        </div>
+                        {[
+                            { icon: FaWallet, title: 'Earning Wallet', value: `$${profile.earningWallet.toFixed(2)}` },
+                            { icon: FaWallet, title: 'Recharge Wallet', value: `$${profile.rechargeWallet.toFixed(2)}` },
+                            { icon: FaWallet, title: 'Trading Wallet', value: `$${profile.tradingWallet.toFixed(2)}` },
+                            { icon: FaChartLine, title: 'Total Earnings', value: `$${profile.totalEarnings?.toFixed(2) || 0}` },
+                            { icon: FaUsers, title: 'Referrals', value: `${profile.referrals || 0} Users` },
+                        ].map((item, index) => (
+                            <div
+                                key={index}
+                                className="bg-gray-800 p-6 border-2 border-white rounded-lg shadow-lg transition-all transform hover:-translate-y-2 hover:shadow-2xl hover:bg-gray-700"
+                            >
+                                <item.icon className="text-blue-500 text-4xl mb-4 mx-auto" />
+                                <h3 className="text-2xl font-bold mb-3">{item.title}</h3>
+                                <p className="text-gray-300">{item.value}</p>
+                            </div>
+                        ))}
                     </section>
 
                     {/* Wallet Address and Token Section */}
-                    <section className="my-16 grid grid-cols-1 gap-6">
-                        <h3 className="text-3xl font-bold mb-6 text-blue-500">Wallet Tokens & Balances</h3>
-                        <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
-                            <h4 className="text-2xl font-bold mb-3">Wallet Address</h4>
+                    <section className="my-16">
+                        <div className="bg-gray-800 p-6 border-2 border-white rounded-lg shadow-lg transition-all transform hover:-translate-y-2 hover:shadow-2xl hover:bg-gray-700">
+                            <h4 className="text-2xl font-bold mb-3 text-blue-500">Wallet Address</h4>
                             <p className="text-gray-300">{profile.walletAddress || 'N/A'}</p>
-                            <h4 className="text-2xl font-bold mt-6 mb-3">Token Balances</h4>
+                            <h4 className="text-2xl font-bold mt-6 mb-3 text-blue-500">Token Balances</h4>
                             {walletBalances.length > 0 ? (
                                 <ul className="text-left text-gray-300">
                                     {walletBalances.map((token, index) => (
@@ -142,22 +138,16 @@ const MyProfile = () => {
                         </div>
                     </section>
 
-                    {/* Edit Profile Section */}
-                    {/* <section className="my-16">
-                        <h2 className="text-3xl font-bold mb-4">Edit Profile</h2>
-                        <button className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-full transition duration-300">
-                            <FaEdit className="inline-block mr-2" />
-                            Edit Your Information
-                        </button>
-                    </section> */}
-
                     {/* Logout Section */}
-                    <section className="my-16 bg-blue-700 py-10 rounded-lg">
+                    <section className="my-16 bg-blue-700 py-10 rounded-lg transition-all transform hover:-translate-y-2 hover:shadow-2xl hover:bg-blue-600">
                         <h2 className="text-3xl font-bold mb-4 text-center text-white">Need to Logout?</h2>
                         <p className="text-gray-300 mb-6 leading-relaxed">
                             If you're finished, feel free to log out of your account.
                         </p>
-                        <button onClick={handleLogout} className="bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-6 rounded-full transition duration-300">
+                        <button
+                            onClick={handleLogout}
+                            className="bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-6 rounded-full transition duration-300"
+                        >
                             Logout
                         </button>
                     </section>

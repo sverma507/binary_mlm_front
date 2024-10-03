@@ -40,8 +40,9 @@ const TradingWallet = () => {
             setErrorMessage('');
 
             try {
+                const userId = auth.user._id
                 // Make API request to transfer funds
-                 const result = await axios.post(`${process.env.REACT_APP_API_URL}/user/recharge-to-trading/${auth.user._id}`, { amount });
+                 const result = await axios.post(`${process.env.REACT_APP_API_URL}/user/recharge-to-trading/${userId}`, { amount });
 
                  console.log("recharge to trading wallet ====>",result)
 
