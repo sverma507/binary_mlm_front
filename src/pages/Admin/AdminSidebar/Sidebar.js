@@ -83,7 +83,6 @@ const Sidebar = () => {
                     <li className="py-1 cursor-pointer hover:bg-gray-700"  onClick={()=>{navigate('/dashboard/admin/all-unpaid-users-list')}}>Unpaid Users</li>
                     <li className="py-1 cursor-pointer hover:bg-gray-700"  onClick={()=>{navigate('/dashboard/admin/blocked-users')}} >Blocked Users</li>
                     <li className="py-1 cursor-pointer hover:bg-gray-700"  onClick={()=>{navigate('/dashboard/admin/downline-users')}}>Downline Users</li>
-                    <li className="py-1 cursor-pointer hover:bg-gray-700"  onClick={()=>{navigate('/dashboard/admin/trading-transactions')}}>Trading Incomes </li>
                     {/* <li className="py-1 cursor-pointer hover:bg-gray-700" onClick={()=>{navigate('/dashboard/admin/activation-report')}}>Activation Report</li> */}
                     {/* <li className="py-1 cursor-pointer hover:bg-gray-700">Access Panel</li> */}
                   </ul>
@@ -104,11 +103,12 @@ const Sidebar = () => {
                 </div>
                 {openDropdown === 2 && isOpen && (
                   <ul className="pl-10">
-                    <li className="py-1 cursor-pointer hover:bg-gray-700" onClick={()=>{navigate('/dashboard/admin/activation-bonus')}} >Acivation Bonus</li>
-                    <li className="py-1 cursor-pointer hover:bg-gray-700">Revenue Bonus</li>
+                    {/* <li className="py-1 cursor-pointer hover:bg-gray-700" onClick={()=>{navigate('/dashboard/admin/activation-bonus')}} >Acivation Bonus</li> */}
+                    <li className="py-1 cursor-pointer hover:bg-gray-700" onClick={()=>{navigate('/dashboard/admin/trading-transactions')}}>Trading Incomes </li>
+                    {/* <li className="py-1 cursor-pointer hover:bg-gray-700">Revenue Bonus</li> */}
                     <li className="py-1 cursor-pointer hover:bg-gray-700">Team Growth Income</li>
-                    <li className="py-1 cursor-pointer hover:bg-gray-700">Invitation Bonus</li>
-                    <li className="py-1 cursor-pointer hover:bg-gray-700">Game Income</li>
+                    {/* <li className="py-1 cursor-pointer hover:bg-gray-700">Invitation Bonus</li> */}
+                    {/* <li className="py-1 cursor-pointer hover:bg-gray-700">Game Income</li> */}
                   </ul>
                 )}
               </li>
