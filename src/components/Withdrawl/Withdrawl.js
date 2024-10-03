@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../layout/layout';
-import { toast } from 'react-toastify';
+import  toast  from 'react-hot-toast';
 import axios from 'axios';
 import { useAuth } from '../../context/auth';
 
@@ -44,13 +44,29 @@ const Withdrawal = () => {
     const amount = parseFloat(withdrawalAmount);
 
     // Basic validation
-    if (!amount || amount <= 0) {
-      toast.error('Please enter a valid amount.');
+    if (!amount || amount < 100) {
+      toast('Minimum withdrawl is $100.', {
+        duration: 4000, // Duration in milliseconds
+        position: 'top-center', // Position of the toast
+        style: {
+          background: 'red',
+          color: 'white',
+        },
+        icon: `😢`, // Add a custom icon
+      });
       return;
     }
 
     if (amount > profile?.earningWallet) {
-      toast.error('Insufficient balance.');
+      toast('Insufficient balance.', {
+        duration: 4000, // Duration in milliseconds
+        position: 'top-center', // Position of the toast
+        style: {
+          background: 'red',
+          color: 'white',
+        },
+        icon: `😢`, // Add a custom icon
+      });
       return;
     }
 
@@ -60,7 +76,15 @@ const Withdrawal = () => {
       await axios.post(`${process.env.REACT_APP_API_URL}/user/withdrawl-request/${userId}`, { amount });
 
       setWithdrawalAmount(''); // Clear input on success
-      toast.success('Withdrawal request submitted successfully.');
+      toast("Withdrawal request submitted successfully.", {
+        duration: 4000, // Duration in milliseconds
+        position: 'top-center', // Position of the toast
+        style: {
+          background: 'white',
+          color: 'black',
+        },
+        icon: '👏', // Add a custom icon
+      });
       setProfile((prevProfile) => ({
         ...prevProfile,
         earningWallet: prevProfile.earningWallet - amount,
@@ -68,7 +92,15 @@ const Withdrawal = () => {
       // Fetch withdrawal requests again to update the list
       getWithdrawalRequests();
     } catch (error) {
-      toast.error('Failed to submit the withdrawal request.');
+      toast('Failed to submit the withdrawal request.', {
+        duration: 4000, // Duration in milliseconds
+        position: 'top-center', // Position of the toast
+        style: {
+          background: 'red',
+          color: 'white',
+        },
+        icon: `😢`, // Add a custom icon
+      });
       console.error('Error during withdrawal: ', error);
     } finally {
       setLoading(false);
