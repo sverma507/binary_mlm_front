@@ -4,7 +4,7 @@ import Sidebar from "../AdminSidebar/Sidebar";
 import { toast } from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
 
-const TradingTransactions = () => {
+const AdminLevelIncome = () => { 
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -12,7 +12,7 @@ const TradingTransactions = () => {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/admin/trading-transactions`);
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/admin/level-income`);
         setTransactions(response.data.data);
         setLoading(false);
       } catch (err) {
@@ -49,7 +49,8 @@ const TradingTransactions = () => {
                 <th className="py-3 px-4 border-b text-center">Sr. No</th>
                 <th className="py-3 px-4 border-b text-center">User</th>
                 <th className="py-3 px-4 border-b text-center">Amount</th>
-                <th className="py-3 px-4 border-b text-center">Trading Wallet</th>
+                <th className="py-3 px-4 border-b text-center">Level</th>
+                <th className="py-3 px-4 border-b text-center">Percentage</th>
                 <th className="py-3 px-4 border-b text-center">Transaction Date</th>
               </tr>
             </thead>
@@ -57,10 +58,11 @@ const TradingTransactions = () => {
               {transactions.map((transaction, index) => (
                 <tr key={transaction._id} className="text-gray-700 hover:bg-gray-50">
                   <td className="py-2 px-4 border-b">{index + 1}</td> {/* Display Serial Number */}
-                  <td className="py-2 px-4 border-b">{transaction.referralCode}</td>
+                  <td className="py-2 px-4 border-b">{transaction.fromUser}</td>
                   <td className="py-2 px-4 border-b">{transaction.amount}</td>
-                  <td className="py-2 px-4 border-b">{transaction.tradingWallet}</td>
-                  <td className="py-2 px-4 border-b">{new Date(transaction.transactionDate).toLocaleDateString()}</td>
+                  <td className="py-2 px-4 border-b">{transaction.level}</td>
+                  <td className="py-2 px-4 border-b">{transaction.percentage}%</td>
+                  <td className="py-2 px-4 border-b">{new Date(transaction.createdAt).toLocaleDateString()}</td>
                 </tr>
               ))}
             </tbody>
@@ -71,4 +73,4 @@ const TradingTransactions = () => {
   );
 };
 
-export default TradingTransactions;
+export default AdminLevelIncome;

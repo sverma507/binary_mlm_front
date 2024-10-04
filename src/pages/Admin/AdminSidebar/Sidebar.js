@@ -106,8 +106,9 @@ const Sidebar = () => {
                     {/* <li className="py-1 cursor-pointer hover:bg-gray-700" onClick={()=>{navigate('/dashboard/admin/activation-bonus')}} >Acivation Bonus</li> */}
                     <li className="py-1 cursor-pointer hover:bg-gray-700" onClick={()=>{navigate('/dashboard/admin/trading-transactions')}}>Trading Incomes </li>
                     {/* <li className="py-1 cursor-pointer hover:bg-gray-700">Revenue Bonus</li> */}
-                    <li className="py-1 cursor-pointer hover:bg-gray-700">Team Growth Income</li>
-                    {/* <li className="py-1 cursor-pointer hover:bg-gray-700">Invitation Bonus</li> */}
+                    {/* <li className="py-1 cursor-pointer hover:bg-gray-700">Team Growth Income</li> */}
+                    <li className="py-1 cursor-pointer hover:bg-gray-700" onClick={()=>{navigate('/dashboard/admin/matching-income')}}>Matching Income</li>
+                    <li className="py-1 cursor-pointer hover:bg-gray-700" onClick={()=>{navigate('/dashboard/admin/level-income')}}>Level Income</li>
                     {/* <li className="py-1 cursor-pointer hover:bg-gray-700">Game Income</li> */}
                   </ul>
                 )}

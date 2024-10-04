@@ -10,6 +10,7 @@ import CurrencySelector from '../../components/CurrencySelector/CurrencySelector
 import TradingSection from '../../components/TradingSection/TradingSection'
 import ContactUs from '../../components/ContactUs/ContactUs'
 import Layout from '../../components/layout/layout'
+import CryptolListing from '../../components/CryptoListing/CryptolListing'
 
 const Home = () => {
 
@@ -22,6 +23,7 @@ const Home = () => {
     {/* <Swipper/> */}
     <Header/>
      <MarketStatus/>
+     {/* <CryptolListing/> */}
     <CurrencySelector/>
     <TradingSection/> 
     {/* <ContactUs/> */}

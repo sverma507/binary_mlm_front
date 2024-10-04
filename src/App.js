@@ -39,6 +39,9 @@ import TradingWallet from "./components/TradingWallet/TradingWallet.js";
 import AllWithdrawRequest from "./pages/Admin/AllWithdrawRequest/AllWithdrawRequest.js";
 import TradingTransactions from "./pages/Admin/TradingTransaction/TradingTransactions.js";
 import TradingIncome from "./components/TradingIncome/TradingIncome.js";
+import MatchingIncome from "./components/MatchingIncome/MatchingIncome.js";
+import AdminMatchingIncome from "./pages/Admin/AdminMatchingIncome/AdminMatchingIncome.js";
+import AdminLevelIncome from "./pages/Admin/AdminLevelIncome/AdminLevelIncome.js";
 function App() {
   return (
     <div className="App">
@@ -53,6 +56,7 @@ function App() {
           <Route path="invitation" element={<Invitation />} />
           <Route path="level-income" element={<LevelIncome />} />
           <Route path="trading-income" element={<TradingIncome />} />
+          <Route path="matching-income" element={<MatchingIncome />} />
           <Route path="tradeing-wallet" element={<TradingWallet />} />
           <Route path="pay" element={<AdminWalletAddress />} />
           <Route path="profile" element={<MyProfile />} />
@@ -64,6 +68,8 @@ function App() {
           <Route path="admin" element={<Dashboard />} />
           <Route path="admin/change-password" element={<ChangePassword/>} />
           <Route path="admin/all-users" element={<AllUsers />} />
+          <Route path="admin/matching-income" element={<AdminMatchingIncome />} />
+          <Route path="admin/level-income" element={<AdminLevelIncome />} />
           <Route path="admin/all-paid-users" element={<PaidUsers />} />
           <Route path="admin/all-unpaid-users-list" element={<UnpaidUsersList />} />
           <Route path="admin/blocked-users" element={<BlockedUsers />} />

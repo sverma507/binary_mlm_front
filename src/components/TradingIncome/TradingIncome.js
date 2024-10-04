@@ -37,7 +37,7 @@ const TradingIncome = () => {
       <div className="flex pt-28 min-h-screen bg-gradient-to-b from-green-400 to-blue-500">
         <div className="w-full p-6 bg-gradient-to-b from-green-400 to-blue-500">
           <h2 className="text-3xl font-semibold text-gray-800 mb-6">
-            Level Income List
+            Trading Income List
           </h2>
           <div className="overflow-x-auto flex justify-center">
             <table className="text-sm bg-white border border-gray-300 rounded-lg shadow-md divide-y divide-gray-200">
