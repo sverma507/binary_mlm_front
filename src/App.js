@@ -38,6 +38,7 @@ import LevelIncome from "./components/LevelIncome/LevelIncome.js";
 import TradingWallet from "./components/TradingWallet/TradingWallet.js";
 import AllWithdrawRequest from "./pages/Admin/AllWithdrawRequest/AllWithdrawRequest.js";
 import TradingTransactions from "./pages/Admin/TradingTransaction/TradingTransactions.js";
+import TradingIncome from "./components/TradingIncome/TradingIncome.js";
 function App() {
   return (
     <div className="App">
@@ -51,13 +52,13 @@ function App() {
           <Route path="salary" element={<Salary />} />
           <Route path="invitation" element={<Invitation />} />
           <Route path="level-income" element={<LevelIncome />} />
+          <Route path="trading-income" element={<TradingIncome />} />
           <Route path="tradeing-wallet" element={<TradingWallet />} />
           <Route path="pay" element={<AdminWalletAddress />} />
-        <Route path="profile" element={<MyProfile />} />
-        <Route path="buy-bull" element={<BullPlan />} />
-        <Route path="start-trade" element={<StartTrading />} />
-          
-        <Route path="user-tree" element={<UserTree />} />
+          <Route path="profile" element={<MyProfile />} />
+          <Route path="buy-bull" element={<BullPlan />} />
+          <Route path="start-trade" element={<StartTrading />} />
+          <Route path="user-tree" element={<UserTree />} />
         </Route>
         <Route path="/dashboard" element={<AdminRoute />}>
           <Route path="admin" element={<Dashboard />} />

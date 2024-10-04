@@ -105,8 +105,9 @@ function Navbar() {
                 <li onClick={() => { navigate('/user/user-tree'); }}><a>My Team</a></li>
                 <li onClick={() => { navigate('/user/tradeing-wallet'); }}><a>Trading Wallet</a></li>
                 <li onClick={() => { navigate('/user/level-income'); }}><a>Level Income</a></li>
+                <li onClick={() => { navigate('/user/trading-income'); }}><a>Trading Income</a></li>
               <li onClick={() => { navigate('/user/invitation'); }} className='hover:bg-gray-700 rounded-lg'><a>Invite</a></li>
-                <li onClick={() => { navigate('/user/transactions'); }}><a>All Transactions</a></li>
+                {/* <li onClick={() => { navigate('/user/transactions'); }}><a>All Transactions</a></li> */}
                 {/* <li onClick={() => { navigate('/user/network'); }}><a>My Network</a></li> */}
                 <li onClick={handleLogout}><a>Logout</a></li>
 
@@ -139,6 +140,7 @@ function Navbar() {
               <li onClick={() => { navigate('/user/user-tree'); }} className='hover:bg-gray-700 rounded-lg'><a>My Team</a></li>
               <li onClick={() => { navigate('/user/invitation'); }} className='hover:bg-gray-700 rounded-lg'><a>Invite</a></li>
               <li onClick={() => { navigate('/user/level-income'); }} className='hover:bg-gray-700 rounded-lg'><a>Level Income</a></li>
+              <li onClick={() => { navigate('/user/trading-income'); }} className='hover:bg-gray-700 rounded-lg'><a>Trading Income</a></li>
               <li onClick={() => { navigate('/user/tradeing-wallet'); }} className='hover:bg-gray-700 rounded-lg'><a>Trading Wallet</a></li>
               
               {/* <li onClick={() => { navigate('/user/transactions'); }} className='hover:bg-gray-700 rounded-lg'><a>All Transactions</a></li> */}
