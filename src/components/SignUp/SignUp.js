@@ -154,12 +154,6 @@ const SignUp = () => {
                     )}
 
                     <form onSubmit={handleSubmit}>
-                      
-
-                     
-
-                        
-
                         <div className="form-group">
                             <input
                                 type="text"
@@ -176,13 +170,13 @@ const SignUp = () => {
                         <div className="position-selector">
                             <div className="position-options">
                                 <div
-                                    className={`position-box ${selectedPosition === 'left' ? 'selected' : ''}`}
+                                    className={`position-box text-white ${selectedPosition === 'left' ? 'selected' : ''}`}
                                     onClick={() => handlePositionSelect('left')}
                                 >
                                     Left
                                 </div>
                                 <div
-                                    className={`position-box ${selectedPosition === 'right' ? 'selected' : ''}`}
+                                    className={`position-box text-white ${selectedPosition === 'right' ? 'selected' : ''}`}
                                     onClick={() => handlePositionSelect('right')}
                                 >
                                     Right
