@@ -38,7 +38,7 @@ const BlockedUsers = () => {
                         <tr className="bg-orange-300 text-white">
                             <th className="py-2 px-4 border-b">Sn</th>
                             <th className="py-2 px-4 border-b">User Id</th>
-                            <th className="py-2 px-4 border-b">Mobile No</th>
+                            {/* <th className="py-2 px-4 border-b">Mobile No</th> */}
                             <th className="py-2 px-4 border-b">Joining Date</th>
                             <th className="py-2 px-4 border-b">Status</th>
                             <th className="py-2 px-4 border-b">Action</th>
@@ -50,7 +50,7 @@ const BlockedUsers = () => {
                                 <tr key={user._id} className={`text-center ${index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}`}>
                                     <td className="py-2 px-4 border-b">{index + 1}</td>
                                     <td className="py-2 px-4 border-b">{user.referralCode}</td>
-                                    <td className="py-2 px-4 border-b">{user.mobileNumber}</td>
+                                    {/* <td className="py-2 px-4 border-b">{user.mobileNumber}</td> */}
                                     <td className="py-2 px-4 border-b">{new Date(user.createdAt).toLocaleDateString()}</td>
                                     <td className="py-2 px-4 border-b">
                                         <span className={`px-2 py-1 rounded-full text-white ${user.blocked ? 'bg-orange-300' : 'bg-green-500'}`}>

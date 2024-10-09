@@ -42,6 +42,7 @@ import TradingIncome from "./components/TradingIncome/TradingIncome.js";
 import MatchingIncome from "./components/MatchingIncome/MatchingIncome.js";
 import AdminMatchingIncome from "./pages/Admin/AdminMatchingIncome/AdminMatchingIncome.js";
 import AdminLevelIncome from "./pages/Admin/AdminLevelIncome/AdminLevelIncome.js";
+import UserIncomeStatus from "./components/UserIncomeStatus/UserIncomeStatus.js";
 function App() {
   return (
     <div className="App">
@@ -58,6 +59,7 @@ function App() {
           <Route path="trading-income" element={<TradingIncome />} />
           <Route path="matching-income" element={<MatchingIncome />} />
           <Route path="tradeing-wallet" element={<TradingWallet />} />
+          <Route path="rank-income" element={<UserIncomeStatus />} />
           <Route path="pay" element={<AdminWalletAddress />} />
           <Route path="profile" element={<MyProfile />} />
           <Route path="buy-bull" element={<BullPlan />} />

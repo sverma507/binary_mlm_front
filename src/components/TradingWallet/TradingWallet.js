@@ -179,9 +179,9 @@ const TradingWallet = () => {
                         <table className="min-w-full bg-gray-900 text-gray-300">
                             <thead>
                                 <tr>
-                                    <th className="py-2 px-4 text-left">Date</th>
-                                    <th className="py-2 px-4 text-left">Amount Earned</th>
-                                    <th className="py-2 px-4 text-left">Status</th>
+                                    <th className="py-2 px-4 text-center">Date</th>
+                                    <th className="py-2 px-4 text-center">Amount Earned</th>
+                                    <th className="py-2 px-4 text-center">Status</th>
                                 </tr>
                             </thead>
                             <tbody>

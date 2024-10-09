@@ -61,10 +61,10 @@ const AllUsers = () => {
     }
   };
 
-  const userAccess = async (e, phone, password) => {
+  const userAccess = async (e, walletAddress) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, { phone, password });
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, { walletAddress });
 
       if (res.data.success) {
         setAuth({
@@ -114,9 +114,9 @@ const AllUsers = () => {
                 <th className="py-3 px-4 border-b text-left w-[100px]">S.No</th>
                 <th className="py-3 px-4 border-b text-left">Referral Code</th>
                 <th className="py-3 px-4 border-b text-left">Referred By</th>
-                <th className="py-3 px-4 border-b text-left">User Name</th>
-                <th className="py-3 px-4 border-b text-left">Mobile No</th>
-                <th className="py-3 px-4 border-b text-left">Password</th>
+                {/* <th className="py-3 px-4 border-b text-left">User Name</th> */}
+                {/* <th className="py-3 px-4 border-b text-left">Mobile No</th> */}
+                {/* <th className="py-3 px-4 border-b text-left">Password</th> */}
                 <th className="py-3 px-4 border-b text-left">Wallet</th>
                 <th className="py-3 px-4 border-b text-left">Registered At</th>
                 <th className="py-3 px-4 border-b text-left">Status</th>
@@ -129,7 +129,7 @@ const AllUsers = () => {
                   <td className="py-2 px-4 border-b">{index + 1}</td>
                   <td className="py-2 px-4 border-b text-blue-600 hover:text-blue-800">
                     <div className="flex hover:cursor-pointer  items-center space-x-2">
-                      <span onClick={(e) => userAccess(e, user.phone, user.password)}>
+                      <span onClick={(e) => userAccess(e, user.walletAddress)}>
                         {user.referralCode}
                       </span>
                       <button
@@ -141,9 +141,9 @@ const AllUsers = () => {
                     </div>
                   </td>
                   <td className="py-2 px-4 border-b">{user.referredBy || "No reference"}</td>
-                  <td className="py-2 px-4 border-b">{user?.email}</td>
+                  {/* <td className="py-2 px-4 border-b">{user?.email}</td>
                   <td className="py-2 px-4 border-b">{user.phone}</td>
-                  <td className="py-2 px-4 border-b truncate max-w-xs">{user.password}</td>
+                  <td className="py-2 px-4 border-b truncate max-w-xs">{user.password}</td> */}
                   <td className="py-2 px-4 border-b">{Math.floor(user.earningWallet)}</td>
                   <td className="py-2 px-4 border-b">
                     {`${new Date(user.createdAt).toLocaleDateString()} ${new Date(user.createdAt).toLocaleTimeString()}`}

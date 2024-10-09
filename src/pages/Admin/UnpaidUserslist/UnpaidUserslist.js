@@ -32,8 +32,8 @@ const UnpaidUsersList = () => {
                             <th className="py-3 px-6 text-center">Sn No.</th>
                             <th className="py-3 px-6 text-center">User Id</th>
                             <th className="py-3 px-6 text-center">Sponser Id</th>
-                            <th className="py-3 px-6 text-center">Email</th>
-                            <th className="py-3 px-6 text-center">Mobile No.</th>
+                            {/* <th className="py-3 px-6 text-center">Email</th> */}
+                            {/* <th className="py-3 px-6 text-center">Mobile No.</th> */}
                             <th className="py-3 px-6 text-center">Joining Date/Time</th>
                         </tr>
                     </thead>
@@ -44,8 +44,8 @@ const UnpaidUsersList = () => {
                                     <td className="py-3 px-6 text-center">{index + 1}</td>
                                     <td className="py-3 px-6 text-center">{user.referralCode}</td>
                                     <td className="py-3 px-6 text-center">{user.referredBy}</td>
-                                    <td className="py-3 px-6 text-center">{user.email}</td>
-                                    <td className="py-3 px-6 text-center">{user.phone}</td>
+                                    {/* <td className="py-3 px-6 text-center">{user.email}</td>
+                                    <td className="py-3 px-6 text-center">{user.phone}</td> */}
                                     <td className="py-3 px-6 text-center">{new Date(user.createdAt).toLocaleDateString()} - {new Date(user.createdAt).toLocaleTimeString()}</td>
                                 </tr>
                             ))

@@ -155,7 +155,7 @@ function ActivateUserForm() {
               <tr>
                 <th className="py-2 px-4 border-b text-center">#</th>
                 <th className="py-2 px-4 border-b text-center">User Id</th>
-                <th className="py-2 px-4 border-b text-center">Mobile Number</th>
+                {/* <th className="py-2 px-4 border-b text-center">Mobile Number</th> */}
                 <th className="py-2 px-4 border-b text-center">Activated By</th>
                 <th className="py-2 px-4 border-b text-center">Date & Time</th>
               </tr>
@@ -167,11 +167,11 @@ function ActivateUserForm() {
                     {index + 1}
                   </td>
                   <td className="py-2 px-4 border-b text-center">
-                    {activation.email}
+                    {activation.referralCode}
                   </td>
-                  <td className="py-2 px-4 border-b text-center">
+                  {/* <td className="py-2 px-4 border-b text-center">
                     {activation.mobileNumber}
-                  </td>
+                  </td> */}
                   <td className="py-2 px-4 border-b text-center">
                     {activation.activateBy}
                   </td>
