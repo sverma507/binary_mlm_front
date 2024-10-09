@@ -118,9 +118,11 @@ const SignUp = () => {
         try {
             const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/signup`, formData);
 
-            if (response.status === 200) {
+            if (response.status === 201) {
                 showPopup('User registered successfully', 'success');
+                // console.log("response.data.message===>",response.data.message)
                 setSuccessMessage(response.data.message);
+
                 navigate('/login');
             } else {
                 showPopup(response.data.message || 'Signup failed', 'error');

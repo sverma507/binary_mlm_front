@@ -22,7 +22,7 @@ function Popup({ onClose }) {
     <div className="fixed inset-0 flex flex-col justify-center items-center border-2justify-center bg-black bg-opacity-50 z-50">
       <div className="font-extrabold text-4xl m-6"> Buy Bull</div>
 
-      <div style={{ backgroundImage: `url(${require("./Images/trading_bull.jpg")})` }} className="relative h-[299px] bg-cover flex items-end justify-center bg-black border-2 border-white rounded-lg shadow-lg w-[90%] sm:w-[80%] md:w-[60%] lg:w-[50%] mx-auto">
+      <div style={{ backgroundImage: `url(${require("./Images/trading_bull.jpg")})` }} className="relative h-[200px] sm:h-[299px] bg-cover flex items-end justify-center bg-black border-2 border-white rounded-lg shadow-lg w-[90%] sm:w-[80%] md:w-[60%] lg:w-[50%] mx-auto">
         {/* Close button positioned at the top-right corner of the image */}
         <button
           className="absolute   top-2 right-2 px-2 bg-orange-500 text-white rounded hover:bg-red-700"
@@ -36,7 +36,7 @@ function Popup({ onClose }) {
             onClick={() => {
               navigate("/user/buy-bull");
             }}
-            className="inline-block animate-bounce cursor-pointer border-2 border-white bg-blue-600 hover:bg-blue-500 text-white text-lg font-bold py-3 px-6 rounded-full transition duration-300"
+            className="inline-block animate-bounce cursor-pointer border-2 border-white bg-blue-600 hover:bg-blue-500 text-white sm:text-lg sm:font-bold py-3 px-2 sm:px-6 rounded-full transition duration-300"
           >
             Buy a Trading Bull Now for $60
           </a>
