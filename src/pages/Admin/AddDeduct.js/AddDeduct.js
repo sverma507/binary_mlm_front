@@ -101,7 +101,8 @@ const AddDeduct = () => {
                 className="w-full p-2 border border-gray-300 rounded-md"
               >
                 <option value="">Select wallet</option>
-                <option value="r-wallet">R-wallet</option>
+                {/* <option value="r-wallet">R-wallet</option> */}
+                <option value="r-wallet">Deposite</option>
                 <option value="e-wallet">E-wallet</option>
               </select>
             </div>

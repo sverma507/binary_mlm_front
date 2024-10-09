@@ -110,9 +110,6 @@ const SignUp = () => {
         }
 
         const formData = {
-            email: e.target.email.value,
-            phone: e.target.phone.value,
-            password: e.target.password.value,
             referredBy: referredBy,
             preferredSide: selectedPosition,
             walletAddress: walletAddress,
@@ -157,29 +154,11 @@ const SignUp = () => {
                     )}
 
                     <form onSubmit={handleSubmit}>
-                        <div className="form-group">
-                            <input type="email" name="email" required />
-                            <label>Email</label>
-                            <FontAwesomeIcon icon={faEnvelope} />
-                        </div>
+                      
 
-                        <div className="form-group">
-                            <input type="phone" name="phone" required />
-                            <label>Phone</label>
-                            <FontAwesomeIcon icon={faPhone} />
-                        </div>
+                     
 
-                        <div className="form-group">
-                            <input
-                                type={showPassword ? 'text' : 'password'}
-                                name="password"
-                                required
-                            />
-                            <label>Password</label>
-                            <span className="password-toggle" onClick={togglePasswordVisibility}>
-                                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-                            </span>
-                        </div>
+                        
 
                         <div className="form-group">
                             <input

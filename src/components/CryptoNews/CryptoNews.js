@@ -105,7 +105,7 @@ const CryptoNews = () => {
 
   return (
     <Layout>
-    <div className="min-h-screen bg-gray-900 text-gray-100 p-8">
+    <div className="min-h-screen pt-24 bg-gray-900 text-gray-100 p-8">
       {/* Outer Container */}
       <div className="w-4/5 mx-auto">
         {/* Heading */}

@@ -15,11 +15,50 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; // Import Toastify CSS
 
+// Popup Component
+function Popup({ onClose }) {
+  const navigate=useNavigate()
+  return (
+    <div className="fixed inset-0 flex flex-col justify-center items-center border-2justify-center bg-black bg-opacity-50 z-50">
+      <div className="font-extrabold text-4xl m-6"> Buy Bull</div>
+
+      <div style={{ backgroundImage: `url(${require("./Images/trading_bull.jpg")})` }} className="relative h-[299px] bg-cover flex items-end justify-center bg-black border-2 border-white rounded-lg shadow-lg w-[90%] sm:w-[80%] md:w-[60%] lg:w-[50%] mx-auto">
+        {/* Close button positioned at the top-right corner of the image */}
+        <button
+          className="absolute   top-2 right-2 px-2 bg-orange-500 text-white rounded hover:bg-red-700"
+          onClick={onClose}
+        >
+          &times;
+        </button>
+
+        <div className="m-6">
+            <a
+              onClick={() => {
+                navigate("/user/buy-bull");
+              }}
+              className="inline-block animate-bounce cursor-pointer border-2 border-white bg-blue-600 hover:bg-blue-500 text-white text-lg font-bold py-3 px-6 rounded-full transition duration-300"
+            >
+              Buy a Trading Bull Now for $60
+            </a>
+          </div>
+
+        {/* Image */}
+        {/* <img
+          src={require("./Images/trading_bull.jpg")}
+          alt="Trading Bull"
+          className="w-full h-[299px] rounded-t-lg object-contain"
+        /> */}
+      </div>
+    </div>
+  );
+}
+
 const MyProfile = () => {
   const [auth, setAuth] = useAuth();
   const [profile, setProfile] = useState(null); // State to hold profile data
   const [walletBalances, setWalletBalances] = useState([]); // State to hold wallet balances
   const navigate = useNavigate();
+  const [showPopup, setShowPopup] = useState(false); // State to control popup visibility
 
   // Function to log out the user
   const handleLogout = () => {
@@ -43,6 +82,11 @@ const MyProfile = () => {
         `${process.env.REACT_APP_API_URL}/user/profile/${id}`
       );
       setProfile(result.data);
+
+      // Check the isActive status
+      if (result.data?.isActive === false) {
+        setShowPopup(true); // Show popup if user is inactive
+      }
     } catch (error) {
       console.error("Error fetching profile data: ", error);
     }
@@ -83,12 +127,19 @@ const MyProfile = () => {
     }
   }, [profile]);
 
+  // Handle closing the popup
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
+
   if (!profile) return <div>Loading...</div>; // Show loading while fetching data
 
   return (
     <Layout>
       <div className="min-h-screen bg-gradient-to-r from-blue-900 to-black text-gray-100 p-8 mt-10">
         <ToastContainer />
+        {showPopup && <Popup onClose={handleClosePopup} />} {/* Show Popup if user is inactive */}
+
         {/* Outer Container */}
         <div className="mx-auto text-center max-w-screen-lg">
           {/* Heading Section */}
@@ -105,29 +156,41 @@ const MyProfile = () => {
 
           {/* Profile Information Section */}
           <section className="my-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                icon: FaUser,
-                title: "Referral Code",
-                value: profile.referralCode || "N/A",
-              },
-              {
-                icon: FaEnvelope,
-                title: "Email Address",
-                value: profile.email,
-              },
-              { icon: FaPhone, title: "Phone Number", value: profile.phone },
-            ].map((item, index) => (
-              <div
-                key={index}
-                className="bg-gray-800 border-2 border-white p-6 rounded-lg shadow-lg transition-all transform hover:-translate-y-2 hover:shadow-2xl hover:bg-gray-700"
-              >
-                <item.icon className="text-blue-500 text-4xl mb-4 mx-auto" />
-                <h3 className="text-2xl font-bold mb-3">{item.title}</h3>
-                <p className="text-gray-300">{item.value}</p>
-              </div>
-            ))}
-          </section>
+  {[
+    {
+      icon: FaUser,
+      title: "Referral Code",
+      value: profile.referralCode || "N/A",
+    },
+    {
+      icon: FaChartLine,
+      title: "User Status",
+      value: `${profile.isActive ? "Active" : "Purchase Bull"}`,
+      isActive: profile.isActive, // adding isActive property for the status
+    },
+  ].map((item, index) => (
+    <div
+      key={index}
+      className="bg-gray-800 border-2 border-white p-6 rounded-lg shadow-lg transition-all transform hover:-translate-y-2 hover:shadow-2xl hover:bg-gray-700"
+    >
+      <item.icon className="text-blue-500 text-4xl mb-4 mx-auto" />
+      <h3 className="text-2xl font-bold mb-3">{item.title}</h3>
+      {/* Conditional text color for User Status */}
+      {item.title === "User Status" ? (
+        <p
+          className={`${
+            item.isActive ? "text-green-500" : "text-red-500"
+          } font-bold`}
+        >
+          {item.value}
+        </p>
+      ) : (
+        <p className="text-gray-300">{item.value}</p>
+      )}
+    </div>
+  ))}
+</section>
+
 
           {/* Wallet and Earnings Section */}
           <section className="my-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -156,7 +219,7 @@ const MyProfile = () => {
             ].map((item, index) => (
               <div
                 key={index}
-                className="bg-gray-800 p-6 border-2 border-white rounded-lg shadow-lg transition-all transform hover:-translate-y-2 hover:shadow-2xl hover:bg-gray-700"
+                className="bg-gray-800 border-2 border-white p-6 rounded-lg shadow-lg transition-all transform hover:-translate-y-2 hover:shadow-2xl hover:bg-gray-700"
               >
                 <item.icon className="text-blue-500 text-4xl mb-4 mx-auto" />
                 <h3 className="text-2xl font-bold mb-3">{item.title}</h3>
@@ -165,7 +228,7 @@ const MyProfile = () => {
             ))}
           </section>
 
-          <div className="mt-6">
+          { showPopup && <div className="mt-6">
             <a
               onClick={() => {
                 navigate("/user/buy-bull");
@@ -174,7 +237,7 @@ const MyProfile = () => {
             >
               Buy a Trading Bull Now for $60
             </a>
-          </div>
+          </div>}
           {/* Wallet Address and Token Section */}
           <section className="my-16">
             <div className="bg-gray-800 p-6 border-2 border-white rounded-lg shadow-lg transition-all transform hover:-translate-y-2 hover:shadow-2xl hover:bg-gray-700">
