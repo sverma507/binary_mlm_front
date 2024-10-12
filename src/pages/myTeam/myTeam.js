@@ -36,7 +36,7 @@ const UserTree = () => {
 
     return {
       name: user.referralCode,
-      email: user.email,
+      email: user.userName,
       attributes: {
         // isActive: user.isActive,
         earningWallet: user.earningWallet,

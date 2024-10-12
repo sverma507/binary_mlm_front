@@ -16,16 +16,16 @@ const Carousel = () => {
     };
 
     return (
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden pt-20">
             <Slider {...settings} className="header-carousel">
                 {/* Carousel Slide 1 */}
                 <div className="header-carousel-item relative">
-                    <img src={ require("./images/cursole-1.jpeg")} alt="Carousel 1" className="object-cover w-full h-[700px]" />
+                    <img src={ require("./images/cursole-1.jpg")} alt="Carousel 1" className="object-cover w-full h-[700px]" />
                     <div className="absolute inset-0  flex items-center">
                         <div className="container-fluid mx-auto px-4 text-white">
                             <div className="grid grid-cols-1 md:grid-cols-2">
-                                <div className=' rounded-lg grid place-items-center 0  '>
-                                    <img className='w-[70%]' src={require('./images/h1.jpeg')}/>
+                                <div className=' rounded-xl  grid place-items-center 0  '>
+                                    <img className='w-[80%] border-2 border-white rounded-xl' src={require('./images/h1.jpeg')}/>
                                 </div>
                                 <div className="text-center md:mr-24 md:mt-24  md:text-right animate-fadeInLeft">
                                     <h4 className="  text-green-500 text-uppercase font-bold mb-4">Welcome To U Tech International</h4>

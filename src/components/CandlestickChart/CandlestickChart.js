@@ -85,3 +85,6 @@ const CandlestickChart = ({ selectedCurrency }) => {
 };
 
 export default CandlestickChart;
+
+
+

@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../layout/layout';
-import  toast  from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import axios from 'axios';
 import { useAuth } from '../../context/auth';
 
 const Withdrawal = () => {
   const [auth] = useAuth();
-  const [profile, setProfile] = useState(null); // User profile with wallet balance
+  const [profile, setProfile] = useState(null); // User profile with wallet balances
   const [withdrawalAmount, setWithdrawalAmount] = useState('');
+  const [walletType, setWalletType] = useState('earningWallet'); // Track selected wallet type
   const [loading, setLoading] = useState(false);
-  const [withdrawalRequests, setWithdrawalRequests] = useState([]); // To hold withdrawal requests
+  const [withdrawalRequests, setWithdrawalRequests] = useState([]); // Hold withdrawal requests
 
-  // Fetch user profile to get wallet balance
+  // Fetch user profile to get wallet balances
   const getProfile = async () => {
     const userId = auth?.user?._id;
     try {
@@ -45,27 +46,28 @@ const Withdrawal = () => {
 
     // Basic validation
     if (!amount || amount < 100) {
-      toast('Minimum withdrawl is $100.', {
-        duration: 4000, // Duration in milliseconds
-        position: 'top-center', // Position of the toast
+      toast('Minimum withdrawal is $100.', {
+        duration: 4000,
+        position: 'top-center',
         style: {
           background: 'red',
           color: 'white',
         },
-        icon: `😢`, // Add a custom icon
+        icon: `😢`,
       });
       return;
     }
 
-    if (amount > profile?.earningWallet) {
+    // Check if the selected wallet has sufficient balance
+    if (amount > profile?.[walletType]) {
       toast('Insufficient balance.', {
-        duration: 4000, // Duration in milliseconds
-        position: 'top-center', // Position of the toast
+        duration: 4000,
+        position: 'top-center',
         style: {
           background: 'red',
           color: 'white',
         },
-        icon: `😢`, // Add a custom icon
+        icon: `😢`,
       });
       return;
     }
@@ -73,33 +75,36 @@ const Withdrawal = () => {
     setLoading(true);
     try {
       const userId = auth.user._id;
-      await axios.post(`${process.env.REACT_APP_API_URL}/user/withdrawl-request/${userId}`, { amount });
+      await axios.post(`${process.env.REACT_APP_API_URL}/user/withdrawl-request/${userId}`, { amount, walletType });
 
       setWithdrawalAmount(''); // Clear input on success
       toast("Withdrawal request submitted successfully.", {
-        duration: 4000, // Duration in milliseconds
-        position: 'top-center', // Position of the toast
+        duration: 4000,
+        position: 'top-center',
         style: {
           background: 'white',
           color: 'black',
         },
-        icon: '👏', // Add a custom icon
+        icon: '👏',
       });
+
+      // Deduct the amount from the selected wallet balance
       setProfile((prevProfile) => ({
         ...prevProfile,
-        earningWallet: prevProfile.earningWallet - amount,
+        [walletType]: prevProfile[walletType] - amount,
       }));
+
       // Fetch withdrawal requests again to update the list
       getWithdrawalRequests();
     } catch (error) {
       toast('Failed to submit the withdrawal request.', {
-        duration: 4000, // Duration in milliseconds
-        position: 'top-center', // Position of the toast
+        duration: 4000,
+        position: 'top-center',
         style: {
           background: 'red',
           color: 'white',
         },
-        icon: `😢`, // Add a custom icon
+        icon: `😢`,
       });
       console.error('Error during withdrawal: ', error);
     } finally {
@@ -113,10 +118,18 @@ const Withdrawal = () => {
         <div className="pt-28 backdrop-blur-lg max-w-lg mx-auto p-6 rounded-lg shadow-lg">
           <h2 className="text-2xl text-white font-bold mb-4">Withdrawal Request</h2>
 
-          {/* Display wallet balance */}
+          {/* Display wallet balances */}
           <div className="bg-gray-800 p-4 rounded mb-4 text-white">
             <h3 className="text-xl font-semibold">Earning Wallet Balance:</h3>
             <p className="text-green-400">${profile?.earningWallet?.toFixed(2) || '0.00'}</p>
+          </div>
+          <div className="bg-gray-800 p-4 rounded mb-4 text-white">
+            <h3 className="text-xl font-semibold">Level Income Wallet Balance:</h3>
+            <p className="text-green-400">${profile?.bullWallet?.toFixed(2) || '0.00'}</p>
+          </div>
+          <div className="bg-gray-800 p-4 rounded mb-4 text-white">
+            <h3 className="text-xl font-semibold">Trading Wallet Balance:</h3>
+            <p className="text-green-400">${profile?.tradingWallet?.toFixed(2) || '0.00'}</p>
           </div>
 
           {/* Withdrawal form */}
@@ -132,6 +145,22 @@ const Withdrawal = () => {
                 required
               />
             </div>
+
+            {/* Dropdown to select wallet */}
+            <div className="mb-4">
+              <label className="block text-black font-bold text-lg">Select Wallet</label>
+              <select
+                value={walletType}
+                onChange={(e) => setWalletType(e.target.value)}
+                className="w-full p-3 rounded bg-slate-100 text-black"
+                required
+              >
+                <option value="earningWallet">Earning Wallet</option>
+                <option value="bullWallet">Bull Wallet</option>
+                <option value="tradingWallet">Trading Wallet</option>
+              </select>
+            </div>
+
             <button
               type="submit"
               className={`w-full p-3 bg-blue-600 text-white rounded hover:bg-blue-500 transition duration-200 ${loading ? 'opacity-50' : ''}`}
@@ -144,11 +173,12 @@ const Withdrawal = () => {
           {/* Withdrawal Requests Table */}
           <div className="mt-8 overflow-x-auto">
             <h3 className="text-xl text-white font-semibold mb-4">Your Withdrawal Requests</h3>
-            <table className="min-w-full  bg-white rounded-lg overflow-hidden shadow-lg">
+            <table className="min-w-full bg-white rounded-lg overflow-hidden shadow-lg">
               <thead className="bg-gray-800 text-white">
                 <tr>
                   <th className="py-2 px-4">Amount</th>
                   <th className="py-2 px-4">Status</th>
+                  <th className="py-2 px-4">Wallet</th>
                   <th className="py-2 px-4">Date</th>
                 </tr>
               </thead>
@@ -158,6 +188,7 @@ const Withdrawal = () => {
                     <tr key={request._id} className="border-b hover:bg-gray-100">
                       <td className="py-2 px-4">${request.amount.toFixed(2)}</td>
                       <td className="py-2 px-4">{request.paymentStatus}</td>
+                      <td className="py-2 px-4">{request.walletType}</td>
                       <td className="py-2 px-4">{new Date(request.createdAt).toLocaleString()}</td>
                     </tr>
                   ))

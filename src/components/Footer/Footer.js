@@ -6,6 +6,8 @@ const Footer = () => {
 
   return (
     <footer className="mx-auto bg-black text-white text-center p-6 sm:p-10">
+
+
       <div className="footer-heading">
         <h1 className="text-4xl md:text-[100px] font-extrabold font-futura">
           U Tech International

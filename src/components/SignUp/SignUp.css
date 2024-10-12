@@ -105,6 +105,8 @@ input:valid ~ label {
 .form-group .fa-code,
 .form-group .fa-clipboard,
 .form-group .fa-code-branch,
+.form-group .fa-user,
+
 .form-group .fa-lock {
     position: absolute;
     top: 50%;

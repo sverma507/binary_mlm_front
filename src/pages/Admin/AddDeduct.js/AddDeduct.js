@@ -104,6 +104,7 @@ const AddDeduct = () => {
                 {/* <option value="r-wallet">R-wallet</option> */}
                 <option value="r-wallet">Deposite</option>
                 <option value="e-wallet">E-wallet</option>
+                <option value="trading-wallet">Trading-wallet</option>
               </select>
             </div>
             <div>

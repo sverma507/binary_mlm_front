@@ -7,6 +7,7 @@ import {
   FaWallet,
   FaChartLine,
   FaUsers,
+  FaShare,
 } from "react-icons/fa";
 import Layout from "../layout/layout";
 import axios from "axios";
@@ -103,9 +104,13 @@ const MyProfile = () => {
           },
         }
       );
+      console.log(`Response for ${walletAddress} on chain ${chainId}:`, response.data);
+      const items = response.data.data.items;
+      console.log('Tokens fetched:', items);
+  
       setWalletBalances((prevBalances) => [
         ...prevBalances,
-        ...response.data.data.items,
+        ...items,
       ]);
     } catch (error) {
       console.error(
@@ -114,7 +119,7 @@ const MyProfile = () => {
       );
     }
   };
-
+  
   useEffect(() => {
     getProfile(); // Fetch the profile on component load
   }, []);
@@ -157,8 +162,23 @@ const MyProfile = () => {
           {/* Profile Information Section */}
           <section className="my-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              {
+               {
                 icon: FaUser,
+                title: "Name",
+                value: profile.userName || "N/A",
+              },
+              {
+                icon: FaEnvelope,
+                title: "Email",
+                value: profile.email || "N/A",
+              },
+              {
+                icon: FaPhone,
+                title: "Phone",
+                value: profile.phone || "N/A",
+              },
+              {
+                icon: FaShare,
                 title: "Referral Code",
                 value: profile.referralCode || "N/A",
               },
@@ -208,6 +228,11 @@ const MyProfile = () => {
                 icon: FaWallet,
                 title: "Trading Wallet",
                 value: `$${profile.tradingWallet.toFixed(2)}`,
+              },
+              {
+                icon: FaWallet,
+                title: "Level Income Wallet",
+                value: `$${profile.bullWallet.toFixed(2)}`,
               },
               {
                 icon: FaChartLine,
@@ -289,3 +314,15 @@ const MyProfile = () => {
 };
 
 export default MyProfile;
+
+
+
+
+
+
+
+
+
+
+
+
