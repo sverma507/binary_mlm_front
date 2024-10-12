@@ -53,7 +53,7 @@ function Navbar() {
           </a>
         </div>
       </div>
-      <div className="fixed top-96 left-5 sm:left-10 animate-bounce flex justify-between items-center z-10">
+      <div className="fixed top-96 left-0 sm:left-5 animate-bounce flex justify-between items-center z-10">
         <div onClick={()=>{navigate('/contact-us')}} className=" cursor-pointer ">
           
             <strong>
