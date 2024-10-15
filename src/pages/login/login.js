@@ -23,6 +23,70 @@ const Login = () => {
         setShowPassword(prevState => !prevState);
     };
 
+    // useEffect(() => {
+    //     const checkWalletAndNetwork = async () => {
+    //         if (window.ethereum) {
+    //             setWalletDetected(true);
+    //             try {
+    //                 // Request wallet connection
+    //                 const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    //                 setWalletAddress(accounts[0]);
+
+    //                 // Check for the network (Binance Smart Chain)
+    //                 const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+    //                 if (chainId === '0x38') {
+    //                     setIsBSC(true); // User is on Binance Smart Chain
+    //                 } else {
+    //                     setIsBSC(false); // Not on the correct network
+    //                 }
+    //             } catch (error) {
+    //                 console.error('Error detecting wallet or network:', error);
+    //             }
+    //         } else {
+    //             setWalletDetected(false);
+    //             setIsDAppBrowser(false); // No wallet detected, likely a non-DApp browser
+    //         }
+    //     };
+
+    //     checkWalletAndNetwork();
+
+    //     // Set up listeners for network or account changes
+    //     window.ethereum?.on('chainChanged', (chainId) => {
+    //         if (chainId === '0x38') {
+    //             setIsBSC(true);
+    //             toast('Switched to Binance Smart Chain (BSC).', {
+    //                 duration: 4000,
+    //                 position: 'top-center',
+    //                 style: { background: 'gray', color: 'white' },
+    //                 icon: '😀',
+    //             });
+    //         } else {
+    //             setIsBSC(false);
+    //             toast("Please switch to Binance Smart Chain (BSC) network.", {
+    //                 duration: 4000,
+    //                 position: 'top-center',
+    //                 style: { background: 'red', color: 'white' },
+    //                 icon: '🤔',
+    //             });
+    //         }
+    //     });
+
+    //     window.ethereum?.on('accountsChanged', (accounts) => {
+    //         if (accounts.length > 0) {
+    //             setWalletAddress(accounts[0]);
+    //         } else {
+    //             setWalletAddress(null);
+    //             toast("Wallet disconnected. Please reconnect.", {
+    //                 duration: 4000,
+    //                 position: 'top-center',
+    //                 style: { background: 'red', color: 'white' },
+    //                 icon: '🔌',
+    //             });
+    //         }
+    //     });
+    // }, []);
+
+
     useEffect(() => {
         const checkWalletAndNetwork = async () => {
             if (window.ethereum) {
@@ -31,13 +95,19 @@ const Login = () => {
                     // Request wallet connection
                     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
                     setWalletAddress(accounts[0]);
-
+    
                     // Check for the network (Binance Smart Chain)
                     const chainId = await window.ethereum.request({ method: 'eth_chainId' });
                     if (chainId === '0x38') {
                         setIsBSC(true); // User is on Binance Smart Chain
                     } else {
                         setIsBSC(false); // Not on the correct network
+                        toast("Please switch to Binance Smart Chain (BSC) network.", {
+                            duration: 4000,
+                            position: 'top-center',
+                            style: { background: 'red', color: 'white' },
+                            icon: '🤔',
+                        });
                     }
                 } catch (error) {
                     console.error('Error detecting wallet or network:', error);
@@ -47,9 +117,9 @@ const Login = () => {
                 setIsDAppBrowser(false); // No wallet detected, likely a non-DApp browser
             }
         };
-
+    
         checkWalletAndNetwork();
-
+    
         // Set up listeners for network or account changes
         window.ethereum?.on('chainChanged', (chainId) => {
             if (chainId === '0x38') {
@@ -70,7 +140,7 @@ const Login = () => {
                 });
             }
         });
-
+    
         window.ethereum?.on('accountsChanged', (accounts) => {
             if (accounts.length > 0) {
                 setWalletAddress(accounts[0]);
@@ -85,6 +155,8 @@ const Login = () => {
             }
         });
     }, []);
+    
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
