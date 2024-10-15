@@ -58,7 +58,7 @@ function Navbar() {
           
             <strong>
               <img
-                className="rounded-full sm:h-44 h-36"
+                className="rounded-full sm:h-44 h-28"
                 loading="lazy"
                 src={require("./hi-robot.gif")}
                 alt="Whatsapp to show game on this website"
@@ -67,6 +67,7 @@ function Navbar() {
           
         </div>
       </div>
+      
       {/* <ToastContainer/> */}
       <div className="navbar bg-black text-white flex justify-between">
         {/* Navbar Start */}
@@ -107,14 +108,15 @@ function Navbar() {
               <li onClick={() => { navigate('/'); }} className='hover:bg-gray-700 rounded-lg'><a>Home</a></li>
               <li onClick={() => { navigate('/about-us'); }} className='hover:bg-gray-700 rounded-lg'><a>About</a></li>
               <li onClick={() => { navigate('/contact-us'); }} className='hover:bg-gray-700 rounded-lg'><a>Contact Us</a></li>
+              <li onClick={() => { navigate('/coin-info'); }} className='hover:bg-gray-700 rounded-lg'><a>UTC Coin</a></li>
               <li onClick={() => { navigate('/news'); }} className='hover:bg-gray-700 rounded-lg'><a>News</a></li>
-              <li onClick={() => { navigate('/bull'); }} className='hover:bg-gray-700 rounded-lg'><a>Trading Bull</a></li>
+              <li onClick={() => { navigate('/bull'); }} className='hover:bg-gray-700 rounded-lg'><a><span className='text-[18px] font-bold'>Trading Bull</span></a></li>
 
               {/* Dashboard Dropdown for Mobile */}
               <li>
                 {
                   auth?.token ? (<a onClick={toggleDashboardDropdown} className="flex justify-between items-center">
-                    Dashboard
+                   <span className='font-bold text-lg'> Dashboard</span>
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                     </svg>
@@ -154,6 +156,8 @@ function Navbar() {
             <li onClick={() => { navigate('/'); }} className='hover:text-blue-500'><a>Home</a></li>
             <li onClick={() => { navigate('/about-us'); }} className='hover:text-blue-500'><a>About</a></li>
             <li onClick={() => { navigate('/contact-us'); }} className='hover:text-blue-500'><a>Contact Us</a></li>
+            <li onClick={() => { navigate('/coin-info'); }} className='hover:text-blue-500'><a>UTC Coin</a></li>
+
             <li onClick={() => { navigate('/news'); }} className='hover:text-blue-500'><a>News</a></li>
             <li onClick={() => { navigate('/bull'); }} className='ml-2 text-white border border-white rounded-lg bg-gradient-to-br from-green-500 to-blue-800 hover:bg-gradient-to-tr mr-4'><a>Trading Bull</a></li>
             {/* Dashboard Dropdown for large screens */}

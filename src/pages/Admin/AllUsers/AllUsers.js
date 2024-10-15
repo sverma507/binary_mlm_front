@@ -111,16 +111,16 @@ const AllUsers = () => {
           <table className="text-sm bg-white border border-gray-300 rounded-lg shadow-md divide-y divide-gray-200">
             <thead>
               <tr className="bg-green-700 text-white">
-                <th className="py-3 px-4 border-b text-left w-[100px]">S.No</th>
-                <th className="py-3 px-4 border-b text-left">Referral Code</th>
-                <th className="py-3 px-4 border-b text-left">Referred By</th>
-                {/* <th className="py-3 px-4 border-b text-left">User Name</th> */}
-                {/* <th className="py-3 px-4 border-b text-left">Mobile No</th> */}
-                {/* <th className="py-3 px-4 border-b text-left">Password</th> */}
-                <th className="py-3 px-4 border-b text-left">Wallet</th>
-                <th className="py-3 px-4 border-b text-left">Registered At</th>
-                <th className="py-3 px-4 border-b text-left">Status</th>
-                <th className="py-3 px-4 border-b text-left">Action</th>
+                <th className="py-3 px-4 border-b text-center w-[100px]">S.No</th>
+                <th className="py-3 px-4 border-b text-center">Referral Code</th>
+                <th className="py-3 px-4 border-b text-center">Referred By</th>
+                <th className="py-3 px-4 border-b text-center">User Name</th>
+                <th className="py-3 px-4 border-b text-center">Mobile No</th>
+                <th className="py-3 px-4 border-b text-center">Email</th>
+                <th className="py-3 px-4 border-b text-center">Wallet</th>
+                <th className="py-3 px-4 border-b text-center">Registered At</th>
+                <th className="py-3 px-4 border-b text-center">Status</th>
+                <th className="py-3 px-4 border-b text-center">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -141,9 +141,9 @@ const AllUsers = () => {
                     </div>
                   </td>
                   <td className="py-2 px-4 border-b">{user.referredBy || "No reference"}</td>
-                  {/* <td className="py-2 px-4 border-b">{user?.email}</td>
+                  <td className="py-2 px-4 border-b">{user?.userName}</td>
                   <td className="py-2 px-4 border-b">{user.phone}</td>
-                  <td className="py-2 px-4 border-b truncate max-w-xs">{user.password}</td> */}
+                  <td className="py-2 px-4 border-b truncate max-w-xs">{user.email}</td>
                   <td className="py-2 px-4 border-b">{Math.floor(user.earningWallet)}</td>
                   <td className="py-2 px-4 border-b">
                     {`${new Date(user.createdAt).toLocaleDateString()} ${new Date(user.createdAt).toLocaleTimeString()}`}

@@ -43,6 +43,9 @@ import MatchingIncome from "./components/MatchingIncome/MatchingIncome.js";
 import AdminMatchingIncome from "./pages/Admin/AdminMatchingIncome/AdminMatchingIncome.js";
 import AdminLevelIncome from "./pages/Admin/AdminLevelIncome/AdminLevelIncome.js";
 import UserIncomeStatus from "./components/UserIncomeStatus/UserIncomeStatus.js";
+import GiftPopup from "./pages/Admin/GiftPopup/GiftPopup.js";
+import UTCCoinPage from "./components/UTCCoinPage/UTCCoinPage.js";
+import DailyTradingIncomePercent from "./pages/Admin/DailyTradingIncomePercent/DailyTradingIncomePercent.js";
 function App() {
   return (
     <div className="App">
@@ -68,6 +71,8 @@ function App() {
         </Route>
         <Route path="/dashboard" element={<AdminRoute />}>
           <Route path="admin" element={<Dashboard />} />
+          <Route path="admin/popup" element={<GiftPopup />} />
+          <Route path="admin/trading-income-percent" element={<DailyTradingIncomePercent />} />
           <Route path="admin/change-password" element={<ChangePassword/>} />
           <Route path="admin/all-users" element={<AllUsers />} />
           <Route path="admin/matching-income" element={<AdminMatchingIncome />} />
@@ -92,6 +97,7 @@ function App() {
         <Route path="/news" element={<CryptoNews />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/verification" element={<Verification />} />
+        <Route path="/coin-info" element={<UTCCoinPage />} />
       </Routes>
     </div>
   );

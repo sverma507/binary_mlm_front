@@ -70,6 +70,18 @@ const Sidebar = () => {
                   {isOpen && <span className="flex-grow ml-3">Dashboard</span>}
                 </div>
               </li>
+              <li className="group" onClick={()=>{navigate('/dashboard/admin/popup')}}>
+                <div onClick={() => handleDropdownClick(0)} className="flex  items-center px-4 py-2 text-left cursor-pointer hover:bg-gray-700">
+                  <FaTachometerAlt className="mr-2 text-2xl" />
+                  {isOpen && <span className="flex-grow ml-3">Gift Popup</span>}
+                </div>
+              </li>
+              <li className="group" onClick={()=>{navigate('/dashboard/admin/trading-income-percent')}}>
+                <div onClick={() => handleDropdownClick(0)} className="flex  items-center px-4 py-2 text-left cursor-pointer hover:bg-gray-700">
+                  <FaTachometerAlt className="mr-2 text-2xl" />
+                  {isOpen && <span className="flex-grow ml-3">Trade Inco. Percent</span>}
+                </div>
+              </li>
               <li className="group">
                 <div onClick={() => handleDropdownClick(1)} className="flex items-center text-left px-4 py-2 cursor-pointer hover:bg-gray-700">
                   <FaUser className="mr-2 text-2xl" />

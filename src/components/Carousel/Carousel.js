@@ -28,8 +28,8 @@ const Carousel = () => {
                                     <img className='w-[80%] border-2 border-white rounded-xl' src={require('./images/h1.jpeg')}/>
                                 </div>
                                 <div className="text-center md:mr-24 md:mt-24  md:text-right animate-fadeInLeft">
-                                    <h4 className="  text-green-500 text-uppercase font-bold mb-4">Welcome To U Tech International</h4>
-                                    <h1 className="text-4xl font-bold uppercase text-white mb-4">Invest your money with higher return</h1>
+                                    <h4 className="   text-uppercase text-3xl text-yellow-300 font-bold mb-4">Welcome To U Tech International</h4>
+                                    <h1 className="text-2xl font-bold uppercase text-white mb-4">Secure Your Future With Us.</h1>
                                     <p className="mb-5 text-lg">
                                     "Unlock your financial future with smart investments and exponential growth."
                                     </p>
@@ -61,7 +61,7 @@ const Carousel = () => {
                         <div className="container mx-auto px-4 text-white">
                             <div className="grid grid-cols-1">
                                 <div className="text-center animate-fadeInUp">
-                                    <h4 className="text-green-500 text-uppercase font-bold mb-4">Welcome To U Tech International</h4>
+                                    {/* <h4 className="text-green-500 text-uppercase font-bold mb-4">Welcome To U Tech International</h4> */}
                                     <h1 className="text-4xl font-bold uppercase text-white mb-4">Invest your money with higher return</h1>
                                     <p className="mb-5 text-lg">
                                     "Unlock your financial future with smart investments and exponential growth."
