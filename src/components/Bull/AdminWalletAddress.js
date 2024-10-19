@@ -77,7 +77,7 @@ const AdminWalletAddress = () => {
               <li className="text-lg text-gray-300 mb-4">Confirm the transaction and complete the payment.</li>
             </ol>
             <p className="text-lg text-gray-300">
-              After the payment is completed, you will gain access to the Bull Plan. Thank you for your investment!
+              After the payment is completed, you will gain access to the Trading  Plan. Thank you for your investment!
             </p>
           </div>
         </div>

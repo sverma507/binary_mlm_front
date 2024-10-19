@@ -23,6 +23,8 @@ const Login = () => {
         setShowPassword(prevState => !prevState);
     };
 
+
+    
     // useEffect(() => {
     //     const checkWalletAndNetwork = async () => {
     //         if (window.ethereum) {

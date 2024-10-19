@@ -41,10 +41,13 @@ const Home = () => {
             },
           });
         } else {
-          toast.error("No gift popup found.");
+          console.log("No gift popup found.")
+          // toast.error("");
         }
       } catch (error) {
-        toast.error("Failed to fetch gift popup.");
+        console.log("Failed to fetch gift popup.")
+
+        // toast.error("");
       }
     };
 
