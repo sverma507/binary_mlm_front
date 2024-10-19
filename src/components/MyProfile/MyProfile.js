@@ -154,7 +154,7 @@ const MyProfile = () => {
             </h1>
             <p className="text-lg text-gray-300 leading-relaxed">
               Welcome to your profile,{" "}
-              <span className="text-blue-500">TradeSmart User</span>. Here, you
+              <span className="text-blue-500">U Tech International</span>. Here, you
               can view and manage your personal information.
             </p>
           </section>
@@ -270,7 +270,7 @@ const MyProfile = () => {
               </h4>
               <p className="text-gray-300 overflow-wrap max-w-full break-words">{profile.walletAddress || "N/A"}</p>
               <h4 className="text-2xl font-bold mt-6 mb-3 text-blue-500">
-                Token Balances
+                UTC  Balances
               </h4>
               {walletBalances.length > 0 ? (
                 <ul className="text-left text-gray-300">
@@ -286,7 +286,7 @@ const MyProfile = () => {
                 </ul>
               ) : (
                 <p className="text-gray-300">
-                  No tokens found for this wallet.
+                  No <span className="text-green-500"> UTC</span> found for this wallet.
                 </p>
               )}
             </div>

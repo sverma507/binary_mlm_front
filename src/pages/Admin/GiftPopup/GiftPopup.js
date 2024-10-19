@@ -22,7 +22,8 @@ const GiftPopup = () => {
           setIsEdit(true); // Mark it as an edit operation
         }
       } catch (error) {
-        toast.error("Failed to fetch gift popup.");
+        console.log("error in gift popup fetching")
+        // toast.error("Failed to fetch gift popup.");
       }
     };
 

@@ -12,7 +12,7 @@ const AboutUs = () => {
         <section className="my-12">
           <h1 className="text-4xl font-extrabold text-blue-400 mb-20">About Us</h1>
           <p className="text-lg min-text-sm text-gray-300 leading-relaxed">
-            Welcome to <span className="text-blue-500">TradeSmart</span>, your trusted partner in the world of online trading. Our mission is to empower individuals to take control of their financial future through a secure, easy-to-use, and powerful trading platform.
+            Welcome to <span className="text-blue-500">U Tech</span>, your trusted partner in the world of online trading. Our mission is to empower individuals to take control of their financial future through a secure, easy-to-use, and powerful trading platform.
           </p>
         </section>
 

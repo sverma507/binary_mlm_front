@@ -25,7 +25,7 @@ const UserTree = () => {
         name: 'You', // Display "You" for the root user
         attributes: {
           isActive: user.isActive ? 'Active' : 'Inactive',
-          earningWallet: user.earningWallet,
+          earningWallet: user.bullWallet,
         },
         children: [
           user.leftChild ? buildTree(users, user.leftChild) : null,

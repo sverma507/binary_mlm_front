@@ -12,7 +12,7 @@ const UserIncomeStatus = () => {
   const incomeRequirements = [
     { rank: "Alpha", weeks: 5, amount: 5, requiredUsers: 5 },
     { rank: "Beta", weeks: 5, amount: 10, requiredUsers: 10 },
-    { rank: "Gama", weeks: 5, amount: 20, requiredUsers: 20 },
+    { rank: "Gamma", weeks: 5, amount: 20, requiredUsers: 20 },
     { rank: "Delta", weeks: 5, amount: 30, requiredUsers: 50 },
     { rank: "Zita", weeks: 5, amount: 60, requiredUsers: 100 },
     { rank: "Bravo", weeks: 5, amount: 150, requiredUsers: 250 },
@@ -77,7 +77,7 @@ const UserIncomeStatus = () => {
                 <th className="py-2 px-4 text-center">Rank</th>
                 <th className="py-2 px-4 text-center">Weeks Required</th>
                 <th className="py-2 px-4 text-center">Amount</th>
-                <th className="py-2 px-4 text-center">Required Users</th>
+                <th className="py-2 px-4 text-center">Required <span className="text-green-500"> Active</span> Users <br/></th>
                 <th className="py-2 px-4 text-center">Status</th>
               </tr>
             </thead>
@@ -89,7 +89,10 @@ const UserIncomeStatus = () => {
                     <td className="py-2 px-4 border-b border-gray-600">{requirement.rank}</td>
                     <td className="py-2 px-4 border-b border-gray-600">{requirement.weeks}</td>
                     <td className="py-2 px-4 border-b border-gray-600">${requirement.amount}</td>
-                    <td className="py-2 px-4 border-b border-gray-600">{requirement.requiredUsers}</td>
+                    <td className="py-2 px-4 border-b border-gray-600 flex justify-around">
+                      <div>{requirement.requiredUsers}<span className="text-green-500"> Left</span></div>
+                      <div>{requirement.requiredUsers} <span className="text-green-500"> Right</span></div>
+                    </td>
                     <td className="py-2 px-4 border-b border-gray-600">{status}</td>
                   </tr>
                 );

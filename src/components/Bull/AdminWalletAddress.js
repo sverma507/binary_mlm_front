@@ -49,7 +49,7 @@ const AdminWalletAddress = () => {
           <div className="text-center mb-12">
             <h2 className="text-5xl font-extrabold text-blue-400 animate-bounce">Admin Wallet Address</h2>
             <p className="mt-6 text-xl text-gray-300">
-              Use the wallet address below to make your payment of $60 for the Bull Plan.
+              Use the wallet address below to make your payment of $100 for the Trading Plans.
             </p>
           </div>
 
@@ -73,7 +73,7 @@ const AdminWalletAddress = () => {
               <li className="text-lg text-gray-300 mb-4">Open Trust Wallet on your mobile device.</li>
               <li className="text-lg text-gray-300 mb-4">Select 'Send' from the wallet menu.</li>
               <li className="text-lg text-gray-300 mb-4">Paste the wallet address provided above in the 'To' field.</li>
-              <li className="text-lg text-gray-300 mb-4">Enter the amount: $60.</li>
+              <li className="text-lg text-gray-300 mb-4">Enter the amount: $100.</li>
               <li className="text-lg text-gray-300 mb-4">Confirm the transaction and complete the payment.</li>
             </ol>
             <p className="text-lg text-gray-300">

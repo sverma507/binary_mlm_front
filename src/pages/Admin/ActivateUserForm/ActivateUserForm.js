@@ -50,7 +50,7 @@ function ActivateUserForm() {
       });
       setRefferalCode(""); // Clear the input fields
     } catch (error) {
-      toast(error.message, {
+      toast(error.response.data.error, {
         duration: 4000, // Duration in milliseconds
         position: 'top-center', // Position of the toast
         style: {

@@ -41,7 +41,7 @@ const DownlineUsers = () => {
       name: user.referralCode,
       email: user.email,
       attributes: {
-        earningWallet: user.earningWallet,
+        earningWallet: user.bullWallet,
         rank: user.rank,
         isActive: user.isActive ? 'Active' : 'Inactive',
       },
@@ -133,7 +133,7 @@ const DownlineUsers = () => {
                   {nodeDatum.attributes && (
                     <>
                       <text fill="black" fontWeight="bold" strokeWidth="0.3" x="-40" y="20">
-                        Wallet: Rs.{nodeDatum.attributes.earningWallet}
+                        Wallet:${nodeDatum.attributes.earningWallet}
                       </text>
                     </>
                   )}

@@ -31,8 +31,7 @@ const Carousel = () => {
                                     <h4 className="   text-uppercase text-3xl text-yellow-300 font-bold mb-4">Welcome To U Tech International</h4>
                                     <h1 className="text-2xl font-bold uppercase text-white mb-4">Secure Your Future With Us.</h1>
                                     <p className="mb-5 text-lg">
-                                    "Unlock your financial future with smart investments and exponential growth."
-                                    </p>
+                                    "Secure your financial success with strategic investments and exceptional returns."                                    </p>
                                     <div className="flex justify-center md:justify-end space-x-4 mb-4">
                                         <a href="#" className="btn bg-white text-black rounded-full py-3 px-5 flex items-center">
                                             <i className="fas fa-play-circle mr-2"></i> Watch Video
@@ -62,7 +61,7 @@ const Carousel = () => {
                             <div className="grid grid-cols-1">
                                 <div className="text-center animate-fadeInUp">
                                     {/* <h4 className="text-green-500 text-uppercase font-bold mb-4">Welcome To U Tech International</h4> */}
-                                    <h1 className="text-4xl font-bold uppercase text-white mb-4">Invest your money with higher return</h1>
+                                    <h1 className="text-4xl font-bold uppercase text-white mb-4">Boost your earnings with superior returns on investment</h1>
                                     <p className="mb-5 text-lg">
                                     "Unlock your financial future with smart investments and exponential growth."
                                     </p>
