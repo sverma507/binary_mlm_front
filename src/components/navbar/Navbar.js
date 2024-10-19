@@ -55,7 +55,7 @@
 //       </div>
 //       {/* <div className="fixed top-96 left-0 sm:left-5 animate-bounce flex justify-between items-center z-10">
 //         <div onClick={()=>{navigate('/contact-us')}} className=" cursor-pointer ">
-          
+
 //             <strong>
 //               <img
 //                 className="rounded-full sm:h-44 h-28"
@@ -64,10 +64,10 @@
 //                 alt="Whatsapp to show game on this website"
 //               />
 //             </strong>
-          
+
 //         </div>
 //       </div> */}
-      
+
 //       {/* <ToastContainer/> */}
 //       <div className="navbar bg-black text-white flex justify-between">
 //         {/* Navbar Start */}
@@ -300,6 +300,22 @@ function Navbar() {
 
   return (
     <div className='shadow-xl shadow-blue-500 fixed top-0 z-40 w-full'>
+
+      <div className="fixed top-96 right-5 sm:right-10 animate-bounce flex justify-between items-center z-10">
+        <div className="border border-slate-600 rounded-full shadow-lg shadow-slate-700">
+          <a target="_blank" href="https://wa.me/+919358058028" id="body_contactwa">
+            <strong>
+              <img
+                className="rounded-full h-12"
+                loading="lazy"
+                src={require("./logo.png")}
+                alt="Whatsapp to show game on this website"
+              />
+            </strong>
+          </a>
+        </div>
+      </div>
+
       <div className="navbar bg-black text-white flex justify-between">
         {/* Navbar Start */}
         <div className="navbar-start flex items-center">
@@ -340,7 +356,7 @@ function Navbar() {
               {/* Dashboard Dropdown */}
               {auth?.token ? (
                 <>
-                  <li  onClick={toggleDashboard} className='hover:bg-gray-700 rounded-lg cursor-pointer flex flex-row justify-between items-center w-full'>
+                  <li onClick={toggleDashboard} className='hover:bg-gray-700 rounded-lg cursor-pointer flex flex-row justify-between items-center w-full'>
                     <span className='font-bold text-lg'>Dashboard</span>
                     <span className={`ml-2 transition-transform ${isDashboardOpen ? 'rotate-180' : ''}`}>&#9660;</span> {/* Arrow Icon */}
                   </li>
@@ -355,7 +371,7 @@ function Navbar() {
                   )}
 
                   {/* Income Dropdown */}
-                  <li  onClick={toggleIncome} className='hover:bg-gray-700 rounded-lg cursor-pointer flex flex-row justify-between items-center w-full'>
+                  <li onClick={toggleIncome} className='hover:bg-gray-700 rounded-lg cursor-pointer flex flex-row justify-between items-center w-full'>
                     <span className='font-bold text-lg'>Income</span>
                     <span className={`ml-2 transition-transform ${isIncomeOpen ? 'rotate-180' : ''}`}>&#9660;</span> {/* Arrow Icon */}
                   </li>
@@ -369,7 +385,7 @@ function Navbar() {
                   )}
 
                   {/* Additional Options Dropdown */}
-                  <li  onClick={toggleOptions} className='hover:bg-gray-700 rounded-lg cursor-pointer flex flex-row justify-between items-center w-full'>
+                  <li onClick={toggleOptions} className='hover:bg-gray-700 rounded-lg cursor-pointer flex flex-row justify-between items-center w-full'>
                     <span className='font-bold text-lg'>More Options</span>
                     <span className={`ml-2 transition-transform ${isOptionsOpen ? 'rotate-180' : ''}`}>&#9660;</span> {/* Arrow Icon */}
                   </li>
@@ -410,7 +426,7 @@ function Navbar() {
                   <li onClick={() => { navigate('/user/withdraw'); }} className='hover:bg-gray-700 rounded-lg'><a>Withdraw</a></li>
                   <li onClick={() => { navigate('/user/user-tree'); }} className='hover:bg-gray-700 rounded-lg'><a>My Team</a></li>
                   <li onClick={() => { navigate('/user/invitation'); }} className='hover:bg-gray-700 rounded-lg'><a>Invite</a></li>
-                  <li onClick={ () => { navigate('/user/level-income'); }} className='hover:bg-gray-700 rounded-lg'><a>Bull Income</a></li>
+                  <li onClick={() => { navigate('/user/level-income'); }} className='hover:bg-gray-700 rounded-lg'><a>Bull Income</a></li>
                   <li onClick={() => { navigate('/user/matching-income'); }} className='hover:bg-gray-700 rounded-lg'><a>Matching Income</a></li>
                   <li onClick={() => { navigate('/user/rank-income'); }} className='hover:bg-gray-700 rounded-lg'><a>Rank Income</a></li>
 
