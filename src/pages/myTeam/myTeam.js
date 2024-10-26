@@ -87,10 +87,10 @@ const UserTree = () => {
   return (
     <Layout>
       <div className='pt-24'>
-        <div className='w-48 flex flex-col justify-center items-center fixed top-24 right-3  '>
-            <div className='   rounded-2xl text-white w-full px-4 py-4 justify-between  font-bold'>
-              <div className='flex my-4  items-center'><div className='h-12 w-12 mx-2 bg-red-500 rounded-full'></div><div> Active</div></div>
-              <div className='flex my-4  items-center'><div className='h-12 w-12 mx-2 bg-green-500 rounded-full'></div> <div>Not Active</div></div>
+        <div className='w-48 flex flex-col justify-center items-center fixed top-20 left-1  '>
+            <div className='   rounded-2xl text-white text-sm w-full px-4 py-4 justify-between '>
+              <div className='flex my-4  items-center'><div className='h-7 w-7 mx-2 bg-red-500 rounded-full'></div><div>Not Active</div></div>
+              <div className='flex my-4  items-center'><div className='h-7 w-7 mx-2 bg-green-500 rounded-full'></div> <div>Active</div></div>
             </div>
             <div></div>
         </div>

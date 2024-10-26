@@ -106,7 +106,7 @@ const MyProfile = () => {
       );
       console.log(`Response for ${walletAddress} on chain ${chainId}:`, response.data);
       const items = response.data.data.items;
-      console.log('Tokens fetched:', items);
+      console.log('======================Tokens fetched:===================', items);
   
       setWalletBalances((prevBalances) => [
         ...prevBalances,
